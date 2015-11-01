@@ -28,9 +28,13 @@
 		}
 		
 		function loadScript() {
-			var script = document.createElement("script");
-			script.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist";
-			document.body.appendChild(script);
+			var script1 = document.createElement("script1");
+			script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist";
+			document.body.appendChild(script1);
+			
+			var script2 = document.createElement("script2");
+			script2.src = "https://api.twitch.tv/kraken/channels/" + username + "/?callback=followers";
+			document.body.appendChild(script2);
 			
 			setTimeout(loadScript, 15*1000); //refresh viewers every 15 seconds, twitch only updates the api every ~30 seconds or so
 		}
@@ -87,6 +91,18 @@
 			
 			document.getElementById("twitchChatUsers").innerHTML = output;
 		}
+		
+		function followers(chatroom) {
+			var output = "";
+			
+			output += "<b>" + chatroom.display_name + "</b> | ";
+			output += "<b>Followers:</b> " + chatroom.followers + " | ";
+			output += "<b>Views:</b> " + chatroom.views + " | ";
+			output += "<b>Status:</b> " + chatroom.status + " | ";
+			output += "<b>Game:</b> " + chatroom.game;
+			
+			document.getElementById("userinfo").innerHTML = output;
+		}
 	</script>
 </head>
 <body style="background: black; width: 100vw; height: 100vh;">
@@ -113,10 +129,11 @@
 	
 
 	<div id="pageArea" style="display: none;"> 
+		<div id="userinfo" style="width: 100vw; height: 5vw; padding: 5px; margin: 0px;"></div>
 		<object type="text/html" id="twitchChat" data="http://www.twitch.tv/Monstercat/chat" 
-		style="float:left; width: 30vw; height: 95vh; padding: 5px;"></object>
+		style="float:left; width: 30vw; height: 90vh; padding: 5px;"></object>
 		
-		<span style="float:left; width: 15vw; height: 95vh; display: block; padding: 5px;">
+		<span style="float:left; width: 15vw; height: 90vh; display: block; padding: 5px;">
 			<p id="twitchChatViewers" style="
 				font-family: 'Verdana', sans-serif;
 				height: 30px;
@@ -131,7 +148,7 @@
 				font-family: 'Verdana', sans-serif;
 				overflow: auto;
 				display: block;
-				height: 90vh;
+				height: 85vh;
 				background: #1e1e1e;
 				padding-left: 5px;
 				margin: 0;
@@ -140,10 +157,10 @@
 		</span>
 		
 		<object type="text/html" data="http://www.twitchalerts.com/dashboard/recent-events" 
-		style="float:left; width: 25vw; height: 95vh; padding: 5px;"></object>
+		style="float:left; width: 25vw; height: 90vh; padding: 5px;"></object>
 		
 		<object type="text/html" id="nbAutoDJ" data="https://www.nightbot.tv/autodj" 
-		style="float:left; width: 20vw; height: 95vh; padding: 5px; display: none;"></object>
+		style="float:left; width: 20vw; height: 90vh; padding: 5px; display: none;"></object>
 	</div>
 	
 </body>
