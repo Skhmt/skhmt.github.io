@@ -5,7 +5,7 @@
 	Add twitter module
 -->
 <!DOCTYPE html>
-<html style="width: 100vh; height: 100vh;">
+<html style="width: 100vw; height: 100vh;">
 <head>
 	<title>
 		Stream control panel
@@ -89,7 +89,7 @@
 		}
 	</script>
 </head>
-<body style="background: black; width: 100vh; height: 100vh;">
+<body style="background: black; width: 100vw; height: 100vh;">
 
 	<div id="nameArea" style="font-family: 'Verdana', sans-serif; color: #d3d3d3;">
 		<form onsubmit="setTwitchName(); return false;">
@@ -114,9 +114,9 @@
 
 	<div id="pageArea" style="display: none;"> 
 		<object type="text/html" id="twitchChat" data="http://www.twitch.tv/Monstercat/chat" 
-		style="float:left; width: 30vh; height: 95vh; padding: 5px;"></object>
+		style="float:left; width: 30vw; height: 95vh; padding: 5px;"></object>
 		
-		<span style="float:left; width: 15vh; height: 95vh; display: block; padding: 5px;">
+		<span style="float:left; width: 15vw; height: 95vh; display: block; padding: 5px;">
 			<p id="twitchChatViewers" style="
 				font-family: 'Verdana', sans-serif;
 				height: 30px;
@@ -131,7 +131,7 @@
 				font-family: 'Verdana', sans-serif;
 				overflow: auto;
 				display: block;
-				width: 100vh;
+				width: 100vw;
 				height: 97vh;
 				background: #1e1e1e;
 				padding-left: 5px;
@@ -141,10 +141,10 @@
 		</span>
 		
 		<object type="text/html" data="http://www.twitchalerts.com/dashboard/recent-events" 
-		style="float:left; width: 25vh; height: 95vh; padding: 5px;"></object>
+		style="float:left; width: 25vw; height: 95vh; padding: 5px;"></object>
 		
 		<object type="text/html" id="nbAutoDJ" data="https://www.nightbot.tv/autodj" 
-		style="float:left; width: 20vh; height: 95vh; padding: 5px; display: none;"></object>
+		style="float:left; width: 20vw; height: 95vh; padding: 5px; display: none;"></object>
 	</div>
 	
 </body>
