@@ -1,0 +1,151 @@
+<!--
+	To do:
+	All modules collapsible (like twitch chat/side arrows)
+	All modules optional (like the autodj)
+	Add twitter module
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Stream control panel
+	</title>
+	<script type="application/javascript">
+		var username;
+		function setTwitchName() {
+			username = document.getElementById("twitchName").value.toLowerCase();
+
+			// Hiding the initial input area
+			document.getElementById("nameArea").style.display = "none";
+			
+			
+			// Setting up the main page area
+			if (document.getElementById("nbAutoDJBox").checked) document.getElementById("nbAutoDJ").style.display = "block";
+			document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
+			loadScript();
+			
+			document.getElementById("pageArea").style.display = "block";
+		}
+		
+		function loadScript() {
+			var script = document.createElement("script");
+			script.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist";
+			document.body.appendChild(script);
+			
+			setTimeout(loadScript, 15*1000); //refresh viewers every 15 seconds, twitch only updates the api every ~30 seconds or so
+		}
+		
+		function userlist(chatroom) {
+			document.getElementById("twitchChatViewers").innerHTML = "Total viewers: <b>" + chatroom.data.chatter_count + "</b> ";
+			
+			var output = ""; 
+			
+			if (chatroom.data.chatters.moderators.length > 0) {
+				output += "<p> <b>Moderators (" + chatroom.data.chatters.moderators.length + ")</b> <br /> ";
+				var i;
+				for (i = 0; i < chatroom.data.chatters.moderators.length; i++) {
+					output += chatroom.data.chatters.moderators[i] + " <br /> ";
+				}
+				output += "</p> ";
+			}
+			
+			if (chatroom.data.chatters.staff.length > 0) {
+				output += "<p> <b>Staff (" + chatroom.data.chatters.staff.length + ")</b> <br /> ";
+				var i;
+				for (i = 0; i < chatroom.data.chatters.staff.length; i++) {
+					output += chatroom.data.chatters.staff[i] + " <br /> ";
+				}
+				output += "</p> ";
+			}
+			
+			if (chatroom.data.chatters.admins.length > 0) {
+				output += "<p> <b>Admins (" + chatroom.data.chatters.admins.length + ")</b> <br /> ";
+				var i;
+				for (i = 0; i < chatroom.data.chatters.admins.length; i++) {
+					output += chatroom.data.chatters.admins[i] + " <br /> ";
+				}
+				output += "</p> ";
+			}
+			
+			if (chatroom.data.chatters.global_mods.length > 0) {
+				output += "<p> <b>Global Mods (" + chatroom.data.chatters.global_mods.length + ")</b> <br /> ";
+				var i;
+				for (i = 0; i < chatroom.data.chatters.global_mods.length; i++) {
+					output += chatroom.data.chatters.global_mods[i] + " <br /> ";
+				}
+				output += "</p> ";
+			}
+			
+			if (chatroom.data.chatters.viewers.length > 0) {
+				output += "<p> <b>Viewers (" + chatroom.data.chatters.viewers.length + ")</b> <br /> ";
+				var i;
+				for (i = 0; i < chatroom.data.chatters.viewers.length; i++) {
+					output += chatroom.data.chatters.viewers[i] + " <br /> ";
+				}
+				output += "</p> ";
+			}
+			
+			document.getElementById("twitchChatUsers").innerHTML = output;
+		}
+	</script>
+</head>
+<body style="background: black;">
+
+	<div id="nameArea" style="font-family: 'Verdana', sans-serif; color: #d3d3d3;">
+		<form onsubmit="setTwitchName(); return false;">
+			Twitch username: <input type="text" id="twitchName" required /> <br />
+			Nightbot AutoDJ: <input type="checkbox" id="nbAutoDJBox" /> <br />
+			<input type="submit" value="Submit" />
+		</form>
+		<p>
+			For TwitchAlerts Recent Events, please log in to <a href="http://www.twitchalerts.com/" target="_new">TwitchAlerts</a>.
+		</p>
+		<p>
+			For Nightbot AutoDJ, please log in to <a href="https://www.nightbot.tv/" target="_new">Nightbot</a>.
+		</p>
+		<p>
+			Viewer list refreshes every 20 seconds or so - this is a limitation of the Twitch API.
+		</p>
+		<p>
+			Made by <b>Skhmt</b> (<a href="http://www.twitch.tv/skhmt" target="_new">Twitch</a>|<a href="https://twitter.com/SkTTV" target="_new">Twitter</a>) 2015.
+		</p>
+	</div>
+	
+
+	<div id="pageArea" style="display: none;"> 
+		<object type="text/html" id="twitchChat" data="http://www.twitch.tv/Monstercat/chat" 
+		style="float:left; width: 30%; height: 95%; padding: 5px;"></object>
+		
+		<span style="float:left; width: 15%; height: 95%; display: block; padding: 5px;">
+			<p id="twitchChatViewers" style="
+				font-family: 'Verdana', sans-serif;
+				height: 30px;
+				background: #323232;
+				padding-top: 10px;
+				padding-bottom: 0px;
+				margin: 0;
+				color: #d3d3d3;
+				text-align: center;
+			">&nbsp;</p>
+			<p id="twitchChatUsers" style="
+				font-family: 'Verdana', sans-serif;
+				overflow: auto;
+				display: block;
+				width: 100%;
+				height: 97%;
+				background: #1e1e1e;
+				padding-left: 5px;
+				margin: 0;
+				color: #d3d3d3;
+			"></p>
+		</span>
+		
+		<object type="text/html" data="http://www.twitchalerts.com/dashboard/recent-events" 
+		style="float:left; width: 25%; height: 95%; padding: 5px;"></object>
+		
+		<object type="text/html" id="nbAutoDJ" data="https://www.nightbot.tv/autodj" 
+		style="float:left; width: 20%; height: 95%; padding: 5px; display: none;"></object>
+	</div>
+	
+</body>
+</html>
