@@ -5,7 +5,7 @@
 	Add twitter module
 -->
 <!DOCTYPE html>
-<html style="width: 100vw; height: 100vh;">
+<html style="width: 97vw; height: 100vh;">
 <head>
 	<title>
 		Stream control panel
@@ -28,11 +28,11 @@
 		}
 		
 		function loadScript() {
-			var script1 = document.createElement("script1");
+			var script1 = document.createElement("script");
 			script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist";
 			document.body.appendChild(script1);
 			
-			var script2 = document.createElement("script2");
+			var script2 = document.createElement("script");
 			script2.src = "https://api.twitch.tv/kraken/channels/" + username + "/?callback=followers";
 			document.body.appendChild(script2);
 			
@@ -98,14 +98,14 @@
 			output += "<b>" + chatroom.display_name + "</b> | ";
 			output += "<b>Followers:</b> " + chatroom.followers + " | ";
 			output += "<b>Views:</b> " + chatroom.views + " | ";
-			output += "<b>Status:</b> " + chatroom.status + " | ";
-			output += "<b>Game:</b> " + chatroom.game;
+			output += "<b>Game:</b> " + chatroom.game + " | ";
+			output += "<b>Status:</b> " + chatroom.status;
 			
 			document.getElementById("userinfo").innerHTML = output;
 		}
 	</script>
 </head>
-<body style="background: black; width: 100vw; height: 100vh;">
+<body style="background: black; width: 97vw; height: 100vh;">
 
 	<div id="nameArea" style="font-family: 'Verdana', sans-serif; color: #d3d3d3;">
 		<form onsubmit="setTwitchName(); return false;">
@@ -129,12 +129,12 @@
 	
 
 	<div id="pageArea" style="display: none;"> 
-		<div id="userinfo" style="font-family: 'Verdana', sans-serif; color: #d3d3d3; background: #1e1e1e; width: 90vw; height: 5vh; padding: 5px; margin: 0px;">&nbsp;</div>
+		<div id="userinfo" style="font-family: 'Verdana', sans-serif; color: #d3d3d3; background: #1e1e1e; width: 97vw; height: 3vh; padding: 5px; margin: 0px;">&nbsp;</div>
 		
 		<object type="text/html" id="twitchChat" data="http://www.twitch.tv/Monstercat/chat" 
-		style="float:left; width: 30vw; height: 90vh; padding: 5px;"></object>
+		style="float:left; width: 30vw; height: 92vh; padding: 5px;"></object>
 		
-		<span style="float:left; width: 15vw; height: 90vh; display: block; padding: 5px;">
+		<span style="float:left; width: 15vw; height: 92vh; display: block; padding: 5px;">
 			<p id="twitchChatViewers" style="
 				font-family: 'Verdana', sans-serif;
 				height: 30px;
@@ -158,10 +158,10 @@
 		</span>
 		
 		<object type="text/html" data="http://www.twitchalerts.com/dashboard/recent-events" 
-		style="float:left; width: 25vw; height: 90vh; padding: 5px;"></object>
+		style="float:left; width: 25vw; height: 92vh; padding: 5px;"></object>
 		
 		<object type="text/html" id="nbAutoDJ" data="https://www.nightbot.tv/autodj" 
-		style="float:left; width: 20vw; height: 90vh; padding: 5px; display: none;"></object>
+		style="float:left; width: 20vw; height: 92vh; padding: 5px; display: none;"></object>
 	</div>
 	
 </body>
