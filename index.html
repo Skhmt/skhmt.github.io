@@ -8,7 +8,7 @@
 <html style="width: 97vw; height: 98vh;">
 <head>
 	<title>
-		Stream control panel
+		Stream Monitor
 	</title>
 	<script type="application/javascript">
 		var username;
@@ -127,21 +127,25 @@
 </head>
 <body style="background: black; width: 97vw; height: 98vh;">
 
-	<div id="nameArea" style="font-family: 'Verdana', sans-serif; color: #d3d3d3;">
-		<form onsubmit="setTwitchName(); return false;">
-			Twitch username: <input type="text" id="twitchName" required /> <br />
-			<a href="https://www.nightbot.tv/" target="_new">Nightbot</a> AutoDJ: <input type="checkbox" id="nbAutoDJBox" /><br />
-			<input type="submit" value="Submit" />
-		</form>
-		<p>
-			For TwitchAlerts Recent Events, please log in to <a href="http://www.twitchalerts.com/" target="_new">TwitchAlerts</a>.
-		</p>
-		<p>
-			Viewer list refreshes every 20 seconds or so - this is a limitation of the Twitch API.
-		</p>
-		<p>
-			Made by <b>Skhmt</b> (<a href="http://www.twitch.tv/skhmt" target="_new">Twitch</a>|<a href="https://twitter.com/SkTTV" target="_new">Twitter</a>) 2015.
-		</p>
+	<div id="nameArea" style="font-family: 'Verdana', sans-serif; color: #262626; text-align: center;">
+			<div style="border-radius: 25px; border: 4px solid #6441A5; padding: 20px; height: 300px; width: 300px; display: inline-block; background: #F1F1F1; font-size: small; margin-top: 50px; padding-top: 0px;">
+				<p style="color: #6441A5; font-weight: bold; font-size: large;">Stream Monitor</p>
+				<form onsubmit="setTwitchName(); return false;" style="text-align: left; font-weight: bold;">
+					Twitch username: <br />
+					<input type="text" id="twitchName" required /><br />
+					Nightbot AutoDJ: <input type="checkbox" id="nbAutoDJBox" /><br />
+					<input type="submit" value="Start!" />
+				</form>
+				<p>
+					This website is designed and intended to be used at 1080p on the latest version of Chrome. YMMV on other browsers and resolutions.
+				</p>
+				<p>
+					This website is not affiliated with Twitch. It just uses the Twitch API and is intended to be used while streaming on Twitch.
+				</p>
+				<p>
+					Made by <b>Skhmt</b> (<a href="http://www.twitch.tv/skhmt" target="_new">Twitch</a>|<a href="https://twitter.com/SkTTV" target="_new">Twitter</a>) Nov 2015.
+				</p>
+			</div>
 	</div>
 	
 
