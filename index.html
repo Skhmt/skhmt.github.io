@@ -33,28 +33,41 @@
 			document.body.appendChild(script1);
 			
 			var script2 = document.createElement("script");
-			script2.src = "https://api.twitch.tv/kraken/channels/" + username + "/?callback=followers";
+			script2.src = "https://api.twitch.tv/kraken/channels/" + username + "/?callback=streaminfo";
 			document.body.appendChild(script2);
 			
-			setTimeout(loadScript, 15*1000); //refresh viewers every 15 seconds, twitch only updates the api every ~30 seconds or so
+			var script3 = document.createElement("script");
+			script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers";
+			document.body.appendChild(script3);
+			
+			
+			setTimeout(loadScript, 5*1000); //refresh viewers every 5 seconds, twitch only updates the api every ~30-60 seconds or so
+		}
+		
+		var viewersStatus = "";
+		var followersStatus = "";
+		function updateFollowersAndViewers() {
+			if (viewersStatus != "" && followersStatus != "") {
+				document.getElementById("twitchChatViewers").innerHTML = "<img src='viewers.png' width='13' height='13' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='15' height='13' /> " + followersStatus;
+				viewersStatus = "";
+				followersStatus = "";
+			}
+		}
+		
+		function followers(chatroom) {
+			followersStatus = chatroom._total;
+			updateFollowersAndViewers();
 		}
 		
 		function userlist(chatroom) {
-			document.getElementById("twitchChatViewers").innerHTML = "Total viewers: <b>" + chatroom.data.chatter_count + "</b> ";
+			
+			viewersStatus = chatroom.data.chatter_count;
+			updateFollowersAndViewers();
 			
 			var output = ""; 
 			
-			if (chatroom.data.chatters.moderators.length > 0) {
-				output += "<p> <b>Moderators (" + chatroom.data.chatters.moderators.length + ")</b> <br /> ";
-				var i;
-				for (i = 0; i < chatroom.data.chatters.moderators.length; i++) {
-					output += chatroom.data.chatters.moderators[i] + " <br /> ";
-				}
-				output += "</p> ";
-			}
-			
 			if (chatroom.data.chatters.staff.length > 0) {
-				output += "<p> <b>Staff (" + chatroom.data.chatters.staff.length + ")</b> <br /> ";
+				output += "<p> <b style='color: #606060;'>STAFF (" + chatroom.data.chatters.staff.length + ")</b> <br /> ";
 				var i;
 				for (i = 0; i < chatroom.data.chatters.staff.length; i++) {
 					output += chatroom.data.chatters.staff[i] + " <br /> ";
@@ -62,8 +75,17 @@
 				output += "</p> ";
 			}
 			
+			if (chatroom.data.chatters.moderators.length > 0) {
+				output += "<p> <b style='color: #606060;'>MODERATORS (" + chatroom.data.chatters.moderators.length + ")</b> <br /> ";
+				var i;
+				for (i = 0; i < chatroom.data.chatters.moderators.length; i++) {
+					output += chatroom.data.chatters.moderators[i] + " <br /> ";
+				}
+				output += "</p> ";
+			}
+			
 			if (chatroom.data.chatters.admins.length > 0) {
-				output += "<p> <b>Admins (" + chatroom.data.chatters.admins.length + ")</b> <br /> ";
+				output += "<p> <b style='color: #606060;'>ADMINS (" + chatroom.data.chatters.admins.length + ")</b> <br /> ";
 				var i;
 				for (i = 0; i < chatroom.data.chatters.admins.length; i++) {
 					output += chatroom.data.chatters.admins[i] + " <br /> ";
@@ -72,7 +94,7 @@
 			}
 			
 			if (chatroom.data.chatters.global_mods.length > 0) {
-				output += "<p> <b>Global Mods (" + chatroom.data.chatters.global_mods.length + ")</b> <br /> ";
+				output += "<p> <b style='color: #606060;'>GLOBAL MODS (" + chatroom.data.chatters.global_mods.length + ")</b> <br /> ";
 				var i;
 				for (i = 0; i < chatroom.data.chatters.global_mods.length; i++) {
 					output += chatroom.data.chatters.global_mods[i] + " <br /> ";
@@ -81,7 +103,7 @@
 			}
 			
 			if (chatroom.data.chatters.viewers.length > 0) {
-				output += "<p> <b>Viewers (" + chatroom.data.chatters.viewers.length + ")</b> <br /> ";
+				output += "<p> <b style='color: #606060;'>VIEWERS (" + chatroom.data.chatters.viewers.length + ")</b> <br /> ";
 				var i;
 				for (i = 0; i < chatroom.data.chatters.viewers.length; i++) {
 					output += chatroom.data.chatters.viewers[i] + " <br /> ";
@@ -92,12 +114,10 @@
 			document.getElementById("twitchChatUsers").innerHTML = output;
 		}
 		
-		function followers(chatroom) {
+		function streaminfo(chatroom) {
 			var output = "";
 			
 			output += "<b>" + chatroom.display_name + "</b> | ";
-			output += "<b>Followers:</b> " + chatroom.followers + " | ";
-			output += "<b>Views:</b> " + chatroom.views + " | ";
 			output += "<b>Game:</b> " + chatroom.game + " | ";
 			output += "<b>Status:</b> " + chatroom.status;
 			
@@ -134,6 +154,7 @@
 		<span style="float:left; width: 15vw; height: 92vh; display: block; padding: 5px;">
 			<p id="twitchChatViewers" style="
 				font-family: 'Verdana', sans-serif;
+				font-size: medium;
 				height: 30px;
 				background: #323232;
 				padding-top: 10px;
@@ -144,6 +165,7 @@
 			">&nbsp;</p>
 			<p id="twitchChatUsers" style="
 				font-family: 'Verdana', sans-serif;
+				font-size: small;
 				overflow: auto;
 				display: block;
 				height: 87.5vh;
