@@ -2,6 +2,7 @@
 /* this is the (public) client_id of StreamKoala. */
 var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
 
+alert(document.location.hash);
 if (document.location.hash.length() < 1) {
 	window.location.assign(""http://skhmt.github.io");
 }
