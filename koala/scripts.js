@@ -2,6 +2,10 @@
 /* this is the (public) client_id of StreamKoala. */
 var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
 
+var accessToken = document.location.hash;
+
+alert(accessToken);
+
 var username;
 function setTwitchName() {
 	username = document.getElementById("twitchName").value.toLowerCase();

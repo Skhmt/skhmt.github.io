@@ -8,30 +8,6 @@
 	<script src="scripts.js"></script>
 </head>
 <body>
-
-	<!-- This gets the username and acts as the front page of the site -->
-	<div id="nameArea">
-			<div id="nameAreaBox">
-				<p class="streamKoalaName">StreamKoala</p>
-				<form onsubmit="setTwitchName(); return false;">
-					Twitch username: <br />
-					<input type="text" id="twitchName" required /><br />
-					Nightbot AutoDJ: <input type="checkbox" id="nbAutoDJBox" /><br />
-					<input type="submit" value="Start!" />
-				</form>
-				<p>
-					This website is designed and intended to be used at 1080p on the latest version of <a href="https://www.google.com/chrome/" target="_new">Chrome</a>. It is also intended to be used with <a href="https://nightdev.com/betterttv/" target="_new">BTTV</a>, <a href="http://www.twitchalerts.com/dashboard/" target="_new">TwitchAlerts</a>, and <a href="https://www.nightbot.tv/index" target="_new">Nightbot</a>.
-				</p>
-					This website is not affiliated with <a href="http://www.twitch.tv/" target="_new">Twitch</a>. It just uses the <a href="http://dev.twitch.tv/" target="_new">Twitch API</a> and is intended to be used while streaming on Twitch.
-				<p>
-				</p>
-				<p>
-					Made by <b>Skhmt</b> (<a href="http://www.twitch.tv/skhmt" target="_new">Twitch</a>|<a href="https://twitter.com/SkTTV" target="_new">Twitter</a>) Nov 2015.
-				</p>
-			</div>
-	</div>
-	
-	<!-- This is the actual site layout -->
 	<div id="pageArea"> 
 		<div id="userinfo">&nbsp;</div>
 		<div class="lowerbox">
@@ -47,6 +23,5 @@
 			<object type="text/html" id="nbAutoDJ" data="https://www.nightbot.tv/autodj"></object>
 		</div>
 	</div>
-
 </body>
 </html>
