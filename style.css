@@ -1,0 +1,116 @@
+
+html {
+	width: 97vw;
+	height: 98vh;
+}
+
+body {
+	background: black;
+	width: 97vw;
+	height: 98vh;
+}
+
+form {
+	text-align: left;
+	font-weight: bold;
+}
+
+.viewerType {
+	color: #606060;
+	font-weight: bold;
+}
+
+#nameArea {
+	font-family: 'Verdana', sans-serif;
+	color: #262626;
+	text-align: center;
+}
+
+#nameAreaBox {
+	border-radius: 25px;
+	border: 4px solid #6441A5;
+	padding: 20px;
+	height: 300px;
+	width: 300px;
+	display: inline-block;
+	background: #F1F1F1;
+	font-size: small;
+	margin-top: 50px;
+	padding-top: 0px;
+}
+
+#streamMonitorArea {
+	color: #6441A5;
+	font-weight: bold;
+	font-size: large;
+}
+
+#pageArea {
+	display: none;
+}
+
+#userinfo {
+	font-family: 'Verdana', sans-serif;
+	color: #d3d3d3;
+	background: #1e1e1e;
+	width: 97vw;
+	height: 3vh;
+	padding: 5px;
+	margin: 0px;
+}
+
+#twitchChat {
+	float:left;
+	width: 30vw;
+	height: 92vh;
+	padding: 5px;
+}
+
+#viewersSpan {
+	float:left;
+	width: 15vw;
+	height: 92vh;
+	display: block;
+	padding: 5px;
+}
+
+#twitchChatViewers {
+	font-family: 'Verdana', sans-serif;
+	font-size: medium;
+	height: 30px;
+	background: #323232;
+	padding-top: 10px;
+	padding-bottom: 0px;
+	margin: 0;
+	color: #d3d3d3;
+	text-align: center;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+#twitchChatUsers {
+	font-family: 'Verdana', sans-serif;
+	font-size: small;
+	overflow: auto;
+	display: block;
+	height: 87.5vh;
+	background: #1e1e1e;
+	padding-left: 5px;
+	margin: 0;
+	color: #d3d3d3;
+}
+
+#taRecentEvents {
+	float:left;
+	width: 25vw;
+	height: 92vh;
+	padding: 5px;
+}
+
+#nbAutoDJ {
+	float:left;
+	width: 20vw;
+	height: 92vh;
+	padding: 5px;
+	display: none;
+}

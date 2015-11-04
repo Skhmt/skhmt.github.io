@@ -8,132 +8,20 @@
 	- requires twitch API and moves away from a single .html
 -->
 <!DOCTYPE html>
-<html style="width: 97vw; height: 98vh;">
+<html>
 <head>
 	<title>
 		Stream Monitor
 	</title>
-	<script type="application/javascript">
-		var username;
-		function setTwitchName() {
-			username = document.getElementById("twitchName").value.toLowerCase();
-
-			// Hiding the initial input area
-			document.getElementById("nameArea").style.display = "none";
-			
-			
-			// Setting up the main page area
-			if (document.getElementById("nbAutoDJBox").checked) document.getElementById("nbAutoDJ").style.display = "block";
-			document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
-			loadScript();
-			
-			document.getElementById("pageArea").style.display = "block";
-		}
-		
-		function loadScript() {
-			var script1 = document.createElement("script");
-			script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist";
-			document.body.appendChild(script1);
-			
-			var script2 = document.createElement("script");
-			script2.src = "https://api.twitch.tv/kraken/channels/" + username + "/?callback=streaminfo";
-			document.body.appendChild(script2);
-			
-			var script3 = document.createElement("script");
-			script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers";
-			document.body.appendChild(script3);
-			
-			
-			setTimeout(loadScript, 5*1000); //refresh viewers every 5 seconds, twitch only updates the api every ~30-60 seconds or so
-		}
-		
-		var viewersStatus = "";
-		var followersStatus = "";
-		function updateFollowersAndViewers() {
-			if (viewersStatus != "" && followersStatus != "") {
-				document.getElementById("twitchChatViewers").innerHTML = "<img src='viewers.png' width='13' height='13' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='15' height='13' /> " + followersStatus;
-				viewersStatus = "";
-				followersStatus = "";
-			}
-		}
-		
-		function followers(chatroom) {
-			followersStatus = chatroom._total;
-			updateFollowersAndViewers();
-		}
-		
-		function userlist(chatroom) {
-			
-			viewersStatus = chatroom.data.chatter_count;
-			updateFollowersAndViewers();
-			
-			var output = ""; 
-			
-			if (chatroom.data.chatters.staff.length > 0) {
-				output += "<p> <b style='color: #606060;'>STAFF (" + chatroom.data.chatters.staff.length + ")</b> <br /> ";
-				var i;
-				for (i = 0; i < chatroom.data.chatters.staff.length; i++) {
-					output += chatroom.data.chatters.staff[i] + " <br /> ";
-				}
-				output += "</p> ";
-			}
-			
-			if (chatroom.data.chatters.moderators.length > 0) {
-				output += "<p> <b style='color: #606060;'>MODERATORS (" + chatroom.data.chatters.moderators.length + ")</b> <br /> ";
-				var i;
-				for (i = 0; i < chatroom.data.chatters.moderators.length; i++) {
-					output += chatroom.data.chatters.moderators[i] + " <br /> ";
-				}
-				output += "</p> ";
-			}
-			
-			if (chatroom.data.chatters.admins.length > 0) {
-				output += "<p> <b style='color: #606060;'>ADMINS (" + chatroom.data.chatters.admins.length + ")</b> <br /> ";
-				var i;
-				for (i = 0; i < chatroom.data.chatters.admins.length; i++) {
-					output += chatroom.data.chatters.admins[i] + " <br /> ";
-				}
-				output += "</p> ";
-			}
-			
-			if (chatroom.data.chatters.global_mods.length > 0) {
-				output += "<p> <b style='color: #606060;'>GLOBAL MODS (" + chatroom.data.chatters.global_mods.length + ")</b> <br /> ";
-				var i;
-				for (i = 0; i < chatroom.data.chatters.global_mods.length; i++) {
-					output += chatroom.data.chatters.global_mods[i] + " <br /> ";
-				}
-				output += "</p> ";
-			}
-			
-			if (chatroom.data.chatters.viewers.length > 0) {
-				output += "<p> <b style='color: #606060;'>VIEWERS (" + chatroom.data.chatters.viewers.length + ")</b> <br /> ";
-				var i;
-				for (i = 0; i < chatroom.data.chatters.viewers.length; i++) {
-					output += chatroom.data.chatters.viewers[i] + " <br /> ";
-				}
-				output += "</p> ";
-			}
-			
-			document.getElementById("twitchChatUsers").innerHTML = output;
-		}
-		
-		function streaminfo(chatroom) {
-			var output = "";
-			
-			output += "<b>" + chatroom.display_name + "</b> | ";
-			output += "<b>Game:</b> " + chatroom.game + " | ";
-			output += "<b>Status:</b> " + chatroom.status;
-			
-			document.getElementById("userinfo").innerHTML = output;
-		}
-	</script>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="scripts.js"></script>
 </head>
-<body style="background: black; width: 97vw; height: 98vh;">
+<body>
 
-	<div id="nameArea" style="font-family: 'Verdana', sans-serif; color: #262626; text-align: center;">
-			<div style="border-radius: 25px; border: 4px solid #6441A5; padding: 20px; height: 300px; width: 300px; display: inline-block; background: #F1F1F1; font-size: small; margin-top: 50px; padding-top: 0px;">
-				<p style="color: #6441A5; font-weight: bold; font-size: large;">Stream Monitor</p>
-				<form onsubmit="setTwitchName(); return false;" style="text-align: left; font-weight: bold;">
+	<div id="nameArea">
+			<div id="nameAreaBox">
+				<p id="streamMonitorArea">Stream Monitor</p>
+				<form onsubmit="setTwitchName(); return false;">
 					Twitch username: <br />
 					<input type="text" id="twitchName" required /><br />
 					Nightbot AutoDJ: <input type="checkbox" id="nbAutoDJBox" /><br />
@@ -152,44 +40,19 @@
 	</div>
 	
 
-	<div id="pageArea" style="display: none;"> 
-		<div id="userinfo" style="font-family: 'Verdana', sans-serif; color: #d3d3d3; background: #1e1e1e; width: 97vw; height: 3vh; padding: 5px; margin: 0px;">&nbsp;</div>
+	<div id="pageArea"> 
+		<div id="userinfo">&nbsp;</div>
 		
-		<object type="text/html" id="twitchChat" data="http://www.twitch.tv/Monstercat/chat" 
-		style="float:left; width: 30vw; height: 92vh; padding: 5px;"></object>
+		<object type="text/html" id="twitchChat" data="http://www.twitch.tv/Monstercat/chat"></object>
 		
-		<span style="float:left; width: 15vw; height: 92vh; display: block; padding: 5px;">
-			<p id="twitchChatViewers" style="
-				font-family: 'Verdana', sans-serif;
-				font-size: medium;
-				height: 30px;
-				background: #323232;
-				padding-top: 10px;
-				padding-bottom: 0px;
-				margin: 0;
-				color: #d3d3d3;
-				text-align: center;
-				border-top: 1px solid black;
-				border-bottom: 1px solid black;
-			">&nbsp;</p>
-			<p id="twitchChatUsers" style="
-				font-family: 'Verdana', sans-serif;
-				font-size: small;
-				overflow: auto;
-				display: block;
-				height: 87.5vh;
-				background: #1e1e1e;
-				padding-left: 5px;
-				margin: 0;
-				color: #d3d3d3;
-			"></p>
+		<span id="viewersSpan">
+			<p id="twitchChatViewers">&nbsp;</p>
+			<p id="twitchChatUsers">&nbsp;</p>
 		</span>
 		
-		<object type="text/html" data="http://www.twitchalerts.com/dashboard/recent-events" 
-		style="float:left; width: 25vw; height: 92vh; padding: 5px;"></object>
+		<object type="text/html" id="taRecentEvents" data="http://www.twitchalerts.com/dashboard/recent-events"></object>
 		
-		<object type="text/html" id="nbAutoDJ" data="https://www.nightbot.tv/autodj" 
-		style="float:left; width: 20vw; height: 92vh; padding: 5px; display: none;"></object>
+		<object type="text/html" id="nbAutoDJ" data="https://www.nightbot.tv/autodj"></object>
 	</div>
 	
 </body>
