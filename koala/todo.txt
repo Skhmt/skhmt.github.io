@@ -1,0 +1,27 @@
+TODO:
+
+Follower list:
+
+http://tmi.twitch.tv/hosts?include_logins=1&target={id110}
+{id} is of course the _id field from /users/ or /channels/.
+
+coolidge: 70034299
+https://api.twitch.tv/kraken/channels/coolidgehd
+http://tmi.twitch.tv/hosts?include_logins=1&target=70034299
+
+
+Twitch API integration
+- Cookie to track auth?
+
+Update stream status and game
+- pop up? Just type it in?
+
+Live or not icon
+https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md
+
+
+All modules collapsible (like twitch chat/side arrows)
+
+All modules optional (like the autodj)
+
+Add twitter module (mobile.twitter.com)
