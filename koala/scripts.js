@@ -4,7 +4,7 @@ var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
 
 var accessToken = document.location.hash;
 
-alert(accessToken);
+document.body.innerHTML+=accessToken;
 
 var username;
 function setTwitchName() {
