@@ -2,9 +2,11 @@
 /* this is the (public) client_id of StreamKoala. */
 var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
 
-var accessToken = document.location.hash;
+if (document.location.hash.length() < 1) {
+	window.location.assign(""http://skhmt.github.io");
+}
+var access_token = document.location.hash.substring(14,44);
 
-document.body.innerHTML+=accessToken;
 
 var username;
 function setTwitchName() {
