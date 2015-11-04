@@ -5,7 +5,7 @@ html {
 }
 
 body {
-	background: black;
+	background: #161616;
 	width: 97vw;
 	height: 98vh;
 }
@@ -56,6 +56,7 @@ form {
 	width: 97vw;
 	height: 3vh;
 	padding: 5px;
+	padding-left: 10px;
 	margin: 0px;
 }
 
