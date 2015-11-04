@@ -18,6 +18,7 @@
 </head>
 <body>
 
+	<!-- This gets the username and acts as the front page of the site -->
 	<div id="nameArea">
 			<div id="nameAreaBox">
 				<p id="streamMonitorArea">Stream Monitor</p>
@@ -39,21 +40,22 @@
 			</div>
 	</div>
 	
-
+	<!-- This is the actual site layout -->
 	<div id="pageArea"> 
 		<div id="userinfo">&nbsp;</div>
-		
-		<object type="text/html" id="twitchChat" data="http://www.twitch.tv/Monstercat/chat"></object>
-		
-		<span id="viewersSpan">
-			<p id="twitchChatViewers">&nbsp;</p>
-			<p id="twitchChatUsers">&nbsp;</p>
-		</span>
-		
-		<object type="text/html" id="taRecentEvents" data="http://www.twitchalerts.com/dashboard/recent-events"></object>
-		
-		<object type="text/html" id="nbAutoDJ" data="https://www.nightbot.tv/autodj"></object>
+		<div class="lowerbox">
+			<object type="text/html" id="twitchChat" data="http://www.twitch.tv/Monstercat/chat"></object>
+			
+			<span id="viewersSpan">
+				<div id="twitchChatViewers">&nbsp;</div>
+				<div id="twitchChatUsers">&nbsp;</div>
+			</span>
+			
+			<object type="text/html" id="taRecentEvents" data="http://www.twitchalerts.com/dashboard/recent-events"></object>
+			
+			<object type="text/html" id="nbAutoDJ" data="https://www.nightbot.tv/autodj"></object>
+		</div>
 	</div>
-	
+
 </body>
 </html>

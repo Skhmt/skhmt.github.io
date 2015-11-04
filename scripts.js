@@ -35,7 +35,7 @@ var viewersStatus = "";
 var followersStatus = "";
 function updateFollowersAndViewers() {
 	if (viewersStatus != "" && followersStatus != "") {
-		document.getElementById("twitchChatViewers").innerHTML = "<img src='viewers.png' width='13' height='13' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='15' height='13' /> " + followersStatus;
+		document.getElementById("twitchChatViewers").innerHTML = "<img src='viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='12' height='10' /> " + followersStatus;
 		viewersStatus = "";
 		followersStatus = "";
 	}

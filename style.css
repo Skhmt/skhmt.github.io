@@ -1,18 +1,30 @@
 
 html {
-	width: 97vw;
-	height: 98vh;
+	margin: 0px;
+	padding: 0px;
+	width: 100vw;
+	height: 100vh;
+	max-width: 100%;
+	overflow-x: hidden;
 }
 
 body {
 	background: #161616;
-	width: 97vw;
-	height: 98vh;
+	margin: 0px;
+	padding: 0px;
 }
 
 form {
 	text-align: left;
 	font-weight: bold;
+}
+
+.lowerbox {
+	width: 100%;
+	height: calc(100vh - 50px);
+	max-width: 100%;
+	margin: 0px;
+	padding: 0px;
 }
 
 .viewerType {
@@ -21,7 +33,7 @@ form {
 }
 
 #nameArea {
-	font-family: 'Verdana', sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #262626;
 	text-align: center;
 }
@@ -50,39 +62,45 @@ form {
 }
 
 #userinfo {
-	font-family: 'Verdana', sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #d3d3d3;
 	background: #1e1e1e;
-	width: 97vw;
-	height: 3vh;
+	width: 100%;
+	max-width: 100%;
+	height: 20px;
 	padding: 5px;
 	padding-left: 10px;
+	padding-right: 0px;
 	margin: 0px;
+	margin-bottom: 5px;
 }
 
 #twitchChat {
-	float:left;
-	width: 30vw;
-	height: 92vh;
-	padding: 5px;
+	float: left;
+	width: 30%;
+	height: 100%;
+	margin: 5px;
+	margin-left: 10px;
 }
 
 #viewersSpan {
-	float:left;
-	width: 15vw;
-	height: 92vh;
+	float: left;
+	width: 12%;
+	height: 100%;
+	max-height: 100%;
 	display: block;
-	padding: 5px;
+	margin: 5px;
+	padding: 0px;
 }
 
 #twitchChatViewers {
-	font-family: 'Verdana', sans-serif;
-	font-size: medium;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
 	height: 30px;
 	background: #323232;
 	padding-top: 10px;
 	padding-bottom: 0px;
-	margin: 0;
+	margin: 0px;
 	color: #d3d3d3;
 	text-align: center;
 	border-top: 1px solid black;
@@ -90,28 +108,29 @@ form {
 }
 
 #twitchChatUsers {
-	font-family: 'Verdana', sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: small;
 	overflow: auto;
 	display: block;
-	height: 87.5vh;
+	height: calc(100% - 42px);
 	background: #1e1e1e;
 	padding-left: 5px;
-	margin: 0;
+	margin: 0px;
 	color: #d3d3d3;
 }
 
 #taRecentEvents {
-	float:left;
-	width: 25vw;
-	height: 92vh;
-	padding: 5px;
+	float: left;
+	width: 25%;
+	height: calc(100% - 1px);
+	margin: 5px;
+	padding-top: 1px;
 }
 
 #nbAutoDJ {
-	float:left;
-	width: 20vw;
-	height: 92vh;
-	padding: 5px;
+	float: left;
+	width: 20%;
+	height: 100%;
+	margin: 5px;
 	display: none;
 }
