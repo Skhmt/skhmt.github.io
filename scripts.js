@@ -1,3 +1,7 @@
+
+/* this is the (public) client_id of StreamKoala. */
+var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
+
 var username;
 function setTwitchName() {
 	username = document.getElementById("twitchName").value.toLowerCase();
@@ -9,22 +13,27 @@ function setTwitchName() {
 	// Setting up the main page area
 	if (document.getElementById("nbAutoDJBox").checked) document.getElementById("nbAutoDJ").style.display = "block";
 	document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
+	horizontalSizeElements();
 	loadScript();
 	
 	document.getElementById("pageArea").style.display = "block";
 }
 
+function horizontalSizeElements() {
+	
+}
+
 function loadScript() {
 	var script1 = document.createElement("script");
-	script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist";
+	script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist&client_id=" + clientid;
 	document.body.appendChild(script1);
 	
 	var script2 = document.createElement("script");
-	script2.src = "https://api.twitch.tv/kraken/channels/" + username + "/?callback=streaminfo";
+	script2.src = "https://api.twitch.tv/kraken/channels/" + username + "/?callback=streaminfo&client_id=" + clientid;
 	document.body.appendChild(script2);
 	
 	var script3 = document.createElement("script");
-	script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers";
+	script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers&client_id=" + clientid;
 	document.body.appendChild(script3);
 	
 	
@@ -108,5 +117,7 @@ function streaminfo(chatroom) {
 	output += "<b>Game:</b> " + chatroom.game + " | ";
 	output += "<b>Status:</b> " + chatroom.status;
 	
-	document.getElementById("userinfo").innerHTML = output;
+	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
+	
+	document.getElementById("userinfo").innerHTML = output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output;
 }

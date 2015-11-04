@@ -32,6 +32,19 @@ form {
 	font-weight: bold;
 }
 
+.streamKoalaName {
+	color: #6441A5;
+	font-weight: bold;
+	font-size: large;
+}
+
+.streamKoalaBox {
+	color: #6441A5;
+	font-weight: bold;
+	font-size: large;
+	background-color: #F1F1F1;
+}
+
 #nameArea {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #262626;
@@ -51,12 +64,6 @@ form {
 	padding-top: 0px;
 }
 
-#streamMonitorArea {
-	color: #6441A5;
-	font-weight: bold;
-	font-size: large;
-}
-
 #pageArea {
 	display: none;
 }
@@ -70,7 +77,6 @@ form {
 	height: 20px;
 	padding: 5px;
 	padding-left: 10px;
-	padding-right: 0px;
 	margin: 0px;
 	margin-bottom: 5px;
 }
