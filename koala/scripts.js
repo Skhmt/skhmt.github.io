@@ -163,5 +163,15 @@ function updateGameName(gameName) {
 function updateStatus(statusText) {
 	var newStatus = prompt("Stream status:", statusText);
 	
+	//change spaces to + signs
+	for (var i = 0; i < newStatus.length; i++) {
+		newStatus = newStatus.replace(" ", "+");
+	}
+	
+	var xhr = new XMLHttpRequest();
+	var url = "https://api.twitch.tv/kraken/channels/" + username + "?channel[status]=" + newStatus + "&_method=put&oauth_token=" + access_token;
+	xhr.open("GET", url, true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.send();
 }
 
