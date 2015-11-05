@@ -30,9 +30,10 @@ function kraken2(userdata) {
 // Setting up the main page area
 loadScript();
 
+/* HOSTS BROKEN
 var pageOpen = new Date()
 document.getElementById("hostsTop").innerHTML = "Hosts since " + ("0" + pageOpen.getHours()).slice(-2) + ":" + ("0" + pageOpen.getMinutes()).slice(-2) + " " + pageOpen.toLocaleDateString();
-
+*/
 
 function loadScript() {
 	
