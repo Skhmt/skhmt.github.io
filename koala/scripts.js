@@ -134,10 +134,10 @@ function streaminfo(chatroom) {
 	
 	output += "<b>" + chatroom.display_name + "</b>";
 	output += " | ";
-	output += "<b><button onclick=\"updateGameName('" + chatroom.game + "')\">Game</button>:</b> ";
+	output += "<b><button onclick=\"updateGameName('" + chatroom.game + "')\">Game</button> :</b> ";
 	output += chatroom.game;
 	output += " | ";
-	output += "<b><button onclick=\"updateStatus('" + chatroom.status + "')\">Status</button>:</b> ";
+	output += "<b><button onclick=\"updateStatus('" + chatroom.status + "')\">Status</button> :</b> ";
 	output += chatroom.status;
 	
 	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
@@ -146,7 +146,7 @@ function streaminfo(chatroom) {
 }
 
 function updateGameName(gameName) {
-	var newGame = prompt("Game name:", gameName);
+	var newGame = prompt("Enter a new game name below. Changes take a moment to appear on StreamKoala.", gameName);
 	
 	//change spaces to + signs
 	for (var i = 0; i < newGame.length; i++) {
@@ -161,7 +161,7 @@ function updateGameName(gameName) {
 }
 
 function updateStatus(statusText) {
-	var newStatus = prompt("Stream status:", statusText);
+	var newStatus = prompt("Enter a new stream status below. Changes take a moment to appear on StreamKoala.", statusText);
 	
 	//change spaces to + signs
 	for (var i = 0; i < newStatus.length; i++) {
