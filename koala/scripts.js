@@ -16,8 +16,9 @@ scriptName.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&
 document.body.appendChild(scriptName);
 
 function kraken(data) {
-	username = data._links.token.user_name;
+	username = data.token.user_name;
 }
+
 alert(username);
 
 // Setting up the main page area
