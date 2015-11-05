@@ -12,7 +12,7 @@ var access_token = document.location.hash.substring(14,44);
 
 /* getting username */
 var scriptName = document.createElement("script");
-scriptName.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&callback=kraken";
+scriptName.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&callback=kraken&client_id=" + clientid;
 document.body.appendChild(scriptName);
 
 function kraken(data) {
