@@ -3,11 +3,13 @@
 var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
 var username = "";
 
+alert("test");
 
 /* If there's no auth, send the user to the front page */
 if (document.location.hash.length < 50) {
 	window.location = "http://skhmt.github.io";
 }
+alert("before substring");
 var access_token = document.location.hash.substring(14,44);
 alert(access_token);
 
