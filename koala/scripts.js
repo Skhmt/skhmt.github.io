@@ -147,6 +147,7 @@ function streaminfo(chatroom) {
 }
 
 function hosts(hostlist) {
+	alert("in hosts");
 	for (var i = 0; i < hostlist.hosts.length; i++) {
 		var newHost = true;
 		for (var j = 0; j < allHosts.length; j++) {
