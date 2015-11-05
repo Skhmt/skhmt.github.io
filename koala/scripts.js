@@ -37,13 +37,6 @@ document.getElementById("hostsTop").innerHTML = "Hosts since " + ("0" + pageOpen
 */
 
 function loadScript() {
-	
-	if(setupChat == false && username != "") {
-		document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
-		document.getElementById("twitchChat").style.display = "block";
-		setupChat = true;
-	}
-	
 	var script1 = document.createElement("script");
 	script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist&client_id=" + clientid;
 	document.body.appendChild(script1);
@@ -55,6 +48,12 @@ function loadScript() {
 	var script3 = document.createElement("script");
 	script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers&client_id=" + clientid;
 	document.body.appendChild(script3);
+	
+	if(setupChat == false && username != "") {
+		document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
+		document.getElementById("twitchChat").style.display = "block";
+		setupChat = true;
+	}
 	
 	setTimeout(loadScript, refreshRate*1000);
 }
