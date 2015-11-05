@@ -141,11 +141,13 @@ function streaminfo(chatroom) {
 	document.getElementById("userinfo").innerHTML = output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output;
 	
 	/* update hosts */
+	/* HOSTS ARE BROKEN RIGHT NOW
 	var script4 = document.createElement("script");
 	script4.src = "http://tmi.twitch.tv/hosts?include_logins=1&target=" + chatroom._id + "&callback=hosts&client_id=" + clientid;
 	document.body.appendChild(script4);
+	*/
 }
-
+/*
 function hosts(hostlist) {
 	for (var i = 0; i < hostlist.length; i++) {
 		var newHost = true;
@@ -171,6 +173,7 @@ function hosts(hostlist) {
 	}
 	document.getElementById("hostsBottom").innerHTML = output;
 }
+*/
 
 function updateGameName(gameName) {
 	var newGame = prompt("Enter a new game name below. Changes take a moment to appear on StreamKoala.", gameName);
