@@ -105,6 +105,7 @@ form {
 	padding-left: 10px;
 	margin: 0px;
 	margin-bottom: 5px;
+	border-bottom: 1px solid black;
 }
 
 #twitchChat {
