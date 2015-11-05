@@ -20,6 +20,7 @@ function getUsername() {
 
 function kraken2(userdata) {
 	username = userdata.token.user_name;
+	alert("username="+username);
 }
 
 
