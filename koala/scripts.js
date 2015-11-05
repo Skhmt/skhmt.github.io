@@ -150,7 +150,7 @@ function updateGameName(gameName) {
 	
 	var xhr = new XMLHTTPObject();
 	var url = "";
-	var params = "game=" + newGame + "&oauth_token=" + access_token + "&client_id=" + clientid;:
+	var params = "game=" + newGame + "&oauth_token=" + access_token + "&client_id=" + clientid;
 	xhr.open("PUT", url, true);
 	xhr.send(params);
 }
