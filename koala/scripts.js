@@ -2,21 +2,23 @@
 /* this is the (public) client_id of StreamKoala. */
 var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
 var username = "";
-
+var access_token = "";
 
 /* If there's no auth, send the user to the front page */
 if (document.location.hash.length < 50) {
 	window.location = "http://skhmt.github.io";
 }
-var access_token = document.location.hash.substring(14,44);
+access_token = document.location.hash.substring(14,44);
 
-/* getting username */
-var script0 = document.createElement("script");
-alert("created element");
-script0.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&callback=kraken2&client_id=" + clientid;
-alert("set source");
-document.body.appendChild(script0);
-alert("appended child");
+
+getUsername();
+
+function getUsername() {
+	var script0 = document.createElement("script");
+	script0.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&callback=kraken2&client_id=" + clientid;
+	document.body.appendChild(script0);
+	alert("appended child");
+}
 
 function kraken2(data) {
 	alert("kraken");
