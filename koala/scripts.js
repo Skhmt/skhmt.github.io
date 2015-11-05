@@ -132,11 +132,31 @@ function userlist(chatroom) {
 function streaminfo(chatroom) {
 	var output = "";
 	
-	output += "<b>" + chatroom.display_name + "</b> | ";
-	output += "<b>Game:</b> " + chatroom.game + " | ";
-	output += "<b>Status:</b> " + chatroom.status;
+	output += "<b>" + chatroom.display_name + "</b>";
+	output += " | ";
+	output += "<b><span onmousedown='updateGameName(chatroom.game)'>Game</span>:</b> ";
+	output += chatroom.game;
+	output += " | ";
+	output += "<b><span onmousedown='updateStatus(chatroom.status)'>Status</span>:</b> ";
+	output += chatroom.status;
 	
 	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 	
 	document.getElementById("userinfo").innerHTML = output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output;
 }
+
+function updateGameName(gameName) {
+	var newGame = prompt("Game name:", gameName);
+	
+	var xhr = new XMLHTTPObject();
+	var url = "";
+	var params = "game=" + newGame + "&oauth_token=" + access_token + "&client_id=" + clientid;:
+	xhr.open("PUT", url, true);
+	xhr.send(params);
+}
+
+function updateStatus(statusText) {
+	var newStatus = prompt("Stream status:", statusText);
+	
+}
+
