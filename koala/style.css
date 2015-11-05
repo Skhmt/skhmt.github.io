@@ -33,6 +33,7 @@ form {
 }
 
 .streamKoalaName {
+	font-family: 'Verdana', Arial, sansa-serif;
 	color: #6441A5;
 	font-weight: bold;
 	font-size: large;
@@ -116,6 +117,14 @@ form {
 }
 
 #taRecentEvents {
+	float: left;
+	width: 25%;
+	height: calc(100% - 1px);
+	margin: 5px;
+	padding-top: 1px;
+}
+
+#twitter {
 	float: left;
 	width: 25%;
 	height: calc(100% - 1px);

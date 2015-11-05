@@ -4,8 +4,6 @@ Live or not icon
 
 All modules collapsible (like twitch chat/side arrows)
 
-Add twitter module (mobile.twitter.com)
-
 
 
 
