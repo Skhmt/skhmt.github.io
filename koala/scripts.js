@@ -11,14 +11,14 @@ if (document.location.hash.length < 50) {
 var access_token = document.location.hash.substring(14,44);
 
 /* getting username */
-var scriptName = document.createElement("script");
+var script0 = document.createElement("script");
 alert("created element");
-scriptName.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&callback=kraken&client_id=" + clientid;
+script0.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&callback=kraken2&client_id=" + clientid;
 alert("set source");
-document.body.appendChild(scriptName);
+document.body.appendChild(script0);
 alert("appended child");
 
-function kraken(data) {
+function kraken2(data) {
 	alert("kraken");
 	username = data.token.user_name;
 	alert(username);
