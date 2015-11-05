@@ -25,7 +25,7 @@ function kraken2(userdata) {
 
 // Setting up the main page area
 document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
-document.getElementById("twitchChat").style.display = block;
+document.getElementById("twitchChat").style.display = "block";
 //horizontalSizeElements();
 loadScript();
 
