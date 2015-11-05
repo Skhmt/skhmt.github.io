@@ -50,7 +50,7 @@ function loadScript() {
 	document.body.appendChild(script3);
 	
 	
-	setTimeout(loadScript, 5*1000); //refresh viewers every 5 seconds, twitch only updates the api every ~30-60 seconds or so
+	setTimeout(loadScript, 2*1000); //refresh viewers every 5 seconds, twitch only updates the api every ~30-60 seconds or so
 }
 
 var viewersStatus = "";
