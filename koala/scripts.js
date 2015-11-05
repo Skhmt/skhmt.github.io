@@ -3,6 +3,9 @@
 var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
 var username = "";
 var access_token = "";
+var viewersStatus = "";
+var followersStatus = "";
+var setupChat = false;
 
 /* If there's no auth, send the user to the front page */
 if (document.location.hash.length < 50) {
@@ -20,14 +23,10 @@ function getUsername() {
 
 function kraken2(userdata) {
 	username = userdata.token.user_name;
-	alert("username="+username);
 }
 
 
 // Setting up the main page area
-alert(":"+username+":");
-document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
-document.getElementById("twitchChat").style.display = "block";
 //horizontalSizeElements();
 loadScript();
 
@@ -39,6 +38,13 @@ function horizontalSizeElements() {
 */
 
 function loadScript() {
+	
+	if(setupChat == false && username != "") {
+		document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
+		document.getElementById("twitchChat").style.display = "block";
+		setupChat = true;
+	}
+	
 	var script1 = document.createElement("script");
 	script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist&client_id=" + clientid;
 	document.body.appendChild(script1);
@@ -55,8 +61,6 @@ function loadScript() {
 	setTimeout(loadScript, 1*1000); //refresh viewers every 1 seconds, twitch only updates the api every ~30-60 seconds or so
 }
 
-var viewersStatus = "";
-var followersStatus = "";
 function updateFollowersAndViewers() {
 	if (viewersStatus != "" && followersStatus != "") {
 		document.getElementById("twitchChatViewers").innerHTML = "<img src='viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='12' height='10' /> " + followersStatus;
