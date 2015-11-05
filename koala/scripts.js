@@ -38,18 +38,15 @@ document.getElementById("hostsTop").innerHTML = "Hosts since " + ("0" + pageOpen
 
 function loadScript() {
 	var script1 = document.createElement("script");
-	script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist&client_id=" + clientid;
-	script1.type = "application/vnd.twitchtv.v3+json";
+	script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist&client_id=" + clientid + "&api_version=3";
 	document.body.appendChild(script1);
 	
 	var script2 = document.createElement("script");
-	script2.src = "https://api.twitch.tv/kraken/channels/" + username + "/?callback=streaminfo&client_id=" + clientid;
-	script2.type = "application/vnd.twitchtv.v3+json";
+	script2.src = "https://api.twitch.tv/kraken/channels/" + username + "/?callback=streaminfo&client_id=" + clientid + "&api_version=3";
 	document.body.appendChild(script2);
 	
 	var script3 = document.createElement("script");
-	script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers&client_id=" + clientid;
-	script3..type = "application/vnd.twitchtv.v3+json";
+	script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers&client_id=" + clientid + "&api_version=3";
 	document.body.appendChild(script3);
 	
 	if(setupChat == false && username != "") {
@@ -147,8 +144,7 @@ function streaminfo(chatroom) {
 	/* update hosts */
 	/* HOSTS ARE BROKEN RIGHT NOW
 	var script4 = document.createElement("script");
-	script4.src = "http://tmi.twitch.tv/hosts?include_logins=1&target=" + chatroom._id + "&callback=hosts&client_id=" + clientid;
-	script4.type = "application/vnd.twitchtv.v3+json";
+	script4.src = "http://tmi.twitch.tv/hosts?include_logins=1&target=" + chatroom._id + "&callback=hosts&client_id=" + clientid + "&api_version=3";
 	document.body.appendChild(script4);
 	*/
 }
