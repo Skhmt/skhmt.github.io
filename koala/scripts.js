@@ -38,7 +38,7 @@ document.getElementById("hostsTop").innerHTML = "Hosts since " + ("0" + pageOpen
 
 function loadScript() {
 	var script1 = document.createElement("script");
-	script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist&client_id=" + clientid + "&api_version=3";
+	script1.src = "https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=userlist&client_id=" + clientid + "&api_version=2";
 	document.body.appendChild(script1);
 	
 	var script2 = document.createElement("script");
