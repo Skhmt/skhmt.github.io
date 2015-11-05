@@ -1,30 +1,31 @@
 
 /* this is the (public) client_id of StreamKoala. */
 var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
+var username = "";
 
-alert(document.location.hash);
-if (document.location.hash.length() < 1) {
-	window.location.assign(""http://skhmt.github.io");
+
+/* If there's no auth, send the user to the front page */
+if (document.location.hash.length < 50) {
+	window.location = "http://skhmt.github.io";
 }
 var access_token = document.location.hash.substring(14,44);
 
+/* getting username */
+var scriptName = document.createElement("script");
+scriptName.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&callback=kraken";
+document.body.appendChild(scriptName);
 
-var username;
-function setTwitchName() {
-	username = document.getElementById("twitchName").value.toLowerCase();
-
-	// Hiding the initial input area
-	document.getElementById("nameArea").style.display = "none";
-	
-	
-	// Setting up the main page area
-	if (document.getElementById("nbAutoDJBox").checked) document.getElementById("nbAutoDJ").style.display = "block";
-	document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
-	horizontalSizeElements();
-	loadScript();
-	
-	document.getElementById("pageArea").style.display = "block";
+function kraken(data) {
+	username = data._links.token.user_name;
 }
+
+// Setting up the main page area
+document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
+horizontalSizeElements();
+loadScript();
+
+// document.getElementById("pageArea").style.display = "block";
+
 
 function horizontalSizeElements() {
 	
