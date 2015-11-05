@@ -153,7 +153,7 @@ function updateGameName(gameName) {
 	var url = "https://api.twitch.tv/kraken/channels/" + username;
 	xhr.open("PUT", url, true);
 	xhr.setRequestHeader("Accept", "application/vnd.twitchtv.v3+json");
-	xhr.setRequestHeasder("Authorization", "OAuth " + access_token);
+	xhr.setRequestHeader("Authorization", "OAuth " + access_token);
 	xhr.send(params);
 }
 
