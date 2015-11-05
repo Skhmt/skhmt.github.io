@@ -16,27 +16,25 @@ function getUsername() {
 	var script0 = document.createElement("script");
 	script0.src = "https://api.twitch.tv/kraken?callback=kraken2&oauth_token=" + access_token + "&client_id=" + clientid;
 	document.body.appendChild(script0);
-	alert("appended child");
 }
 
 function kraken2(userdata) {
-	alert("kraken");
 	username = userdata.token.user_name;
-	alert(username);
 }
 
 
 // Setting up the main page area
 document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
-horizontalSizeElements();
+//horizontalSizeElements();
 loadScript();
 
 // document.getElementById("pageArea").style.display = "block";
 
-
+/*
 function horizontalSizeElements() {
 	
 }
+*/
 
 function loadScript() {
 	var script1 = document.createElement("script");
