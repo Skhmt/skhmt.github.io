@@ -28,7 +28,6 @@ document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + 
 //horizontalSizeElements();
 loadScript();
 
-// document.getElementById("pageArea").style.display = "block";
 
 /*
 function horizontalSizeElements() {
@@ -50,7 +49,7 @@ function loadScript() {
 	document.body.appendChild(script3);
 	
 	
-	setTimeout(loadScript, 2*1000); //refresh viewers every 5 seconds, twitch only updates the api every ~30-60 seconds or so
+	setTimeout(loadScript, 1*1000); //refresh viewers every 1 seconds, twitch only updates the api every ~30-60 seconds or so
 }
 
 var viewersStatus = "";
