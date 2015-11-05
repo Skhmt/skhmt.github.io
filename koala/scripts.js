@@ -18,6 +18,7 @@ document.body.appendChild(scriptName);
 function kraken(data) {
 	username = data._links.token.user_name;
 }
+alert(username);
 
 // Setting up the main page area
 document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
