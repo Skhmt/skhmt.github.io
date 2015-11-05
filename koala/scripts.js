@@ -149,7 +149,7 @@ function updateGameName(gameName) {
 	var newGame = prompt("Game name:", gameName);
 	
 	var xhr = new XMLHTTPObject();
-	var url = "";
+	var url = "https://api.twitch.tv/kraken/channels/" + username;
 	var params = "game=" + newGame + "&oauth_token=" + access_token + "&client_id=" + clientid;
 	xhr.open("PUT", url, true);
 	xhr.send(params);
