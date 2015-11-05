@@ -3,22 +3,23 @@
 var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
 var username = "";
 
-alert("test");
 
 /* If there's no auth, send the user to the front page */
 if (document.location.hash.length < 50) {
 	window.location = "http://skhmt.github.io";
 }
-alert("before substring");
 var access_token = document.location.hash.substring(14,44);
-alert(access_token);
 
 /* getting username */
 var scriptName = document.createElement("script");
+alert("created element");
 scriptName.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&callback=kraken&client_id=" + clientid;
+alert("set source");
 document.body.appendChild(scriptName);
+alert("appended child");
 
 function kraken(data) {
+	alert("kraken");
 	username = data.token.user_name;
 	alert(username);
 }
