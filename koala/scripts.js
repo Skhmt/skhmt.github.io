@@ -7,6 +7,7 @@ var viewersStatus = "";
 var followersStatus = "";
 var setupChat = false;
 var allHosts = [];
+var refreshRate = 5; //in seconds
 
 /* If there's no auth, send the user to the front page */
 if (document.location.hash.length < 50) {
@@ -55,7 +56,7 @@ function loadScript() {
 	script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers&client_id=" + clientid;
 	document.body.appendChild(script3);
 	
-	setTimeout(loadScript, 15*1000); //refresh viewers every 15 seconds, twitch only updates the api every ~30-60 seconds or so
+	setTimeout(loadScript, refreshRate*1000);
 }
 
 function updateFollowersAndViewers() {
