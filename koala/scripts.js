@@ -31,7 +31,7 @@ function kraken2(userdata) {
 loadScript();
 
 var pageOpen = new Date()
-document.getElementById("hostsTop").innerHTML = "Hosts since " + pageOpen.getHours() + ":" + pageOpen.getMinutes() + " " + pageOpen.toLocaleDateString();
+document.getElementById("hostsTop").innerHTML = "Hosts since " + ("0" + pageOpen.getHours()).slice(-2) + ":" + ("0" + pageOpen.getMinutes()).slice(-2) + " " + pageOpen.toLocaleDateString();
 
 
 function loadScript() {
@@ -168,7 +168,7 @@ function hosts(hostlist) {
 	var output = "";
 	for (var i = 0; i < allHosts.length; i++) {
 		var d = allHosts[i].time;
-		output += allHosts[i].name + " (" + d.getHours() + ":" + d.getMinutes() + ")<br />";
+		output += allHosts[i].name + " (" + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ")<br />";
 	}
 	document.getElementById("hostsBottom").innerHTML = output;
 }
