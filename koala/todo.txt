@@ -1,6 +1,19 @@
 TODO:
+Live or not icon
+	https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md
 
-Follower list:
+All modules collapsible (like twitch chat/side arrows)
+
+Add twitter module (mobile.twitter.com)
+
+
+
+
+
+
+
+
+Host list:
 
 http://tmi.twitch.tv/hosts?include_logins=1&target={id110}
 {id} is of course the _id field from /users/ or /channels/.
@@ -9,13 +22,46 @@ coolidge: 70034299
 https://api.twitch.tv/kraken/channels/coolidgehd
 http://tmi.twitch.tv/hosts?include_logins=1&target=70034299
 
-example output: {"hosts":[{"host_id":73009188,"target_id":70034299,"host_login":"amazonwomannt","target_login":"coolidgehd"},{"host_id":50023152,"target_id":70034299,"host_login":"zull7","target_login":"coolidgehd"},{"host_id":71185346,"target_id":70034299,"host_login":"playfulchic94","target_login":"coolidgehd"},{"host_id":83348947,"target_id":70034299,"host_login":"kageytv","target_login":"coolidgehd"},{"host_id":77971198,"target_id":70034299,"host_login":"jondoetv","target_login":"coolidgehd"},{"host_id":87837475,"target_id":70034299,"host_login":"lilmisscantbewrong","target_login":"coolidgehd"},{"host_id":69088325,"target_id":70034299,"host_login":"exotickitten","target_login":"coolidgehd"}]}
+example output:
+{
+	"hosts":[
+		{"host_id":73009188,
+			"target_id":70034299,
+			"host_login":"amazonwomannt",
+			"target_login":"coolidgehd"},
+		{"host_id":50023152,
+			"target_id":70034299,
+			"host_login":"zull7",
+			"target_login":"coolidgehd"},
+		{"host_id":71185346,
+			"target_id":70034299,
+			"host_login":"playfulchic94",
+			"target_login":"coolidgehd"},
+		{"host_id":83348947,
+			"target_id":70034299,
+			"host_login":"kageytv",
+			"target_login":"coolidgehd"},
+		{"host_id":77971198,
+			"target_id":70034299,
+			"host_login":"jondoetv",
+			"target_login":"coolidgehd"},
+		{"host_id":87837475,
+			"target_id":70034299,
+			"host_login":"lilmisscantbewrong",
+			"target_login":"coolidgehd"},
+		{"host_id":69088325,
+			"target_id":70034299,
+			"host_login":"exotickitten",
+			"target_login":"coolidgehd"}
+	]
+}
 
 
-Live or not icon
-https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md
-
-
-All modules collapsible (like twitch chat/side arrows)
-
-Add twitter module (mobile.twitter.com)
+Global array with [host, time]
+Frequently get the host object
+check each host_login, if not in the array, push to array with current time
+for 0 < object.hosts.length
+var newHost = true;
+for 0 < globalarray.length
+	if global array host name == object.hosts name, newHost = false
+globalarray.push({name, time})

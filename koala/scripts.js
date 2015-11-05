@@ -6,6 +6,7 @@ var access_token = "";
 var viewersStatus = "";
 var followersStatus = "";
 var setupChat = false;
+var allHosts = [];
 
 /* If there's no auth, send the user to the front page */
 if (document.location.hash.length < 50) {
@@ -27,15 +28,11 @@ function kraken2(userdata) {
 
 
 // Setting up the main page area
-//horizontalSizeElements();
 loadScript();
 
+var pageOpen = new Date()
+document.getElementById("hostsTop").innerHTML = "Hosts since " + pageOpen.getHours() + ":" + pageOpen.getMinutes() + " " + pageOpen.toLocaleDateString();
 
-/*
-function horizontalSizeElements() {
-	
-}
-*/
 
 function loadScript() {
 	
@@ -56,7 +53,6 @@ function loadScript() {
 	var script3 = document.createElement("script");
 	script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers&client_id=" + clientid;
 	document.body.appendChild(script3);
-	
 	
 	setTimeout(loadScript, 1*1000); //refresh viewers every 1 seconds, twitch only updates the api every ~30-60 seconds or so
 }
@@ -143,6 +139,35 @@ function streaminfo(chatroom) {
 	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 	
 	document.getElementById("userinfo").innerHTML = output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output;
+	
+	/* update hosts */
+	var script4 = document.createElement("script");
+	script4.src = "http://tmi.twitch.tv/hosts?include_logins=1&target=" + chatroom._id + "?callback=hosts&client_id=" + clientid;
+	document.body.appendChild(script4);
+}
+
+function hosts(hostlist) {
+	for (var i = 0; i < hostlist.hosts.length; i++) {
+		var newHost = true;
+		for (var j = 0; j < allHosts.length; j++) {
+			if (hostlist.hosts[i].host_login == allHosts[j].name){
+				newHost = false;
+				break;
+			}
+		}
+		if (newHost) {
+			allHosts.push(
+				{"name": hostlist.hosts[i].host_login, "time": new Date()}
+			);
+		}
+	}
+	
+	var output = "";
+	for (var i = 0; i < allHosts.length; i++) {
+		var d = allHosts[i].time;
+		output += allHosts[i].name + " (" + d.getHours() + ":" + d.getMinutes() + ")<br />"
+	}
+	document.getElementById("hostsBottom").innerHTML = output;
 }
 
 function updateGameName(gameName) {

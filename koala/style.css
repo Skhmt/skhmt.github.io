@@ -38,6 +38,42 @@ form {
 	font-size: large;
 }
 
+.moduleBox {
+	float: left;
+	width: 12%;
+	height: 100%;
+	max-height: 100%;
+	display: block;
+	margin: 5px;
+	padding: 0px;
+}
+
+.moduleTop {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	height: 30px;
+	background: #323232;
+	padding-top: 10px;
+	padding-bottom: 0px;
+	margin: 0px;
+	color: #d3d3d3;
+	text-align: center;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.moduleBottom {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: small;
+	overflow: auto;
+	display: block;
+	height: calc(100% - 42px);
+	background: #1e1e1e;
+	padding-left: 5px;
+	margin: 0px;
+	color: #d3d3d3;
+}
+
 #nameArea {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #262626;
@@ -77,42 +113,6 @@ form {
 	margin: 5px;
 	margin-left: 10px;
 	display: none;
-}
-
-#viewersSpan {
-	float: left;
-	width: 12%;
-	height: 100%;
-	max-height: 100%;
-	display: block;
-	margin: 5px;
-	padding: 0px;
-}
-
-#twitchChatViewers {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	height: 30px;
-	background: #323232;
-	padding-top: 10px;
-	padding-bottom: 0px;
-	margin: 0px;
-	color: #d3d3d3;
-	text-align: center;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
-}
-
-#twitchChatUsers {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: small;
-	overflow: auto;
-	display: block;
-	height: calc(100% - 42px);
-	background: #1e1e1e;
-	padding-left: 5px;
-	margin: 0px;
-	color: #d3d3d3;
 }
 
 #taRecentEvents {
