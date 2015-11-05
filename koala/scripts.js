@@ -154,12 +154,10 @@ function updateGameName(gameName) {
 	}
 	
 	var xhr = new XMLHTTPObject();
-	var params = "channel[game]="+newName;
-	var url = "https://api.twitch.tv/kraken/channels/" + username;
-	xhr.open("PUT", url, true);
-	xhr.setRequestHeader("Accept", "application/vnd.twitchtv.v3+json");
+	var url = "https://api.twitch.tv/kraken/channels/" + username + "?channel[game]=" + newName + "&_method=put";
+	xhr.open("GET", url, true);
 	xhr.setRequestHeader("Authorization", "OAuth " + access_token);
-	xhr.send(params);
+	xhr.send();
 }
 
 function updateStatus(statusText) {
