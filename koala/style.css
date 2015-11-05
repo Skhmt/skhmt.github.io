@@ -123,11 +123,3 @@ form {
 	margin: 5px;
 	padding-top: 1px;
 }
-
-#twitter {
-	float: left;
-	width: 25%;
-	height: calc(100% - 1px);
-	margin: 5px;
-	padding-top: 1px;
-}
