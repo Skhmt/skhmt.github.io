@@ -156,16 +156,18 @@ function hosts(hostlist) {
 			}
 		}
 		if (newHost) {
+			alert("pushing: " + hostlist.hosts[i].host_login);
 			allHosts.push(
 				{"name": hostlist.hosts[i].host_login, "time": new Date()}
 			);
 		}
 	}
 	
+	//updating the list
 	var output = "";
 	for (var i = 0; i < allHosts.length; i++) {
 		var d = allHosts[i].time;
-		output += allHosts[i].name + " (" + d.getHours() + ":" + d.getMinutes() + ")<br />"
+		output += allHosts[i].name + " (" + d.getHours() + ":" + d.getMinutes() + ")<br />";
 	}
 	document.getElementById("hostsBottom").innerHTML = output;
 }
