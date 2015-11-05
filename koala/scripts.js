@@ -148,8 +148,13 @@ function streaminfo(chatroom) {
 function updateGameName(gameName) {
 	var newGame = prompt("Game name:", gameName);
 	
+	//change spaces to + signs
+	for (var i = 0; i < newGame.length; i++) {
+		newGame = newGame.replace(" ", "+");
+	}
+	
 	var xhr = new XMLHTTPObject();
-	var params = "{\"channel\": {\"game:\"" + newGame + "}}"
+	var params = "channel[game]="+newName;
 	var url = "https://api.twitch.tv/kraken/channels/" + username;
 	xhr.open("PUT", url, true);
 	xhr.setRequestHeader("Accept", "application/vnd.twitchtv.v3+json");
