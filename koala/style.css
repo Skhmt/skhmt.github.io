@@ -76,6 +76,7 @@ form {
 	height: 100%;
 	margin: 5px;
 	margin-left: 10px;
+	display: none;
 }
 
 #viewersSpan {
@@ -120,12 +121,4 @@ form {
 	height: calc(100% - 1px);
 	margin: 5px;
 	padding-top: 1px;
-}
-
-#nbAutoDJ {
-	float: left;
-	width: 20%;
-	height: 100%;
-	margin: 5px;
-	display: none;
 }
