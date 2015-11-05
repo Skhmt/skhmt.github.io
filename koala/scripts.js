@@ -10,19 +10,18 @@ if (document.location.hash.length < 50) {
 }
 access_token = document.location.hash.substring(14,44);
 
-
 getUsername();
 
 function getUsername() {
 	var script0 = document.createElement("script");
-	script0.src = "https://api.twitch.tv/kraken?oauth_token=" + access_token + "&callback=kraken2&client_id=" + clientid;
+	script0.src = "https://api.twitch.tv/kraken?callback=kraken2&oauth_token=" + access_token + "&client_id=" + clientid;
 	document.body.appendChild(script0);
 	alert("appended child");
 }
 
-function kraken2(data) {
+function kraken2(userdata) {
 	alert("kraken");
-	username = data.token.user_name;
+	username = userdata.token.user_name;
 	alert(username);
 }
 
