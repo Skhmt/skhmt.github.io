@@ -57,11 +57,5 @@ example output:
 }
 
 
-Global array with [host, time]
-Frequently get the host object
-check each host_login, if not in the array, push to array with current time
-for 0 < object.hosts.length
-var newHost = true;
-for 0 < globalarray.length
-	if global array host name == object.hosts name, newHost = false
-globalarray.push({name, time})
+My id: 71619374
+http://tmi.twitch.tv/hosts?include_logins=1&target=71619374&callback=hosts

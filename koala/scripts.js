@@ -142,7 +142,7 @@ function streaminfo(chatroom) {
 	
 	/* update hosts */
 	var script4 = document.createElement("script");
-	script4.src = "http://tmi.twitch.tv/hosts?include_logins=1&target=" + chatroom._id + "?callback=hosts&client_id=" + clientid;
+	script4.src = "http://tmi.twitch.tv/hosts?include_logins=1&target=" + chatroom._id + "&callback=hosts&client_id=" + clientid;
 	document.body.appendChild(script4);
 }
 
