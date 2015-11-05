@@ -134,10 +134,10 @@ function streaminfo(chatroom) {
 	
 	output += "<b>" + chatroom.display_name + "</b>";
 	output += " | ";
-	output += "<b><button onclick='updateGameName(chatroom.game)'>Game</button>:</b> ";
+	output += "<b><button onclick=\"updateGameName('" + chatroom.game + "')\">Game</button>:</b> ";
 	output += chatroom.game;
 	output += " | ";
-	output += "<b><button onclick='updateStatus(chatroom.status)'>Status</button>:</b> ";
+	output += "<b><button onclick=\"updateStatus('" + chatroom.status + "')\">Status</button>:</b> ";
 	output += chatroom.status;
 	
 	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
