@@ -9,6 +9,7 @@ if (document.location.hash.length < 50) {
 	window.location = "http://skhmt.github.io";
 }
 var access_token = document.location.hash.substring(14,44);
+alert(access_token);
 
 /* getting username */
 var scriptName = document.createElement("script");
@@ -17,9 +18,9 @@ document.body.appendChild(scriptName);
 
 function kraken(data) {
 	username = data.token.user_name;
+	alert(username);
 }
 
-alert(username);
 
 // Setting up the main page area
 document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
