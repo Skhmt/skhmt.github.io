@@ -147,19 +147,18 @@ function streaminfo(chatroom) {
 }
 
 function hosts(hostlist) {
-	alert("in hosts");
-	for (var i = 0; i < hostlist.hosts.length; i++) {
+	for (var i = 0; i < hostlist.length; i++) {
 		var newHost = true;
 		for (var j = 0; j < allHosts.length; j++) {
-			if (hostlist.hosts[i].host_login == allHosts[j].name){
+			if (hostlist[i].host_login == allHosts[j].name){
 				newHost = false;
 				break;
 			}
 		}
 		if (newHost) {
-			alert("pushing: " + hostlist.hosts[i].host_login);
+			alert("pushing: " + hostlist[i].host_login);
 			allHosts.push(
-				{"name": hostlist.hosts[i].host_login, "time": new Date()}
+				{"name": hostlist[i].host_login, "time": new Date()}
 			);
 		}
 	}
