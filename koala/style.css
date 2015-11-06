@@ -114,6 +114,7 @@ form {
 	height: 100%;
 	margin: 5px;
 	margin-left: 10px;
+	border: 0;
 	/* display: none; */
 }
 
@@ -131,6 +132,7 @@ form {
 	height: 400px;
 	min-height: 50%;
 	margin: 0px;
+	border: 0;
 	/* display: none; */
 }
 
@@ -140,6 +142,7 @@ form {
 	height: 400px;
 	min-height: 50%;
 	margin: 0px;
+	border: 0;
 }
 
 #taRecentEvents {
@@ -148,4 +151,5 @@ form {
 	height: calc(100% - 1px);
 	margin: 5px;
 	padding-top: 1px;
+	border: 0;
 }
