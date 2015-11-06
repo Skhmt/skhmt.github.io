@@ -1,5 +1,9 @@
 TODO:
 
+Music channel options:
+Change 
+
+
 All modules collapsible (like twitch chat/side arrows)
 
 List of testers:

@@ -82,7 +82,7 @@ function userlist(chatroom) {
 	var output = ""; 
 	
 	if (chatroom.data.chatters.staff.length > 0) {
-		output += "<p> <span class='viewerType'>STAFF (" + chatroom.data.chatters.staff.length + ")</span> <br /> ";
+		output += "<p> <img src='http://chat-badges.s3.amazonaws.com/staff.png' /> <span class='viewerType'>STAFF (" + chatroom.data.chatters.staff.length + ")</span> <br /> ";
 		var i;
 		for (i = 0; i < chatroom.data.chatters.staff.length; i++) {
 			output += chatroom.data.chatters.staff[i] + " <br /> ";
@@ -91,7 +91,7 @@ function userlist(chatroom) {
 	}
 	
 	if (chatroom.data.chatters.moderators.length > 0) {
-		output += "<p> <span class='viewerType'>MODERATORS (" + chatroom.data.chatters.moderators.length + ")</span> <br /> ";
+		output += "<p> <img src='http://chat-badges.s3.amazonaws.com/mod.png' /> <span class='viewerType'>MODERATORS (" + chatroom.data.chatters.moderators.length + ")</span> <br /> ";
 		var i;
 		for (i = 0; i < chatroom.data.chatters.moderators.length; i++) {
 			output += chatroom.data.chatters.moderators[i] + " <br /> ";
@@ -100,7 +100,7 @@ function userlist(chatroom) {
 	}
 	
 	if (chatroom.data.chatters.admins.length > 0) {
-		output += "<p> <span class='viewerType'>ADMINS (" + chatroom.data.chatters.admins.length + ")</span> <br /> ";
+		output += "<p> <img src='http://chat-badges.s3.amazonaws.com/admin.png' /> <span class='viewerType'>ADMINS (" + chatroom.data.chatters.admins.length + ")</span> <br /> ";
 		var i;
 		for (i = 0; i < chatroom.data.chatters.admins.length; i++) {
 			output += chatroom.data.chatters.admins[i] + " <br /> ";
@@ -109,7 +109,7 @@ function userlist(chatroom) {
 	}
 	
 	if (chatroom.data.chatters.global_mods.length > 0) {
-		output += "<p> <span class='viewerType'>GLOBAL MODS (" + chatroom.data.chatters.global_mods.length + ")</span> <br /> ";
+		output += "<p> <img src='http://chat-badges.s3.amazonaws.com/globalmod.png' /> <span class='viewerType'>GLOBAL MODS (" + chatroom.data.chatters.global_mods.length + ")</span> <br /> ";
 		var i;
 		for (i = 0; i < chatroom.data.chatters.global_mods.length; i++) {
 			output += chatroom.data.chatters.global_mods[i] + " <br /> ";
@@ -209,3 +209,7 @@ function updateStatus(statusText) {
 	xhr.send();
 }
 
+function setAltTwitchVideo() {
+	var newTwitchURL = document.getElementById("altTwitchVideoURL").value;
+	document.getElementById("altTwitchVideo").src="http://www.twitch.tv/" + newTwitchURL + "/embed";
+}

@@ -29,6 +29,11 @@
 		<span id="videoSpan">
 			<iframe id="twitchVideo" src="loading.html">&nbsp;</iframe>
 			<br />
+			<form onsubmit="setAltTwitchVideo(); return false;">
+				<input type="submit" value="Change musc stream:" />
+				<input type="text" id="altTwitchVideoURL">Monstercat</input>
+			</form>
+			<br />
 			<iframe id="altTwitchVideo" src="http://www.twitch.tv/Monstercat/embed">&nbsp;</iframe>
 		</span>
 		
