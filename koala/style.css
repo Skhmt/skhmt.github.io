@@ -117,13 +117,29 @@ form {
 	display: none;
 }
 
-#twitchVideo {
+#videoSpan {
 	float: left;
 	width: 30%;
 	height: 100%;
 	margin: 5px;
 	margin-left: 10px;
+}
+
+#twitchVideo {
+	float: left;
+	width: 100%;
+	height: calc(50%-5px);
+	margin: 0px;
+	margin-bottom: 5px;
 	display: none;
+}
+
+#altTwitchVideo {
+	float: left;
+	width: 100%;
+	height: calc(50%-5px);
+	margin: 0px;
+	margin-top: 5px;
 }
 
 #taRecentEvents {
