@@ -142,7 +142,7 @@ function streaminfo(chatroom) {
 	
 	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 	
-	document.getElementById("userinfo").innerHTML = output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output;
+	document.getElementById("userinfo").innerHTML = "<div class='middleVA'>" + output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output + "</div>";
 	
 	/* update hosts */
 	/* HOSTS ARE BROKEN RIGHT NOW

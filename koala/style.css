@@ -80,6 +80,13 @@ form {
 	color: #d3d3d3;
 }
 
+.middleVA {
+	vertical-align: middle;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
 #nameArea {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #262626;
@@ -111,7 +118,6 @@ form {
 	margin: 0px;
 	margin-bottom: 5px;
 	border-bottom: 1px solid black;
-	vertical-align: middle;
 }
 
 #twitchChat {
