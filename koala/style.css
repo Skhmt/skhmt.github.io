@@ -151,7 +151,7 @@ form {
 
 #taRecentEvents {
 	float: left;
-	width: 25%;
+	width: 23%;
 	height: -webkit-calc(100% - 15px);
 	height: -moz-calc(100% - 15px);
 	height: calc(100% - 1px);
