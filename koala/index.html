@@ -27,13 +27,16 @@
 		-->
 		
 		<span id="videoSpan">
-			<iframe id="twitchVideo" src="loading.html">&nbsp;</iframe>
-			<br />
+			<div class="video">
+				<iframe id="twitchVideo" src="loading.html">&nbsp;</iframe>
+			</div>
 			<form onsubmit="setAltTwitchVideo(); return false;" id="changeMusicForm">
 				<input type="submit" value="Change musc stream:" />
 				<input type="text" id="altTwitchVideoURL" value="Monstercat" />
 			</form>
-			<iframe id="altTwitchVideo" src="http://www.twitch.tv/Monstercat/embed">&nbsp;</iframe>
+			<div class="video">
+				<iframe id="altTwitchVideo" src="http://www.twitch.tv/Monstercat/embed">&nbsp;</iframe>
+			</div>
 		</span>
 		
 	</div>

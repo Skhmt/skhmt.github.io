@@ -128,11 +128,18 @@ form {
 	color: #d3d3d3;
 }
 
+.video {
+	float: left;
+	width: 100%;
+	height: calc(50%-20px);
+	margin: 0px;
+	border: 0px;
+}
+
 #twitchVideo {
 	float: left;
 	width: 100%;
-	height: 420px;
-	min-height: calc(50%-20px);
+	height: 100%;
 	margin: 0px;
 	border: 0px;
 }
@@ -140,14 +147,12 @@ form {
 #altTwitchVideo {
 	float: left;
 	width: 100%;
-	height: 420px;
-	min-height: calc(50%-20px);
+	height: 100%;
 	margin: 0px;
 	border: 0px;
 }
 
 #changeMusicForm {
-	float: right;
 	width: 100%;
 	height: 40px;
 	margin: 0px;
