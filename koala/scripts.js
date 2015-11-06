@@ -11,7 +11,7 @@ var refreshRate = 5; //in seconds
 
 /* If there's no auth, send the user to the front page */
 if (document.location.hash.length < 50) {
-	window.location = "http://skhmt.github.io";
+	window.location = "ttps://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true";
 }
 access_token = document.location.hash.substring(14,44);
 
