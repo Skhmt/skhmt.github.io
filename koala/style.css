@@ -136,8 +136,9 @@ form {
 
 .video {
 	width: 100%;
-	height: calc(50%-20px);
-	min-height: calc(50%-20px);
+	height: -webkit-calc(50%-20px);
+	height: -moz-calc(50%-20px);
+	
 	margin: 0px;
 	border: 0px;
 	padding: 0px;
