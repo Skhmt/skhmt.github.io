@@ -136,12 +136,14 @@ form {
 
 .video {
 	width: 100%;
-	height: -webkit-calc(50%-20px);
-	height: -moz-calc(50%-20px);
+	height: -webkit-calc(50% - 20px);
+	height: -moz-calc(50% - 20px);
+	height: calc(50% - 20px);
 	margin: 0px;
 	border: 0px;
 	padding: 1px;
 	background: white;
+	
 }
 
 #twitchVideo {
