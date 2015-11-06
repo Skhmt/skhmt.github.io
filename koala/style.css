@@ -114,7 +114,7 @@ form {
 	height: 100%;
 	margin: 5px;
 	margin-left: 10px;
-	display: none;
+	/* display: none; */
 }
 
 #videoSpan {
@@ -131,7 +131,7 @@ form {
 	height: 400px;
 	min-height: 50%;
 	margin: 0px;
-	display: none;
+	/* display: none; */
 }
 
 #altTwitchVideo {

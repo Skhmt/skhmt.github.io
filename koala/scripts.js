@@ -50,11 +50,11 @@ function loadScript() {
 	document.body.appendChild(script3);
 	
 	if(setupChatAndVideo == false && username != "") {
-		document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
-		document.getElementById("twitchChat").style.display = "block";
+		document.getElementById("twitchChat").src="http://www.twitch.tv/" + username + "/chat";
+		//document.getElementById("twitchChat").style.display = "block";
 		
-		document.getElementById("twitchVideo").data="http://www.twitch.tv/" + username + "/embed";
-		document.getElementById("twitchVideo").style.display = "block";
+		document.getElementById("twitchVideo").src="http://www.twitch.tv/" + username + "/embed";
+		//document.getElementById("twitchVideo").style.display = "block";
 		setupChatAndVideo = true;
 	}
 	
