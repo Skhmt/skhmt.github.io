@@ -73,7 +73,7 @@ form {
 	font-size: small;
 	overflow: auto;
 	display: block;
-	height: calc(100% - 42px);
+	height: calc(100% - 50px);
 	background: #1e1e1e;
 	padding-left: 5px;
 	margin: 0px;
@@ -117,9 +117,9 @@ form {
 
 .video {
 	width: 100%;
-	height: -webkit-calc(50% - 14px);
-	height: -moz-calc(50% - 14px);
-	height: calc(50% - 14px);
+	height: -webkit-calc(50% - 15px);
+	height: -moz-calc(50% - 15px);
+	height: calc(50% - 15px);
 	margin: 0px;
 	border: 0px;
 	padding: 0px;
