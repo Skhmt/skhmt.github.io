@@ -128,18 +128,16 @@ form {
 #twitchVideo {
 	float: left;
 	width: 100%;
-	height: calc(50%-5px);
+	height: 50%;
 	margin: 0px;
-	margin-bottom: 5px;
 	display: none;
 }
 
 #altTwitchVideo {
 	float: left;
 	width: 100%;
-	height: calc(50%-5px);
+	height: 50%;
 	margin: 0px;
-	margin-top: 5px;
 }
 
 #taRecentEvents {
