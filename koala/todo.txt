@@ -1,6 +1,4 @@
 TODO:
-Live or not icon
-	https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md
 
 All modules collapsible (like twitch chat/side arrows)
 
