@@ -80,13 +80,6 @@ form {
 	color: #d3d3d3;
 }
 
-.middleVA {
-	vertical-align: middle;
-	margin: 0px;
-	padding: 0px;
-	border: 0px;
-}
-
 #nameArea {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #262626;
@@ -115,6 +108,7 @@ form {
 	height: 20px;
 	padding: 5px;
 	padding-left: 10px;
+	padding-bottom: 8px;
 	margin: 0px;
 	margin-bottom: 5px;
 	border-bottom: 1px solid black;
@@ -172,7 +166,7 @@ form {
 	height: 30px;
 	margin: 0px;
 	padding: 0px;
-	vertical-align: middle;
+	padding-bottom: 4px;
 }
 
 #taRecentEvents {
