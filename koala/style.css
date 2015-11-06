@@ -129,6 +129,7 @@ form {
 	float: left;
 	width: 100%;
 	height: 400px;
+	min-height: 50%;
 	margin: 0px;
 	display: none;
 }
@@ -137,6 +138,7 @@ form {
 	float: left;
 	width: 100%;
 	height: 400px;
+	min-height: 50%;
 	margin: 0px;
 }
 
