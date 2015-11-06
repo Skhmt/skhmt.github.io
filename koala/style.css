@@ -132,7 +132,8 @@ form {
 #twitchVideo {
 	float: left;
 	width: 100%;
-	min-height: calc(50%-10px);
+	height: 400px;
+	min-height: calc(50%-20px);
 	margin: 0px;
 	border: 0;
 	/* display: none; */
@@ -141,7 +142,8 @@ form {
 #altTwitchVideo {
 	float: left;
 	width: 100%;
-	min-height: calc(50%-10px);
+	height: 400px;
+	min-height: calc(50%-20px);
 	margin: 0px;
 	border: 0;
 }
