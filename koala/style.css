@@ -117,6 +117,15 @@ form {
 	display: none;
 }
 
+#twitchVideo {
+	float: left;
+	width: 30%;
+	height: 100%;
+	margin: 5px;
+	margin-left: 10px;
+	display: none;
+}
+
 #taRecentEvents {
 	float: left;
 	width: 25%;

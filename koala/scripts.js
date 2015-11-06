@@ -5,7 +5,7 @@ var username = "";
 var access_token = "";
 var viewersStatus = "";
 var followersStatus = "";
-var setupChat = false;
+var setupChatAndVideo = false;
 var allHosts = [];
 var refreshRate = 5; //in seconds
 
@@ -49,10 +49,13 @@ function loadScript() {
 	script3.src = "https://api.twitch.tv/kraken/channels/" + username + "/follows/?callback=followers&client_id=" + clientid + "&api_version=3";
 	document.body.appendChild(script3);
 	
-	if(setupChat == false && username != "") {
+	if(setupChatAndVideo == false && username != "") {
 		document.getElementById("twitchChat").data="http://www.twitch.tv/" + username + "/chat";
 		document.getElementById("twitchChat").style.display = "block";
-		setupChat = true;
+		
+		document.getElementById("twitchVideo").data="http://www.twitch.tv/" + username + "/embed";
+		document.getElementById("twitchVideo").style.display = "block";
+		setupChatAndVideo = true;
 	}
 	
 	setTimeout(loadScript, refreshRate*1000);
