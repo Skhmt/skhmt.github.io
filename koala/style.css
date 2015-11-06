@@ -141,9 +141,7 @@ form {
 	height: calc(50% - 20px);
 	margin: 0px;
 	border: 0px;
-	padding: 1px;
-	background: white;
-	
+	padding: 0px;
 }
 
 #twitchVideo {
@@ -167,7 +165,6 @@ form {
 	height: 40px;
 	margin: 0px;
 	padding: 0px;
-	display: inline;
 }
 
 #taRecentEvents {
