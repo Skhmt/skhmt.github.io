@@ -1,3 +1,5 @@
+Works at 1300x600
+
 TODO:
 
 Music channel options:

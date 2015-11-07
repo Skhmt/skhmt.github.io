@@ -9,14 +9,36 @@ var setupChatAndVideo = false;
 var allHosts = [];
 var refreshRate = 5; //in seconds
 
-/* If there's no auth, send the user to the front page */
+/* If there's no auth, send the user to the login page */
 if (document.location.hash.length < 50) {
 	window.location = "ttps://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true";
 }
 access_token = document.location.hash.substring(14,44);
 
-getUsername();
 
+/* Detecting browser... if mobile, remove the videos and resize the remaining elements. */
+function detectmob() { 
+ return (
+ navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ );
+}
+
+if (detectmob()) {
+	document.getElementById("videoSpan").style.display = "none"; /* 30% default */
+	document.getElementById("twitchChat").style.width = "40%"; /* 30% default */
+	document.getElementById("viewersSpan").style.width = "22%"; /* 12% default */
+	document.getElementById("taRecentEvents").style.width = "35%"; /* 25% default */
+}
+
+
+/* Getting the username from api.twitch.tv/kraken/ */
+getUsername();
 function getUsername() {
 	var script0 = document.createElement("script");
 	script0.src = "https://api.twitch.tv/kraken?callback=kraken2&oauth_token=" + access_token + "&client_id=" + clientid;
@@ -28,10 +50,10 @@ function kraken2(userdata) {
 }
 
 
-// Setting up the main page area
+/* Setting up the main page area */
 loadScript();
 
-/* HOSTS BROKEN
+/* HOSTS BROKEN - add back in when the JSONP callback is added by Twitch
 var pageOpen = new Date()
 document.getElementById("hostsTop").innerHTML = "Hosts since " + ("0" + pageOpen.getHours()).slice(-2) + ":" + ("0" + pageOpen.getMinutes()).slice(-2) + " " + pageOpen.toLocaleDateString();
 */
@@ -137,7 +159,7 @@ function streaminfo(chatroom) {
 	output += "<b><button onclick=\"updateGameName('" + chatroom.game + "')\">Game</button></b> ";
 	output += chatroom.game;
 	output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-	output += "<b><button onclick=\"updateStatus('" + chatroom.status + "')\">Status</button></b> ";
+	output += "<b><button onclick=\"updateStatus('" + chatroom.status + "')\">Title</button></b> ";
 	output += chatroom.status;
 	
 	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
@@ -195,7 +217,7 @@ function updateGameName(gameName) {
 }
 
 function updateStatus(statusText) {
-	var newStatus = prompt("Enter a new stream status below. Changes take a moment to appear on StreamKoala.", statusText);
+	var newStatus = prompt("Enter a new stream title below. Changes take a minute to appear on StreamKoala.", statusText);
 	
 	//change spaces to + signs
 	for (var i = 0; i < newStatus.length; i++) {
