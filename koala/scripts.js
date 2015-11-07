@@ -31,7 +31,7 @@ function detectmob() {
 
 if (detectmob()) {
 	document.getElementById("videoSpan").style.display = "none"; /* 30% default */
-	document.getElementById("twitchChat").style.width = "40%"; /* 30% default */
+	document.getElementById("twitchChat").style.width = "45%"; /* 30% default */
 	document.getElementById("viewersSpan").style.width = "20%"; /* 12% default */
 	document.getElementById("taRecentEvents").style.width = "30%"; /* 25% default */
 }
