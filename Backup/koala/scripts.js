@@ -1,4 +1,3 @@
-$(document).ready(function(){
 
 /* this is the (public) client_id of StreamKoala. */
 var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
@@ -12,7 +11,7 @@ var refreshRate = 5; //in seconds
 
 /* If there's no auth, send the user to the login page */
 if (document.location.hash.length < 50) {
-	window.location = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true";
+	window.location = "ttps://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true";
 }
 access_token = document.location.hash.substring(14,44);
 
@@ -31,10 +30,10 @@ function detectmob() {
 }
 
 if (detectmob()) {
-	$("#videoSpan").hide(); /* 30% default */
-	$("#twitchChat").width("45%"); /* 30% default */
-	$("#viewersSpan").width("20%"); /* 12% default */
-	$("#taRecentEvents").width("31%"); /* 25% default */
+	document.getElementById("videoSpan").style.display = "none"; /* 30% default */
+	document.getElementById("twitchChat").style.width = "45%"; /* 30% default */
+	document.getElementById("viewersSpan").style.width = "20%"; /* 12% default */
+	document.getElementById("taRecentEvents").style.width = "31%"; /* 25% default */
 	/* 97% is the max width */
 }
 
@@ -74,9 +73,11 @@ function loadScript() {
 	document.body.appendChild(script3);
 	
 	if(setupChatAndVideo == false && username != "") {
-		$("#twitchChat").attr("src", "http://www.twitch.tv/" + username + "/chat");
+		document.getElementById("twitchChat").src="http://www.twitch.tv/" + username + "/chat";
+		//document.getElementById("twitchChat").style.display = "block";
 		
-		$("#twitchVideo").attr("src", "http://www.twitch.tv/" + username + "/embed");
+		document.getElementById("twitchVideo").src="http://www.twitch.tv/" + username + "/embed";
+		//document.getElementById("twitchVideo").style.display = "block";
 		setupChatAndVideo = true;
 	}
 	
@@ -85,7 +86,7 @@ function loadScript() {
 
 function updateFollowersAndViewers() {
 	if (viewersStatus != "" && followersStatus != "") {
-		$("#twitchChatViewers").html("<img src='viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='12' height='10' /> " + followersStatus);
+		document.getElementById("twitchChatViewers").innerHTML = "<img src='viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='12' height='10' /> " + followersStatus;
 		viewersStatus = "";
 		followersStatus = "";
 	}
@@ -148,7 +149,7 @@ function userlist(chatroom) {
 		output += "</p> ";
 	}
 	
-	$("#twitchChatUsers").html(output);
+	document.getElementById("twitchChatUsers").innerHTML = output;
 }
 
 function streaminfo(chatroom) {
@@ -164,7 +165,7 @@ function streaminfo(chatroom) {
 	
 	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 	
-	$("#userinfo").html(output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output);
+	document.getElementById("userinfo").innerHTML = output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output;
 	
 	/* update hosts */
 	/* HOSTS ARE BROKEN RIGHT NOW
@@ -209,20 +210,11 @@ function updateGameName(gameName) {
 		newGame = newGame.replace(" ", "+");
 	}
 	
-	$.ajax({
-		method: "GET",
-		url: "https://api.twitch.tv/kraken/channels/" + username,
-		data: { "channel[game]": "newGame", "_method": "put", "oauth_token": access_token},
-		contentType: "application/json"
-	});
-	
-	/*
 	var xhr = new XMLHttpRequest();
 	var url = "https://api.twitch.tv/kraken/channels/" + username + "?channel[game]=" + newGame + "&_method=put&oauth_token=" + access_token;
 	xhr.open("GET", url, true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.send();
-	*/
 }
 
 function updateStatus(statusText) {
@@ -233,25 +225,14 @@ function updateStatus(statusText) {
 		newStatus = newStatus.replace(" ", "+");
 	}
 	
-	$.ajax({
-		method: "GET",
-		url: "https://api.twitch.tv/kraken/channels/" + username,
-		data: { "channel[status]": newStatus, "_method": "put", "oauth_token": access_token},
-		contentType: "application/json"
-	});
-	
-	/*
 	var xhr = new XMLHttpRequest();
 	var url = "https://api.twitch.tv/kraken/channels/" + username + "?channel[status]=" + newStatus + "&_method=put&oauth_token=" + access_token;
 	xhr.open("GET", url, true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.send();
-	*/
 }
 
 function setAltTwitchVideo() {
-	var newTwitchURL = $("#altTwitchVideoURL").val();
-	$("#altTwitchVideo").attr("src", "http://www.twitch.tv/" + newTwitchURL + "/embed");
+	var newTwitchURL = document.getElementById("altTwitchVideoURL").value;
+	document.getElementById("altTwitchVideo").src="http://www.twitch.tv/" + newTwitchURL + "/embed";
 }
-
-}); // close $(document).ready

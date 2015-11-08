@@ -1,0 +1,161 @@
+
+html {
+	margin: 0px;
+	padding: 0px;
+	width: 100vw;
+	height: 100vh;
+	min-height: 100vh;
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	background: #161616;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+}
+
+form {
+	text-align: left;
+	font-weight: bold;
+}
+
+.lowerbox {
+	width: 100%;
+	height: -webkit-calc(100vh - 55px);
+	height: -moz-calc(100vh - 55px);
+	height: calc(100vh - 55px);
+	max-width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.viewerType {
+	color: #606060;
+	font-weight: bold;
+}
+
+.streamKoalaName {
+	font-family: 'Verdana', Arial, sansa-serif;
+	color: #6441A5;
+	font-weight: bold;
+	font-size: large;
+}
+
+.moduleBox {
+	float: left;
+	width: 12%;
+	height: 100%;
+	display: block;
+	margin: 5px;
+	padding: 0px;
+}
+
+.moduleTop {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	height: 30px;
+	background: #323232;
+	padding-top: 10px;
+	padding-bottom: 0px;
+	margin: 0px;
+	color: #d3d3d3;
+	text-align: center;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.moduleBottom {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: small;
+	overflow: auto;
+	height: -webkit-calc(100% - 41px);
+	height: -moz-calc(100% - 41px);
+	height: calc(100% - 41px);
+	background: #1e1e1e;
+	padding-left: 5px;
+	margin: 0px;
+	color: #d3d3d3;
+}
+
+#userinfo {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #d3d3d3;
+	background: #1e1e1e;
+	width: 100%;
+	max-width: 100%;
+	height: 27px;
+	padding: 3px;
+	padding-left: 10px;
+	margin: 0px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid black;
+}
+
+#twitchChat {
+	float: left;
+	width: 30%;
+	height: 100%;
+	margin: 5px;
+	margin-left: 10px;
+	border: 0px;
+}
+
+#videoSpan {
+	float: left;
+	width: 30%;
+	height: 100%;
+	min-height: 100%;
+	margin: 5px;
+	margin-left: 10px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: small;
+	color: #d3d3d3;
+}
+
+.video {
+	width: 100%;
+	height: -webkit-calc(50% - 15px);
+	height: -moz-calc(50% - 15px);
+	height: calc(50% - 15px);
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+}
+
+#twitchVideo {
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	margin: 0px;
+	border: 0px;
+}
+
+#altTwitchVideo {
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	margin: 0px;
+	border: 0px;
+}
+
+#changeMusicForm {
+	width: 100%;
+	height: 23px;
+	margin: 0px;
+	padding: 4px;
+}
+
+#taRecentEvents {
+	float: left;
+	width: 25%;
+	height: -webkit-calc(100% - 15px);
+	height: -moz-calc(100% - 15px);
+	height: calc(100% - 1px);
+	margin: 5px;
+	padding-top: 1px;
+	border: 0;
+}
