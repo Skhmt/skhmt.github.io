@@ -1,15 +1,15 @@
+/* vars */
+var clientid = "idc20bfbuv46327tp8jgc6qhznewz9"; /* this is the (public) client_id of StreamKoala. */
+var username = "";
+var access_token = "";
+var viewersStatus = "";
+var followersStatus = "";
+var setupChatAndVideo = false;
+var allHosts = [];
+var refreshRate = 5; //in seconds
+
+/* waiting until the page is loaded before doing stuff */
 $(document).ready(function(){
-
-	/* this is the (public) client_id of StreamKoala. */
-	var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
-	var username = "";
-	var access_token = "";
-	var viewersStatus = "";
-	var followersStatus = "";
-	var setupChatAndVideo = false;
-	var allHosts = [];
-	var refreshRate = 5; //in seconds
-
 	/* If there's no auth, send the user to the login page */
 	if (document.location.hash.length < 50) {
 		window.location = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true";
@@ -37,9 +37,6 @@ $(document).ready(function(){
 	/* Getting the username from api.twitch.tv/kraken/ */
 	getUsername();
 
-	/* Set up the main page area */
-	loadScript();
-
 }); // close $(document).ready
 
 
@@ -51,6 +48,9 @@ function getUsername() {
 
 function kraken2(userdata) {
 	username = userdata.token.user_name;
+	
+	/* Set up the main page area */
+	loadScript();
 }
 
 /* HOSTS BROKEN - add back in when the JSONP callback is added by Twitch
