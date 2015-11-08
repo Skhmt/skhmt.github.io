@@ -1,46 +1,48 @@
 $(document).ready(function(){
 
-/* this is the (public) client_id of StreamKoala. */
-var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
-var username = "";
-var access_token = "";
-var viewersStatus = "";
-var followersStatus = "";
-var setupChatAndVideo = false;
-var allHosts = [];
-var refreshRate = 5; //in seconds
+	/* this is the (public) client_id of StreamKoala. */
+	var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
+	var username = "";
+	var access_token = "";
+	var viewersStatus = "";
+	var followersStatus = "";
+	var setupChatAndVideo = false;
+	var allHosts = [];
+	var refreshRate = 5; //in seconds
 
-/* If there's no auth, send the user to the login page */
-if (document.location.hash.length < 50) {
-	window.location = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true";
-}
-access_token = document.location.hash.substring(14,44);
-
-
-/* Detecting browser... if mobile, remove the videos and resize the remaining elements. */
-function detectmob() { 
- return (
- navigator.userAgent.match(/Android/i)
- || navigator.userAgent.match(/webOS/i)
- || navigator.userAgent.match(/iPhone/i)
- || navigator.userAgent.match(/iPad/i)
- || navigator.userAgent.match(/iPod/i)
- || navigator.userAgent.match(/BlackBerry/i)
- || navigator.userAgent.match(/Windows Phone/i)
- );
-}
-
-if (detectmob()) {
-	$("#videoSpan").hide(); /* 30% default */
-	$("#twitchChat").width("45%"); /* 30% default */
-	$("#viewersSpan").width("20%"); /* 12% default */
-	$("#taRecentEvents").width("31%"); /* 25% default */
-	/* 97% is the max width */
-}
+	/* If there's no auth, send the user to the login page */
+	if (document.location.hash.length < 50) {
+		window.location = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true";
+	}
+	access_token = document.location.hash.substring(14,44);
 
 
-/* Getting the username from api.twitch.tv/kraken/ */
-getUsername();
+	/* Detecting browser... if mobile, remove the videos and resize the remaining elements. */
+	if (
+		navigator.userAgent.match(/Android/i)
+		|| navigator.userAgent.match(/webOS/i)
+		|| navigator.userAgent.match(/iPhone/i)
+		|| navigator.userAgent.match(/iPad/i)
+		|| navigator.userAgent.match(/iPod/i)
+		|| navigator.userAgent.match(/BlackBerry/i)
+		|| navigator.userAgent.match(/Windows Phone/i) ) {
+		$("#videoSpan").hide(); /* 30% default */
+		$("#twitchChat").width("45%"); /* 30% default */
+		$("#viewersSpan").width("20%"); /* 12% default */
+		$("#taRecentEvents").width("31%"); /* 25% default */
+		/* 97% is the max width */
+	}
+
+
+	/* Getting the username from api.twitch.tv/kraken/ */
+	getUsername();
+
+	/* Set up the main page area */
+	loadScript();
+
+}); // close $(document).ready
+
+
 function getUsername() {
 	var script0 = document.createElement("script");
 	script0.src = "https://api.twitch.tv/kraken?callback=kraken2&oauth_token=" + access_token + "&client_id=" + clientid;
@@ -50,10 +52,6 @@ function getUsername() {
 function kraken2(userdata) {
 	username = userdata.token.user_name;
 }
-
-
-/* Setting up the main page area */
-loadScript();
 
 /* HOSTS BROKEN - add back in when the JSONP callback is added by Twitch
 var pageOpen = new Date()
@@ -253,5 +251,3 @@ function setAltTwitchVideo() {
 	var newTwitchURL = $("#altTwitchVideoURL").val();
 	$("#altTwitchVideo").attr("src", "http://www.twitch.tv/" + newTwitchURL + "/embed");
 }
-
-}); // close $(document).ready
