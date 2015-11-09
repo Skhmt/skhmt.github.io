@@ -45,6 +45,29 @@ lowerbox {
 	font-size: large;
 }
 
+#chatLI {
+	float: left;
+	width: 30%;
+	height: 100%;
+	margin: 5px;
+}
+
+#videoLI {
+	width: 30%;
+	height: 100%;
+	min-height: 100%;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: small;
+	color: #d3d3d3;
+}
+
+#taLI {
+	float: left;
+	width: 25%;
+	height: 100%;
+	margin: 5px;
+}
+
 .moduleBox {
 	float: left;
 	width: 12%;
@@ -102,22 +125,6 @@ lowerbox {
 	border: 0px;
 }
 
-#chatLI {
-	float: left;
-	width: 30%;
-	height: 100%;
-	margin: 5px;
-}
-
-#videoLI {
-	width: 30%;
-	height: 100%;
-	min-height: 100%;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: small;
-	color: #d3d3d3;
-}
-
 .video {
 	width: 100%;
 	height: -webkit-calc(50% - 15px);
@@ -149,13 +156,6 @@ lowerbox {
 	height: 23px;
 	margin: 0px;
 	padding: 4px;
-}
-
-#taLI {
-	float: left;
-	width: 25%;
-	height: 100%;
-	margin: 5px;
 }
 
 #taRecentEvents {
