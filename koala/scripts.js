@@ -203,9 +203,11 @@ function updateGameName(gameName) {
 	var newGame = prompt("Enter a new game name below. Changes take a moment to appear on StreamKoala.", gameName);
 	
 	//change spaces to + signs
+	/*
 	for (var i = 0; i < newGame.length; i++) {
 		newGame = newGame.replace(" ", "+");
 	}
+	*/
 	
 	$.ajax({
 		method: "GET",
@@ -213,23 +215,17 @@ function updateGameName(gameName) {
 		data: { "channel[game]": "newGame", "_method": "put", "oauth_token": access_token},
 		contentType: "application/json"
 	});
-	
-	/*
-	var xhr = new XMLHttpRequest();
-	var url = "https://api.twitch.tv/kraken/channels/" + username + "?channel[game]=" + newGame + "&_method=put&oauth_token=" + access_token;
-	xhr.open("GET", url, true);
-	xhr.setRequestHeader("Content-type", "application/json");
-	xhr.send();
-	*/
 }
 
 function updateStatus(statusText) {
 	var newStatus = prompt("Enter a new stream title below. Changes take a minute to appear on StreamKoala.", statusText);
 	
 	//change spaces to + signs
+	/*
 	for (var i = 0; i < newStatus.length; i++) {
 		newStatus = newStatus.replace(" ", "+");
 	}
+	*/
 	
 	$.ajax({
 		method: "GET",
@@ -237,14 +233,6 @@ function updateStatus(statusText) {
 		data: { "channel[status]": newStatus, "_method": "put", "oauth_token": access_token},
 		contentType: "application/json"
 	});
-	
-	/*
-	var xhr = new XMLHttpRequest();
-	var url = "https://api.twitch.tv/kraken/channels/" + username + "?channel[status]=" + newStatus + "&_method=put&oauth_token=" + access_token;
-	xhr.open("GET", url, true);
-	xhr.setRequestHeader("Content-type", "application/json");
-	xhr.send();
-	*/
 }
 
 function setAltTwitchVideo() {
