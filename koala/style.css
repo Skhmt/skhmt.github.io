@@ -97,10 +97,8 @@ lowerbox {
 
 #twitchChat {
 	float: left;
-	width: 30%;
+	width: 100%;
 	height: 100%;
-	margin: 5px;
-	margin-left: 10px;
 	border: 0px;
 }
 
@@ -112,7 +110,7 @@ lowerbox {
 }
 
 #videoLI {
-	width: 100%;
+	width: 30%;
 	height: 100%;
 	min-height: 100%;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
