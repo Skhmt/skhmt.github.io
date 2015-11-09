@@ -53,10 +53,6 @@ function kraken2(userdata) {
 	loadScript();
 }
 
-/* HOSTS BROKEN - add back in when the JSONP callback is added by Twitch
-var pageOpen = new Date()
-document.getElementById("hostsTop").innerHTML = "Hosts since " + ("0" + pageOpen.getHours()).slice(-2) + ":" + ("0" + pageOpen.getMinutes()).slice(-2) + " " + pageOpen.toLocaleDateString();
-*/
 
 function loadScript() {
 	var script1 = document.createElement("script");
@@ -163,51 +159,10 @@ function streaminfo(chatroom) {
 	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 	
 	$("#userinfo").html(output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output);
-	
-	/* update hosts */
-	/* HOSTS ARE BROKEN RIGHT NOW
-	var script4 = document.createElement("script");
-	script4.src = "http://tmi.twitch.tv/hosts?include_logins=1&target=" + chatroom._id + "&callback=hosts&client_id=" + clientid + "&api_version=3";
-	document.body.appendChild(script4);
-	*/
 }
-/*
-function hosts(hostlist) {
-	for (var i = 0; i < hostlist.length; i++) {
-		var newHost = true;
-		for (var j = 0; j < allHosts.length; j++) {
-			if (hostlist[i].host_login == allHosts[j].name){
-				newHost = false;
-				break;
-			}
-		}
-		if (newHost) {
-			alert("pushing: " + hostlist[i].host_login);
-			allHosts.push(
-				{"name": hostlist[i].host_login, "time": new Date()}
-			);
-		}
-	}
-	
-	//updating the list
-	var output = "";
-	for (var i = 0; i < allHosts.length; i++) {
-		var d = allHosts[i].time;
-		output += allHosts[i].name + " (" + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ")<br />";
-	}
-	document.getElementById("hostsBottom").innerHTML = output;
-}
-*/
 
 function updateGameName(gameName) {
 	var newGame = prompt("Enter a new game name below. Changes take a moment to appear on StreamKoala.", gameName);
-	
-	//change spaces to + signs
-	/*
-	for (var i = 0; i < newGame.length; i++) {
-		newGame = newGame.replace(" ", "+");
-	}
-	*/
 	
 	$.ajax({
 		method: "GET",
@@ -219,13 +174,6 @@ function updateGameName(gameName) {
 
 function updateStatus(statusText) {
 	var newStatus = prompt("Enter a new stream title below. Changes take a minute to appear on StreamKoala.", statusText);
-	
-	//change spaces to + signs
-	/*
-	for (var i = 0; i < newStatus.length; i++) {
-		newStatus = newStatus.replace(" ", "+");
-	}
-	*/
 	
 	$.ajax({
 		method: "GET",

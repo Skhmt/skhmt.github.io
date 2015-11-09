@@ -1,6 +1,5 @@
-
-/* this is the (public) client_id of StreamKoala. */
-var clientid = "idc20bfbuv46327tp8jgc6qhznewz9";
+/* vars */
+var clientid = "idc20bfbuv46327tp8jgc6qhznewz9"; /* this is the (public) client_id of StreamKoala. */
 var username = "";
 var access_token = "";
 var viewersStatus = "";
@@ -9,37 +8,38 @@ var setupChatAndVideo = false;
 var allHosts = [];
 var refreshRate = 5; //in seconds
 
-/* If there's no auth, send the user to the login page */
-if (document.location.hash.length < 50) {
-	window.location = "ttps://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true";
-}
-access_token = document.location.hash.substring(14,44);
+/* waiting until the page is loaded before doing stuff */
+$(document).ready(function(){
+	/* If there's no auth, send the user to the login page */
+	if (document.location.hash.length < 50) {
+		window.location = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true";
+	}
+	access_token = document.location.hash.substring(14,44);
 
 
-/* Detecting browser... if mobile, remove the videos and resize the remaining elements. */
-function detectmob() { 
- return (
- navigator.userAgent.match(/Android/i)
- || navigator.userAgent.match(/webOS/i)
- || navigator.userAgent.match(/iPhone/i)
- || navigator.userAgent.match(/iPad/i)
- || navigator.userAgent.match(/iPod/i)
- || navigator.userAgent.match(/BlackBerry/i)
- || navigator.userAgent.match(/Windows Phone/i)
- );
-}
-
-if (detectmob()) {
-	document.getElementById("videoSpan").style.display = "none"; /* 30% default */
-	document.getElementById("twitchChat").style.width = "45%"; /* 30% default */
-	document.getElementById("viewersSpan").style.width = "20%"; /* 12% default */
-	document.getElementById("taRecentEvents").style.width = "31%"; /* 25% default */
-	/* 97% is the max width */
-}
+	/* Detecting browser... if mobile, remove the videos and resize the remaining elements. */
+	if (
+		navigator.userAgent.match(/Android/i)
+		|| navigator.userAgent.match(/webOS/i)
+		|| navigator.userAgent.match(/iPhone/i)
+		|| navigator.userAgent.match(/iPad/i)
+		|| navigator.userAgent.match(/iPod/i)
+		|| navigator.userAgent.match(/BlackBerry/i)
+		|| navigator.userAgent.match(/Windows Phone/i) ) {
+		$("#videoSpan").hide(); /* 30% default */
+		$("#twitchChat").width("45%"); /* 30% default */
+		$("#viewersSpan").width("20%"); /* 12% default */
+		$("#taRecentEvents").width("31%"); /* 25% default */
+		/* 97% is the max width */
+	}
 
 
-/* Getting the username from api.twitch.tv/kraken/ */
-getUsername();
+	/* Getting the username from api.twitch.tv/kraken/ */
+	getUsername();
+
+}); // close $(document).ready
+
+
 function getUsername() {
 	var script0 = document.createElement("script");
 	script0.src = "https://api.twitch.tv/kraken?callback=kraken2&oauth_token=" + access_token + "&client_id=" + clientid;
@@ -48,16 +48,11 @@ function getUsername() {
 
 function kraken2(userdata) {
 	username = userdata.token.user_name;
+	
+	/* Set up the main page area */
+	loadScript();
 }
 
-
-/* Setting up the main page area */
-loadScript();
-
-/* HOSTS BROKEN - add back in when the JSONP callback is added by Twitch
-var pageOpen = new Date()
-document.getElementById("hostsTop").innerHTML = "Hosts since " + ("0" + pageOpen.getHours()).slice(-2) + ":" + ("0" + pageOpen.getMinutes()).slice(-2) + " " + pageOpen.toLocaleDateString();
-*/
 
 function loadScript() {
 	var script1 = document.createElement("script");
@@ -73,11 +68,9 @@ function loadScript() {
 	document.body.appendChild(script3);
 	
 	if(setupChatAndVideo == false && username != "") {
-		document.getElementById("twitchChat").src="http://www.twitch.tv/" + username + "/chat";
-		//document.getElementById("twitchChat").style.display = "block";
+		$("#twitchChat").attr("src", "http://www.twitch.tv/" + username + "/chat");
 		
-		document.getElementById("twitchVideo").src="http://www.twitch.tv/" + username + "/embed";
-		//document.getElementById("twitchVideo").style.display = "block";
+		$("#twitchVideo").attr("src", "http://www.twitch.tv/" + username + "/embed");
 		setupChatAndVideo = true;
 	}
 	
@@ -86,7 +79,7 @@ function loadScript() {
 
 function updateFollowersAndViewers() {
 	if (viewersStatus != "" && followersStatus != "") {
-		document.getElementById("twitchChatViewers").innerHTML = "<img src='viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='12' height='10' /> " + followersStatus;
+		$("#twitchChatViewers").html("<img src='viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='12' height='10' /> " + followersStatus);
 		viewersStatus = "";
 		followersStatus = "";
 	}
@@ -149,7 +142,7 @@ function userlist(chatroom) {
 		output += "</p> ";
 	}
 	
-	document.getElementById("twitchChatUsers").innerHTML = output;
+	$("#twitchChatUsers").html(output);
 }
 
 function streaminfo(chatroom) {
@@ -165,74 +158,32 @@ function streaminfo(chatroom) {
 	
 	var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 	
-	document.getElementById("userinfo").innerHTML = output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output;
-	
-	/* update hosts */
-	/* HOSTS ARE BROKEN RIGHT NOW
-	var script4 = document.createElement("script");
-	script4.src = "http://tmi.twitch.tv/hosts?include_logins=1&target=" + chatroom._id + "&callback=hosts&client_id=" + clientid + "&api_version=3";
-	document.body.appendChild(script4);
-	*/
+	$("#userinfo").html(output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output);
 }
-/*
-function hosts(hostlist) {
-	for (var i = 0; i < hostlist.length; i++) {
-		var newHost = true;
-		for (var j = 0; j < allHosts.length; j++) {
-			if (hostlist[i].host_login == allHosts[j].name){
-				newHost = false;
-				break;
-			}
-		}
-		if (newHost) {
-			alert("pushing: " + hostlist[i].host_login);
-			allHosts.push(
-				{"name": hostlist[i].host_login, "time": new Date()}
-			);
-		}
-	}
-	
-	//updating the list
-	var output = "";
-	for (var i = 0; i < allHosts.length; i++) {
-		var d = allHosts[i].time;
-		output += allHosts[i].name + " (" + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ")<br />";
-	}
-	document.getElementById("hostsBottom").innerHTML = output;
-}
-*/
 
 function updateGameName(gameName) {
 	var newGame = prompt("Enter a new game name below. Changes take a moment to appear on StreamKoala.", gameName);
 	
-	//change spaces to + signs
-	for (var i = 0; i < newGame.length; i++) {
-		newGame = newGame.replace(" ", "+");
-	}
-	
-	var xhr = new XMLHttpRequest();
-	var url = "https://api.twitch.tv/kraken/channels/" + username + "?channel[game]=" + newGame + "&_method=put&oauth_token=" + access_token;
-	xhr.open("GET", url, true);
-	xhr.setRequestHeader("Content-type", "application/json");
-	xhr.send();
+	$.ajax({
+		method: "GET",
+		url: "https://api.twitch.tv/kraken/channels/" + username,
+		data: { "channel[game]": "newGame", "_method": "put", "oauth_token": access_token},
+		contentType: "application/json"
+	});
 }
 
 function updateStatus(statusText) {
 	var newStatus = prompt("Enter a new stream title below. Changes take a minute to appear on StreamKoala.", statusText);
 	
-	//change spaces to + signs
-	for (var i = 0; i < newStatus.length; i++) {
-		newStatus = newStatus.replace(" ", "+");
-	}
-	
-	var xhr = new XMLHttpRequest();
-	var url = "https://api.twitch.tv/kraken/channels/" + username + "?channel[status]=" + newStatus + "&_method=put&oauth_token=" + access_token;
-	xhr.open("GET", url, true);
-	xhr.setRequestHeader("Content-type", "application/json");
-	xhr.send();
+	$.ajax({
+		method: "GET",
+		url: "https://api.twitch.tv/kraken/channels/" + username,
+		data: { "channel[status]": newStatus, "_method": "put", "oauth_token": access_token},
+		contentType: "application/json"
+	});
 }
 
 function setAltTwitchVideo() {
-	var newTwitchURL = document.getElementById("altTwitchVideoURL").value;
-	document.getElementById("altTwitchVideo").src="http://www.twitch.tv/" + newTwitchURL + "/embed";
+	var newTwitchURL = $("#altTwitchVideoURL").val();
+	$("#altTwitchVideo").attr("src", "http://www.twitch.tv/" + newTwitchURL + "/embed");
 }
