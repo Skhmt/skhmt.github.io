@@ -7,28 +7,80 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-	
-<div style="display: table; position: absolute; height: 100%; width: 100%;">
-<div style="display: table-cell; vertical-align: middle; text-align: center;">
-	<div id="nameAreaBox">
-		<div class="streamKoalaName">StreamKoala</div>
-		<div class="nameArea">
-			<img src="sk.png" />
-			<br />
-			<a href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true"><img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" /></a>
-				<br />
-			<p>
-				This website is designed and intended to be used at 1080p on the latest version of <a href="https://www.google.com/chrome/" target="_new">Chrome</a>. It is also intended to be used with <a href="https://nightdev.com/betterttv/" target="_new">BTTV</a> and <a href="http://www.twitchalerts.com/dashboard/" target="_new">TwitchAlerts</a>.
+
+<div class="outerBox">
+	<div class="innerBox">
+		
+		<div class="leftColumn">
+			<p style="text-align: center;">
+				<img src="sk.png" />
+			</p>
+			<p style="text-align: center;">
+				<a href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=channel_editor&force_verify=true"><img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" /></a>
+			</p>
 			</p>
 				This website is not affiliated with <a href="http://www.twitch.tv/" target="_new">Twitch</a>, but is intended to be used while streaming on Twitch.
 			<p>
+			<p class="menuText">
+				<a href="https://www.twitchalerts.com/donate/skhmt">Donate</a>
+			</p>
+			<p class="menuText">
+				Awesome people:
 			</p>
 			<p>
-				Made by <b>Skhmt</b> (<a href="http://www.twitch.tv/skhmt" target="_new">Twitch</a>|<a href="https://twitter.com/SkTTV" target="_new">Twitter</a>) Nov 2015.
+				<a href="http://www.twitch.tv/lightnevaeh">LightNevaeh</a><br />
+				<a href="http://www.twitch.tv/m3rchant">M3rchant</a><br />
+				<a href="http://www.twitch.tv/tootmetoota">Tootmetoota</a><br />
+				<a href="http://www.twitch.tv/CatatonicFrost">CatatonicFrost</a><br />
+				<a href="http://www.twitch.tv/CoolidgeHD">CoolidgeHD</a><br />
+				<a href="http://www.twitch.tv/ExoticKitten">ExoticKitten</a><br />
 			</p>
 		</div>
+		
+		<div class="rightColumn">
+			<div class="streamKoalaName">StreamKoala</div>
+			<br /> <br />
+			<div class="content">
+				StreamKoala is a webpage made for streamers to have open on another monitor or a tablet. It consolidates the information you need for your stream and leaves out the stuff you don't need to worry about.
+			</div>
+			<div class="content">
+				It is designed and intended to be used on the latest version of <a href="https://www.google.com/chrome/" target="_new">Chrome</a>. It is also intended to be used with <a href="https://nightdev.com/betterttv/" target="_new">BTTV</a>'s dark theme and <a href="http://www.twitchalerts.com/dashboard/" target="_new">TwitchAlerts</a>.
+			</div>
+			<div class="contentHeader">
+				Features
+			</div>
+			<div class="content">
+				<ul style="margin-top: 5px;">
+					<li>Twitch Chat window that shows emotes, who's hosting you, and works with BTTV.</li>
+					<li>Chat viewers list with total followers and total logged-in viewers.</li>
+					<li>TwitchAlerts "Recent Events" window that shows your most recent followers, subs, and donations via Twitch Alerts.</li>
+					<li>A video of your stream.</li>
+					<li>A second Twitch stream for including VOD-friendly music into your stream, such as from Monstercat or NoCopyrightSounds.</li>
+					<li>The above modules can be rearranged by dragging their header.</li>
+					<li>Update your game being played.</li>
+					<li>Update your stream title.</li>
+					<li>Works with tablets and phones, but the two twitch streams won't be available.</li>
+					<li>No data is collected nor stored on the server.</li>
+					<li>No cookies are stored on the user's computer.</li>
+					<li>Only asks for permission to update your stream metadata from Twitch. This site has no other permissions.</li>
+				</ul>
+			</div>
+			<div class="contentHeader">
+				How to use StreamKoala
+			</div>
+			<div class="content">
+				Just click on the "Connect with Twitch" button on the top left and everything else should be self-explanatory! Note, DO NOT show your StreamKoala website to your stream, the URL contains an access token that will allow anyone with said token to update your stream title and game.
+			</div>
+			<div class="contentHeader">
+				Change log
+			</div>
+			<div class="content">
+				<span class="changeLogDate">9 Nov 2015</span> - Site is still being tested
+			</div>
+		</div>
+		
 	</div>
 </div>
-</div>
+
 </body>
 </html>
