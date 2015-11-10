@@ -47,6 +47,8 @@ lowerbox {
 }
 
 #chatLI {
+	height: -webkit-calc(100vh - 55px);
+	height: -moz-calc(100vh - 55px);
 	height: calc(100vh - 55px);
 	float: left;
 	width: 30%;
@@ -57,6 +59,8 @@ lowerbox {
 }
 
 #videoLI {
+	height: -webkit-calc(100vh - 55px);
+	height: -moz-calc(100vh - 55px);
 	height: calc(100vh - 55px);
 	float: left;
 	width: 30%;
@@ -71,6 +75,8 @@ lowerbox {
 }
 
 #taLI {
+	height: -webkit-calc(100vh - 55px);
+	height: -moz-calc(100vh - 55px);
 	height: calc(100vh - 55px);
 	float: left;
 	width: 25%;
@@ -81,6 +87,8 @@ lowerbox {
 }
 
 .moduleBox {
+	height: -webkit-calc(100vh - 55px);
+	height: -moz-calc(100vh - 55px);
 	height: calc(100vh - 55px);
 	float: left;
 	width: 12%;
