@@ -124,6 +124,7 @@ lowerbox {
 	text-align: center;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
+	float: left;
 }
 
 .moduleBottom {
@@ -137,6 +138,7 @@ lowerbox {
 	padding-left: 5px;
 	margin: 0px;
 	color: #d3d3d3;
+	float: left;
 }
 
 #userinfo {
