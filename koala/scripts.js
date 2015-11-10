@@ -84,7 +84,7 @@ function loadScript() {
 
 function updateFollowersAndViewers() {
 	if (viewersStatus != "" && followersStatus != "") {
-		$("#twitchChatViewers").html("<img src='http://skhmt.github.io/koala/viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='http://skhmt.github.io/koala/followers.png' width='12' height='10' /> " + followersStatus);
+		$("#twitchChatViewers").html("<img src='skhmt.github.io/koala/viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='skhmt.github.io/koala/followers.png' width='12' height='10' /> " + followersStatus);
 		viewersStatus = "";
 		followersStatus = "";
 	}
