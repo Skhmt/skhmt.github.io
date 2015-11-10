@@ -51,12 +51,11 @@ form {
 	
 
 lowerbox {
-	width: calc(100% - 5px);
+	width: 100%;
 	height: -webkit-calc(100vh - 90px);
 	height: -moz-calc(100vh - 90px);
 	height: calc(100vh - 90px);
 	margin: 0px;
-	margin-left: 5px;
 	padding: 0px;
 	float: left;
 	vertical-align: top;
@@ -67,7 +66,7 @@ lowerbox {
 	height: -moz-calc(100vh - 90px);
 	height: calc(100vh - 90px);
 	width: 30%;
-	margin: 5px;
+	margin-left: 10px;
 	padding: 0px;
 	float: left;
 }
@@ -78,7 +77,7 @@ lowerbox {
 	height: calc(100vh - 90px);
 	width: 30%;
 	min-height: 100%;
-	margin: 5px;
+	margin-left: 10px;
 	padding: 0px;
 	float: left;
 }
@@ -88,7 +87,7 @@ lowerbox {
 	height: -moz-calc(100vh - 90px);
 	height: calc(100vh - 90px);
 	width: 25%;
-	margin: 5px;
+	margin-left: 10px;
 	padding: 0px;
 	float: left;
 }
@@ -98,7 +97,7 @@ lowerbox {
 	height: -moz-calc(100vh - 90px);
 	height: calc(100vh - 90px);
 	width: 12%;
-	margin: 5px;
+	margin-left: 10px;
 	padding: 0px;
 	float: left;
 }
