@@ -23,17 +23,6 @@ form {
 	font-weight: bold;
 }
 
-lowerbox {
-	width: 100%;
-	height: -webkit-calc(100vh - 55px);
-	height: -moz-calc(100vh - 55px);
-	height: calc(100vh - 55px);
-	max-width: 100%;
-	margin: 0px;
-	padding: 0px;
-	list-style-type: none;
-}
-
 .viewerType {
 	color: #606060;
 	font-weight: bold;
@@ -46,15 +35,29 @@ lowerbox {
 	font-size: large;
 }
 
+lowerbox {
+	width: 100%;
+	height: -webkit-calc(100vh - 55px);
+	height: -moz-calc(100vh - 55px);
+	height: calc(100vh - 55px);
+	max-width: 100%;
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
 #chatLI {
+	height: calc(100vh - 55px);
 	float: left;
 	width: 30%;
 	height: 100%;
 	margin: 5px;
 	padding: 0px;
+	list-style-type: none;
 }
 
 #videoLI {
+	height: calc(100vh - 55px);
 	float: left;
 	width: 30%;
 	height: 100%;
@@ -64,23 +67,28 @@ lowerbox {
 	color: #d3d3d3;
 	margin: 5px;
 	padding: 0px;
+	list-style-type: none;
 }
 
 #taLI {
+	height: calc(100vh - 55px);
 	float: left;
 	width: 25%;
 	height: 100%;
 	margin: 5px;
 	padding: 0px;
+	list-style-type: none;
 }
 
 .moduleBox {
+	height: calc(100vh - 55px);
 	float: left;
 	width: 12%;
 	height: 100%;
 	display: block;
 	margin: 5px;
 	padding: 0px;
+	list-style-type: none;
 }
 
 .moduleTop {
