@@ -50,15 +50,19 @@ lowerbox {
 	width: 30%;
 	height: 100%;
 	margin: 5px;
+	padding: 0px;
 }
 
 #videoLI {
+	float: left;
 	width: 30%;
 	height: 100%;
 	min-height: 100%;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: small;
 	color: #d3d3d3;
+	margin: 5px;
+	padding: 0px;
 }
 
 #taLI {
@@ -66,6 +70,7 @@ lowerbox {
 	width: 25%;
 	height: 100%;
 	margin: 5px;
+	padding: 0px;
 }
 
 .moduleBox {
