@@ -55,7 +55,6 @@ lowerbox {
 	height: -webkit-calc(100vh - 70px);
 	height: -moz-calc(100vh - 70px);
 	height: calc(100vh - 70px);
-	min-width: 100%;
 	margin: 0px;
 	padding: 0px;
 	list-style-type: none;
