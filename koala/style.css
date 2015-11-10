@@ -46,15 +46,15 @@ form {
 	height: 20px;
 	text-align: center;
 	padding-top: 4px;
-	float: left;
+	display: block;
 }
 	
 
 lowerbox {
 	width: 100%;
-	height: -webkit-calc(100vh - 70px);
-	height: -moz-calc(100vh - 70px);
-	height: calc(100vh - 70px);
+	height: -webkit-calc(100vh - 90px);
+	height: -moz-calc(100vh - 90px);
+	height: calc(100vh - 90px);
 	margin: 0px;
 	padding: 0px;
 	list-style-type: none;
@@ -63,9 +63,9 @@ lowerbox {
 }
 
 #chatLI {
-	height: -webkit-calc(100vh - 70px);
-	height: -moz-calc(100vh - 70px);
-	height: calc(100vh - 70px);
+	height: -webkit-calc(100vh - 90px);
+	height: -moz-calc(100vh - 90px);
+	height: calc(100vh - 90px);
 	width: 30%;
 	margin: 5px;
 	padding: 0px;
@@ -74,9 +74,9 @@ lowerbox {
 }
 
 #videoLI {
-	height: -webkit-calc(100vh - 70px);
-	height: -moz-calc(100vh - 70px);
-	height: calc(100vh - 70px);
+	height: -webkit-calc(100vh - 90px);
+	height: -moz-calc(100vh - 90px);
+	height: calc(100vh - 90px);
 	width: 30%;
 	min-height: 100%;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -90,9 +90,9 @@ lowerbox {
 }
 
 #taLI {
-	height: -webkit-calc(100vh - 70px);
-	height: -moz-calc(100vh - 70px);
-	height: calc(100vh - 70px);
+	height: -webkit-calc(100vh - 90px);
+	height: -moz-calc(100vh - 90px);
+	height: calc(100vh - 90px);
 	width: 25%;
 	margin: 5px;
 	padding: 0px;
@@ -102,9 +102,9 @@ lowerbox {
 }
 
 .moduleBox {
-	height: -webkit-calc(100vh - 70px);
-	height: -moz-calc(100vh - 70px);
-	height: calc(100vh - 70px);
+	height: -webkit-calc(100vh - 90px);
+	height: -moz-calc(100vh - 90px);
+	height: calc(100vh - 90px);
 	width: 12%;
 	margin: 5px;
 	padding: 0px;
@@ -124,7 +124,7 @@ lowerbox {
 	text-align: center;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
-	float: left;
+	display: block;
 }
 
 .moduleBottom {
@@ -138,7 +138,7 @@ lowerbox {
 	padding-left: 5px;
 	margin: 0px;
 	color: #d3d3d3;
-	float: left;
+	display: block;
 }
 
 #userinfo {
