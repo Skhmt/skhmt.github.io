@@ -41,11 +41,12 @@ lowerbox {
 	height: -moz-calc(100vh - 70px);
 	height: calc(100vh - 70px);
 	min-width: 100%;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 	list-style-type: none;
 	float: left;
 	vertical-align: top;
+	background: white;
 }
 
 #chatLI {
@@ -70,6 +71,7 @@ lowerbox {
 	color: #d3d3d3;
 	margin: 5px;
 	padding: 0px;
+	padding-top: 1px;
 	list-style-type: none;
 	float: left;
 }
@@ -81,6 +83,7 @@ lowerbox {
 	width: 25%;
 	margin: 5px;
 	padding: 0px;
+	padding-top: 1px;
 	list-style-type: none;
 	float: left;
 }
@@ -183,5 +186,4 @@ lowerbox {
 	width: 100%;
 	height: 100%;
 	border: 0;
-	margin-top: 1px;
 }
