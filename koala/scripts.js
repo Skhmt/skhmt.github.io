@@ -42,10 +42,6 @@ $(document).ready(function(){
 	/* Getting the username from api.twitch.tv/kraken/ */
 	getUsername();
 	
-	$("#gameButton").button().click(function(event){
-		
-	});
-	
 }); // close $(document).ready
 
 
