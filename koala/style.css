@@ -51,7 +51,7 @@ form {
 	
 
 lowerbox {
-	width: 100%;
+	width: calc(100% - 5px);
 	height: -webkit-calc(100vh - 90px);
 	height: -moz-calc(100vh - 90px);
 	height: calc(100vh - 90px);
