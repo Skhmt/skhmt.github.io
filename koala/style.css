@@ -31,6 +31,7 @@ lowerbox {
 	max-width: 100%;
 	margin: 0px;
 	padding: 0px;
+	list-style-type: none;
 }
 
 .viewerType {
@@ -128,6 +129,8 @@ lowerbox {
 	width: 100%;
 	height: 100%;
 	border: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 
 .video {
