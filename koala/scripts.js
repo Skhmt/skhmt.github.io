@@ -172,7 +172,7 @@ function updateGameName(gameName) {
 	$.ajax({
 		method: "GET",
 		url: "https://api.twitch.tv/kraken/channels/" + username,
-		data: { "channel[game]": "newGame", "_method": "put", "oauth_token": access_token},
+		data: { "channel[game]": newGame, "_method": "put", "oauth_token": access_token},
 		contentType: "application/json"
 	});
 }
