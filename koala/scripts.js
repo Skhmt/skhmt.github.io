@@ -33,7 +33,9 @@ $(document).ready(function(){
 		/* 97% is the max width */
 	}
 
-	$("#lowerbox").sortable();
+	$("#lowerbox").sortable({
+		handle: ".handle"
+	});
 	
 	/* Getting the username from api.twitch.tv/kraken/ */
 	getUsername();
