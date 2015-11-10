@@ -56,8 +56,8 @@ lowerbox {
 	height: -moz-calc(100vh - 90px);
 	height: calc(100vh - 90px);
 	margin: 0px;
+	margin-left: 5px;
 	padding: 0px;
-	padding-left: 15px;
 	float: left;
 	vertical-align: top;
 }
