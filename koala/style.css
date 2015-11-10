@@ -57,7 +57,6 @@ lowerbox {
 	height: calc(100vh - 90px);
 	margin: 0px;
 	padding: 0px;
-	list-style-type: none;
 	float: left;
 	vertical-align: top;
 }
@@ -69,7 +68,6 @@ lowerbox {
 	width: 30%;
 	margin: 5px;
 	padding: 0px;
-	list-style-type: none;
 	float: left;
 }
 
@@ -81,7 +79,6 @@ lowerbox {
 	min-height: 100%;
 	margin: 5px;
 	padding: 0px;
-	list-style-type: none;
 	float: left;
 }
 
@@ -92,7 +89,6 @@ lowerbox {
 	width: 25%;
 	margin: 5px;
 	padding: 0px;
-	list-style-type: none;
 	float: left;
 }
 
@@ -103,7 +99,6 @@ lowerbox {
 	width: 12%;
 	margin: 5px;
 	padding: 0px;
-	list-style-type: none;
 	float: left;
 }
 
