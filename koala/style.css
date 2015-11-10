@@ -81,7 +81,7 @@ lowerbox {
 	min-height: 100%;
 	margin: 5px;
 	padding: 0px;
-	padding-top: 1px;
+	padding-top: 2px;
 	list-style-type: none;
 	float: left;
 }
@@ -93,7 +93,7 @@ lowerbox {
 	width: 25%;
 	margin: 5px;
 	padding: 0px;
-	padding-top: 1px;
+	padding-top: 2px;
 	list-style-type: none;
 	float: left;
 }
