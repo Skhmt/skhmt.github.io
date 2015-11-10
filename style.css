@@ -53,7 +53,6 @@ body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #262626;
 	font-weight: bold;
-	text-align: center;
 }
 
 
@@ -85,4 +84,16 @@ body {
 
 .changeLogDate {
 	font-style: italic;
+}
+
+a, a:link, a:visited {
+	color: #6441A5;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover, a:active {
+	color: #6441A5;
+	text-decoration: underline;
+	font-weight: bold;
 }
