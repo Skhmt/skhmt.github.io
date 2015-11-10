@@ -37,33 +37,33 @@ form {
 
 lowerbox {
 	width: 100%;
-	height: -webkit-calc(100vh - 40px);
-	height: -moz-calc(100vh - 40px);
-	height: calc(100vh - 40px);
+	height: -webkit-calc(100vh - 60px);
+	height: -moz-calc(100vh - 60px);
+	height: calc(100vh - 60px);
 	min-width: 100%;
 	margin: 0px;
 	padding: 0px;
 	padding-left: 0;
 	list-style-type: none;
-	display: inline-block;
+	float: left;
 	vertical-align: top;
 }
 
 #chatLI {
-	height: -webkit-calc(100vh - 40px);
-	height: -moz-calc(100vh - 40px);
-	height: calc(100vh - 40px);
+	height: -webkit-calc(100vh - 60px);
+	height: -moz-calc(100vh - 60px);
+	height: calc(100vh - 60px);
 	width: 30%;
 	margin: 5px;
 	padding: 0px;
 	list-style-type: none;
-	display: inline-block;
+	float: left;
 }
 
 #videoLI {
-	height: -webkit-calc(100vh - 40px);
-	height: -moz-calc(100vh - 40px);
-	height: calc(100vh - 40px);
+	height: -webkit-calc(100vh - 60px);
+	height: -moz-calc(100vh - 60px);
+	height: calc(100vh - 60px);
 	width: 30%;
 	min-height: 100%;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -72,29 +72,29 @@ lowerbox {
 	margin: 5px;
 	padding: 0px;
 	list-style-type: none;
-	display: inline-block;
+	float: left;
 }
 
 #taLI {
-	height: -webkit-calc(100vh - 40px);
-	height: -moz-calc(100vh - 40px);
-	height: calc(100vh - 40px);
+	height: -webkit-calc(100vh - 60px);
+	height: -moz-calc(100vh - 60px);
+	height: calc(100vh - 60px);
 	width: 25%;
 	margin: 5px;
 	padding: 0px;
 	list-style-type: none;
-	display: inline-block;
+	float: left;
 }
 
 .moduleBox {
-	height: -webkit-calc(100vh - 40px);
-	height: -moz-calc(100vh - 40px);
-	height: calc(100vh - 40px);
+	height: -webkit-calc(100vh - 60px);
+	height: -moz-calc(100vh - 60px);
+	height: calc(100vh - 60px);
 	width: 12%;
 	margin: 5px;
 	padding: 0px;
 	list-style-type: none;
-	display: inline-block;
+	float: left;
 }
 
 .moduleTop {
@@ -102,7 +102,7 @@ lowerbox {
 	font-size: 14px;
 	height: 30px;
 	background: #323232;
-	padding-top: 0px;
+	padding-top: 10px;
 	padding-bottom: 0px;
 	margin: 0px;
 	color: #d3d3d3;

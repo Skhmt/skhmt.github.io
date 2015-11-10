@@ -26,10 +26,10 @@ $(document).ready(function(){
 		|| navigator.userAgent.match(/iPod/i)
 		|| navigator.userAgent.match(/BlackBerry/i)
 		|| navigator.userAgent.match(/Windows Phone/i) ) {
-		$("#videoSpan").hide(); /* 30% default */
-		$("#twitchChat").width("45%"); /* 30% default */
-		$("#viewersSpan").width("20%"); /* 12% default */
-		$("#taRecentEvents").width("31%"); /* 25% default */
+		$("#videoLI").hide(); /* 30% default */
+		$("#chatLI").width("45%"); /* 30% default */
+		$("#viewersLI").width("20%"); /* 12% default */
+		$("#taLI").width("31%"); /* 25% default */
 		/* 97% is the max width */
 	}
 
