@@ -44,6 +44,7 @@ lowerbox {
 	margin: 0px;
 	padding: 0px;
 	list-style-type: none;
+	display: block;
 }
 
 #chatLI {
@@ -56,6 +57,7 @@ lowerbox {
 	margin: 5px;
 	padding: 0px;
 	list-style-type: none;
+	display: block;
 }
 
 #videoLI {
@@ -72,6 +74,7 @@ lowerbox {
 	margin: 5px;
 	padding: 0px;
 	list-style-type: none;
+	display: block;
 }
 
 #taLI {
@@ -84,6 +87,7 @@ lowerbox {
 	margin: 5px;
 	padding: 0px;
 	list-style-type: none;
+	display: block;
 }
 
 .moduleBox {
@@ -91,11 +95,12 @@ lowerbox {
 	height: -moz-calc(100vh - 55px);
 	height: calc(100vh - 55px);
 	float: left;
-	width: 12%;
+	width: 15%;
 	height: 100%;
 	margin: 5px;
 	padding: 0px;
 	list-style-type: none;
+	display: block;
 }
 
 .moduleTop {
