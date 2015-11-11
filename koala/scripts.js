@@ -82,6 +82,11 @@ function loadScript() {
 	setTimeout(loadScript, refreshRate*1000);
 }
 
+function followers(chatroom) {
+	followersStatus = chatroom._total;
+	updateFollowersAndViewers();
+}
+
 function updateFollowersAndViewers() {
 	if (viewersStatus != "" && followersStatus != "") {
 		var testButton = "<button onclick=\"getHosts()\">Hosts</button>"
@@ -90,11 +95,6 @@ function updateFollowersAndViewers() {
 		viewersStatus = "";
 		followersStatus = "";
 	}
-}
-
-function followers(chatroom) {
-	followersStatus = chatroom._total;
-	updateFollowersAndViewers();
 }
 
 function userlist(chatroom) {
@@ -205,5 +205,5 @@ function getHosts() {
 }
 
 function hosts(data) {
-	alert(data.hosts[0].host_login);
+	$("#twitchChatViewers").html(data.hosts[0].host_login);
 }
