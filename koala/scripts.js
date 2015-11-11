@@ -84,7 +84,8 @@ function loadScript() {
 
 function updateFollowersAndViewers() {
 	if (viewersStatus != "" && followersStatus != "") {
-		$("#twitchChatViewers").html("<img src='skhmt.github.io/koala/viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='skhmt.github.io/koala/followers.png' width='12' height='10' /> " + followersStatus);
+		var testButton = "<button onclick='getHosts()'>Hosts</button>"
+		$("#twitchChatViewers").html("<img src='skhmt.github.io/koala;/viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='skhmt.github.io/koala/followers.png' width='12' height='10' /> " + followersStatus + testButton);
 		viewersStatus = "";
 		followersStatus = "";
 	}
@@ -191,4 +192,12 @@ function updateStatus(statusText) {
 function setAltTwitchVideo() {
 	var newTwitchURL = $("#altTwitchVideoURL").val();
 	$("#altTwitchVideo").attr("src", "http://www.twitch.tv/" + newTwitchURL + "/embed");
+}
+
+function getHosts() {
+	var jsonProxy = "http://jsonp.afeld.me/?url=";
+	var twitchHostsAPI = "http://tmi.twitch.tv/hosts?include_logins=1&target=";
+	$.get(jsonProxy + twitchHostsAPI + "70034299", function(data){
+		alert(data.hosts);
+	});
 }
