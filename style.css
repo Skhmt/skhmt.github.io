@@ -86,6 +86,10 @@ body {
 	font-style: italic;
 }
 
+.notype {
+	list-style-type: none;
+}
+
 a, a:link, a:visited {
 	color: #6441A5;
 	text-decoration: none;
