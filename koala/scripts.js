@@ -89,9 +89,7 @@ function followers(chatroom) {
 
 function updateFollowersAndViewers() {
 	if (viewersStatus != "" && followersStatus != "") {
-		var testButton = "<button onclick=\"getHosts()\">Hosts</button>"
-		
-		$("#twitchChatViewers").html("<img src='viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='12' height='10' /> " + followersStatus + testButton);
+		$("#twitchChatViewers").html("<img src='viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='12' height='10' /> " + followersStatus);
 		viewersStatus = "";
 		followersStatus = "";
 	}
@@ -193,17 +191,4 @@ function updateStatus(statusText) {
 function setAltTwitchVideo() {
 	var newTwitchURL = $("#altTwitchVideoURL").val();
 	$("#altTwitchVideo").attr("src", "http://www.twitch.tv/" + newTwitchURL + "/embed");
-}
-
-function getHosts() {
-	var jsonProxy = "https://jsonp.afeld.me/?callback=hosts&url=";
-	var twitchHostsAPI = "http%3A%2F%2Ftmi.twitch.tv%2Fhosts%3Finclude_logins%3D1%26target%3D";
-	
-	var scriptHosts = document.createElement("script");
-	scriptHosts.src = jsonProxy + twitchHostsAPI + "70034299";
-	document.body.appendChild(scriptHosts);
-}
-
-function hosts(data) {
-	$("#twitchChatViewers").html(data.hosts[0].host_login);
 }
