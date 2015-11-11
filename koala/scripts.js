@@ -196,7 +196,7 @@ function setAltTwitchVideo() {
 }
 
 function getHosts() {
-	var jsonProxy = "https://jsonp.afeld.me/?callback=hosts?&url=";
+	var jsonProxy = "https://jsonp.afeld.me/?callback=hosts&url=";
 	var twitchHostsAPI = "http://tmi.twitch.tv/hosts?include_logins=1&target=";
 	
 	var scriptHosts = document.createElement("script");
