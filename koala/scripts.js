@@ -169,23 +169,28 @@ function streaminfo(chatroom) {
 function updateGameName(gameName) {
 	var newGame = prompt("Enter a new game name below. Changes take a moment to appear on StreamKoala.", gameName);
 	
-	$.ajax({
-		method: "GET",
-		url: "https://api.twitch.tv/kraken/channels/" + username,
-		data: { "channel[game]": newGame, "_method": "put", "oauth_token": access_token},
-		contentType: "application/json"
-	});
+	if ( newGame != "" && newGame != null ) {
+		$.ajax({
+			method: "GET",
+			url: "https://api.twitch.tv/kraken/channels/" + username,
+			data: { "channel[game]": newGame, "_method": "put", "oauth_token": access_token},
+			contentType: "application/json"
+		});
+	}
+
 }
 
 function updateStatus(statusText) {
 	var newStatus = prompt("Enter a new stream title below. Changes take a minute to appear on StreamKoala.", statusText);
 	
-	$.ajax({
-		method: "GET",
-		url: "https://api.twitch.tv/kraken/channels/" + username,
-		data: { "channel[status]": newStatus, "_method": "put", "oauth_token": access_token},
-		contentType: "application/json"
-	});
+	if ( newStatus != "" && newStatus != null ) {
+		$.ajax({
+			method: "GET",
+			url: "https://api.twitch.tv/kraken/channels/" + username,
+			data: { "channel[status]": newStatus, "_method": "put", "oauth_token": access_token},
+			contentType: "application/json"
+		});
+	}
 }
 
 function setAltTwitchVideo() {
