@@ -52,22 +52,18 @@ function getUsername() {
 	document.body.appendChild(script0);
 	*/
 	
-	$.ajax({
-		url: "https://api.twitch.tv/kraken",
-		jsonp: "callback",
-		data: {
+	$.getJSON(
+		"https://api.twitch.tv/kraken?callback=?",
+		{
 			"client_id" : clientid,
 			"api_version" : 3,
-			"oauth_token" : access_token
+			"oauth_token" : access_token	
 		},
-		dataType: "jsonp",
-		success: function( response ){
+		function(response){
 			username = response.token.user_name;
-	
-			// Set up the main page area
 			loadScript();
 		}
-	});
+	);
 }
 
 /*
@@ -119,15 +115,13 @@ function followers(chatroom) {
 */
 
 function ajaxUserList() {
-	$.ajax({
-		url: "https://tmi.twitch.tv/group/user/" + username + "/chatters",
-		jsonp: "callback",
-		data: {
+	$.getJSON(
+		"https://tmi.twitch.tv/group/user/" + username + "/chatters?callback=?",
+		{
 			"client_id" : clientid,
 			"api_version" : 3
 		},
-		dataType: "jsonp",
-		success: function( response ){
+		function(response){
 			viewersStatus = response.data.chatter_count;
 			updateFollowersAndViewers();
 
@@ -175,19 +169,17 @@ function ajaxUserList() {
 
 			$("#twitchChatUsers").html(output);
 		}
-	});
+	);
 }
 
 function ajaxStreamInfo() {
-	$.ajax({
-		url: "https://api.twitch.tv/kraken/channels/" + username + "/follows/",
-		jsonp: "callback",
-		data: {
+	$.getJSON(
+		"https://api.twitch.tv/kraken/channels/" + username + "?callback=?",
+		{
 			"client_id" : clientid,
 			"api_version" : 3
 		},
-		dataType: "jsonp",
-		success: function( response ){
+		function(response){
 			var output = "";
 	
 			output += "<b>" + response.display_name + "</b>";
@@ -202,23 +194,21 @@ function ajaxStreamInfo() {
 
 			$("#userinfo").html(output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output);
 		}
-	});
+	);
 }
 
 function ajaxFollowers() {
-	$.ajax({
-		url: "https://api.twitch.tv/kraken/channels/" + username + "/follows/",
-		jsonp: "callback",
-		data: {
+	$.getJSON(
+		"https://api.twitch.tv/kraken/channels/" + username + "/follows?callback=?",
+		{
 			"client_id" : clientid,
 			"api_version" : 3
 		},
-		dataType: "jsonp",
-		success: function( response ){
+		function(response){
 			followersStatus = response._total;
 			updateFollowersAndViewers();
 		}
-	});
+	);
 }
 
 
@@ -307,6 +297,15 @@ function updateGameName(gameName) {
 	var newGame = prompt("Enter a new game name below. Changes take a moment to appear on StreamKoala.", gameName);
 	
 	if ( newGame !== "" && newGame !== null ) {
+		$.get(
+			"https://api.twitch.tv/kraken/channels/" + username,
+			{
+				"channel[game]": newGame,
+				"_method": "put",
+				"oauth_token": access_token	
+			}
+		);
+		/*
 		$.ajax({
 			method: "GET",
 			url: "https://api.twitch.tv/kraken/channels/" + username,
@@ -317,6 +316,7 @@ function updateGameName(gameName) {
 			},
 			contentType: "application/json"
 		});
+		*/
 	}
 }
 
@@ -324,6 +324,15 @@ function updateStatus(statusText) {
 	var newStatus = prompt("Enter a new stream title below. Changes take a minute to appear on StreamKoala.", statusText);
 	
 	if ( newStatus !== "" && newStatus !== null ) {
+		$.get(
+			"https://api.twitch.tv/kraken/channels/" + username,
+			{
+				"channel[status]": newStatus,
+				"_method": "put",
+				"oauth_token": access_token	
+			}
+		);
+		/*
 		$.ajax({
 			method: "GET",
 			url: "https://api.twitch.tv/kraken/channels/" + username,
@@ -334,6 +343,7 @@ function updateStatus(statusText) {
 			},
 			contentType: "application/json"
 		});
+		*/
 	}
 }
 
