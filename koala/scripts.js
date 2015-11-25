@@ -208,16 +208,16 @@ function updateFollowersAndViewers() {
 
 
 function updateTitlesOpen() {
-	$("#updateTitlesGame").attr("value", currentGame);
-	$("#updateTitlesTitle").attr("value", currentTitle);
+	$("#updateTitlesGame").val(currentGame);
+	$("#updateTitlesTitle").val(currentTitle);
 	updateDialog.dialog("open");
 }
 
 function updateTitlesSubmit() {
-	var newGame = $("#updateTitlesGame").attr("value");
-	var newTitle = $("#updateTitlesTitle").attr("value");
+	var newGame = $("#updateTitlesGame").val();
+	var newTitle = $("#updateTitlesTitle").val();
 	updateDialog.dialog("close");
-	if (newGame !== currentGame || newTitle !== currentTitle){
+	if (newGame != currentGame || newTitle != currentTitle){
 		$.get(
 			"https://api.twitch.tv/kraken/channels/" + username,
 			{
