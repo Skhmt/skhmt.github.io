@@ -55,7 +55,7 @@ $(document).ready(function(){
 			}
 		}
 	});
-	updateDialog.dialog("close");
+	// updateDialog.dialog("close");
 	
 	/* Getting the username from api.twitch.tv/kraken/ */
 	getUsername();
@@ -226,6 +226,7 @@ function updateTitlesSubmit() {
 			}
 		);	
 	}
+	updateDialog.dialog("close");
 }
 
 function setAltTwitchVideo() {
