@@ -55,6 +55,7 @@ $(document).ready(function(){
 			}
 		}
 	});
+	updateDialog.dialog("close");
 	
 	/* Getting the username from api.twitch.tv/kraken/ */
 	getUsername();
