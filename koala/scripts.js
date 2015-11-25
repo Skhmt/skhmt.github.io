@@ -166,12 +166,13 @@ function ajaxStreamInfo() {
 	
 			output += "<b>" + response.display_name + "</b>";
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			output += "<button onclick=\"updateTitlesOpen()\">Update info</button>";
+			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			output += " <b>Game:</b> ";
 			output += currentGame;
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			output += " <b>Stream Title:</b> ";
 			output += currentTitle;
-			output += "<button onclick=\"updateTitlesOpen()\">Update</button>";
 
 			var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 
@@ -215,6 +216,7 @@ function updateTitlesOpen() {
 function updateTitlesSubmit() {
 	var newGame = $("#updateTitlesGame").attr("value");
 	var newTitle = $("#updateTitlesTitle").attr("value");
+	updateDialog.dialog("close");
 	if (newGame !== currentGame || newTitle !== currentTitle){
 		$.get(
 			"https://api.twitch.tv/kraken/channels/" + username,
@@ -226,7 +228,6 @@ function updateTitlesSubmit() {
 			}
 		);	
 	}
-	updateDialog.dialog("close");
 }
 
 function setAltTwitchVideo() {
