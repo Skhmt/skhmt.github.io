@@ -46,8 +46,8 @@ $(document).ready(function(){
 	updateDialog = $("#updateTitles").dialog({
 		autoOpen: false,
 		modal: true,
-		height: 450,
-		width: 450,
+		height: 400,
+		width: 475,
 		buttons: {
 			"Update" : updateTitlesSubmit,
 			Cancel : function() {
