@@ -7,6 +7,9 @@ var followersStatus = "";
 var setupChatAndVideo = false;
 var allHosts = [];
 var refreshRate = 5; //in seconds
+var updateDialog;
+var currentGame = "";
+var currentTitle = "";
 
 /* waiting until the page is loaded before doing stuff */
 $(document).ready(function(){
@@ -35,8 +38,22 @@ $(document).ready(function(){
 		/* 97% is the max width */
 	}
 
+	/* setting up UI elements */
 	$("#lowerbox").sortable({
 		handle: ".handle"
+	});
+	
+	updateDialog = $("#updateTitles").dialog({
+		autoOpen: false,
+		modal: true,
+		height: 400,
+		width: 400,
+		buttons: {
+			"Update" : updateTitlesSubmit,
+			Cancel : {
+				updateDialog.dialog("close");
+			}
+		}
 	});
 	
 	/* Getting the username from api.twitch.tv/kraken/ */
@@ -141,15 +158,19 @@ function ajaxStreamInfo() {
 			"api_version" : 3
 		},
 		function(response){
+			currentGame = response.game;
+			currentTitle = response.status;
+			
 			var output = "";
 	
 			output += "<b>" + response.display_name + "</b>";
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-			output += "<b><button onclick=\"updateGameName('" + response.game + "')\">Game</button></b> ";
-			output += response.game;
+			output += " <b>Game:</b> ";
+			output += currentGame;
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-			output += "<b><button onclick=\"updateStatus('" + response.status + "')\">Title</button></b> ";
-			output += response.status;
+			output += " <b>Stream Title:</b> ";
+			output += currentTitle;
+			output += "<button onclick=\"updateTitlesOpen()\">Update</button>;
 
 			var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 
@@ -175,7 +196,6 @@ function ajaxFollowers() {
 
 
 
-
 function updateFollowersAndViewers() {
 	if (viewersStatus !== "" && followersStatus !== "") {
 		$("#twitchChatViewers").html("<img src='viewers.png' width='10' height='10' /> " + viewersStatus + "&nbsp;&nbsp;&nbsp; <img src='followers.png' width='12' height='10' /> " + followersStatus);
@@ -184,33 +204,26 @@ function updateFollowersAndViewers() {
 	}
 }
 
-function updateGameName(gameName) {
-	var newGame = prompt("Enter a new game name below. Changes take a moment to appear on StreamKoala.", gameName);
-	
-	if ( newGame !== "" && newGame !== null ) {
+
+function updateTitlesOpen() {
+	$("#updateTitlesGame").attr("value", currentGame);
+	$("#updateTitlesTitle").attr("value", currentTitle);
+	updateDialog.dialog("open");
+}
+
+function updateTitlesSubmit() {
+	var newGame = $("#updateTitlesGame").attr("value");
+	var newTitle = $("#updateTitlesTitle").attr("value");
+	if (newGame !== currentGame || newTitle !== currentTitle){
 		$.get(
 			"https://api.twitch.tv/kraken/channels/" + username,
 			{
 				"channel[game]": newGame,
+				"channel[status]": newTitle,
 				"_method": "put",
 				"oauth_token": access_token	
 			}
-		);
-	}
-}
-
-function updateStatus(statusText) {
-	var newStatus = prompt("Enter a new stream title below. Changes take a minute to appear on StreamKoala.", statusText);
-	
-	if ( newStatus !== "" && newStatus !== null ) {
-		$.get(
-			"https://api.twitch.tv/kraken/channels/" + username,
-			{
-				"channel[status]": newStatus,
-				"_method": "put",
-				"oauth_token": access_token	
-			}
-		);
+		);	
 	}
 }
 
