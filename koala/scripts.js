@@ -171,7 +171,7 @@ function ajaxStreamInfo() {
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			output += " <b>Stream Title:</b> ";
 			output += currentTitle;
-			output += "<button onclick=\"updateTitlesOpen()\">Update</button>;
+			output += "<button onclick=\"updateTitlesOpen()\">Update</button>";
 
 			var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 
