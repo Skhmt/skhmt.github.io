@@ -50,7 +50,7 @@ $(document).ready(function(){
 		width: 400,
 		buttons: {
 			"Update" : updateTitlesSubmit,
-			Cancel : {
+			Cancel : function() {
 				updateDialog.dialog("close");
 			}
 		}
