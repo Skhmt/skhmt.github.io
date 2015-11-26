@@ -192,7 +192,11 @@ lowerbox {
 }
 
 .ui-dialog-titlebar {
-	/* http://api.jqueryui.com/dialog/ */
+	background: #323232;
+	color: #d3d3d3;
+}
+
+.ui-dialog {
 	background: #1e1e1e;
 	color: #d3d3d3;
 }
