@@ -14,7 +14,7 @@ On the bottom, click "Register your application".
 
 On the next page, name your application something and set the Redirect URI to [url]/koala/ .
 
-Once that's done, on the connections page you should see your app at the bottom. Click "edit" and take note of your Client ID.
+Once that's done, on the connections page you should see your app at the bottom. Click "edit" and take note of your Client ID. You do NOT need a Client Secret and it will not be used for this.
 
 In /koala/scripts.js remove StreamKoala's Client ID and add yours in line 2 within the quotation marks. 
 
