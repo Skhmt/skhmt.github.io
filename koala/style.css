@@ -219,15 +219,9 @@ lowerbox {
 	border: #000000;
 }
 
-#changeButton {
+#infoButton, #changeButton {
 	border: 0;
 	height: 20px;
 	padding: 0px;
-}
-
-#infoButton {
-	border: 0;
-	height: 20px;
-	padding: 0px;
-	font-size: medium;
+	margin: 0px;
 }
