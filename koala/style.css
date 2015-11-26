@@ -191,14 +191,16 @@ lowerbox {
 	padding-top: 1px;
 }
 
-.ui-dialog-titlebar {
-	background: #323232;
-	color: #d3d3d3;
-	border: #000000;
-}
+
 
 .ui-dialog {
 	background: #1e1e1e;
+	color: #d3d3d3;
+	border: #d3d3d3;
+}
+
+.ui-dialog-titlebar {
+	background: #323232;
 	color: #d3d3d3;
 	border: #000000;
 }
@@ -207,4 +209,11 @@ lowerbox {
 	background: #1e1e1e;
 	color: #d3d3d3;
 	border: #000000;
+}
+
+.ui-dialog-buttonpane {
+	background: #1e1e1e;
+	color: #d3d3d3;
+	border: #000000;
+}
 }
