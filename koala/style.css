@@ -196,7 +196,8 @@ lowerbox {
 .ui-dialog {
 	background: #1e1e1e;
 	color: #d3d3d3;
-	border: #d3d3d3;
+	border: #000000;
+	border-width: 3px;
 	padding: 0;
 }
 
