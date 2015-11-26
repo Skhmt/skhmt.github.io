@@ -194,9 +194,17 @@ lowerbox {
 .ui-dialog-titlebar {
 	background: #323232;
 	color: #d3d3d3;
+	border: #000000;
 }
 
 .ui-dialog {
 	background: #1e1e1e;
 	color: #d3d3d3;
+	border: #000000;
+}
+
+.ui-dialog-content {
+	background: #1e1e1e;
+	color: #d3d3d3;
+	border: #000000;
 }
