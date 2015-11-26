@@ -191,6 +191,8 @@ lowerbox {
 	padding-top: 1px;
 }
 
-#updateTitles {
+.ui-dialog-titlebar {
 	/* http://api.jqueryui.com/dialog/ */
+	background: #1e1e1e;
+	color: #d3d3d3;
 }
