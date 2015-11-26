@@ -221,6 +221,6 @@ lowerbox {
 
 #infoButton, #changeButton {
 	border: 0;
-	height: 22px;
-	padding: 2px;
+	height: 20px;
+	padding: 0px;
 }
