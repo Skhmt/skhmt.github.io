@@ -56,6 +56,8 @@ $(document).ready(function(){
 		}
 	});
 	
+	$("#changeButton").button().click(setAltTwitchVideo);
+	
 	/* Getting the username from api.twitch.tv/kraken/ */
 	getUsername();
 	
@@ -165,7 +167,7 @@ function ajaxStreamInfo() {
 	
 			output += "<b>" + response.display_name + "</b>";
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-			output += "<button onclick=\"updateTitlesOpen()\">Update info</button>";
+			output += "<button id=\"infoButton\">Update info</button>";
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			output += "<b>Game:</b> ";
 			output += currentGame;
@@ -176,6 +178,8 @@ function ajaxStreamInfo() {
 			var output2 = "<span class='streamKoalaName'>StreamKoala</span>";
 
 			$("#userinfo").html(output2 + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + output);
+			
+			$("#infoButton").button().click(updateTitlesOpen);
 		}
 	);
 }
