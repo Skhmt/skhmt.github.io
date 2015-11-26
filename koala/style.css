@@ -218,3 +218,7 @@ lowerbox {
 	color: #d3d3d3;
 	border: #000000;
 }
+
+#infoButton #changeButton {
+	height: 22px;
+}
