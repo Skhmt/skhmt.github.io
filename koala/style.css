@@ -224,4 +224,6 @@ lowerbox {
 	height: 20px;
 	padding: 0px 4px 0px 4px;
 	margin: 0px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: small;
 }
