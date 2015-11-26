@@ -40,10 +40,11 @@
 				<iframe id="twitchVideo" src="loading.html">&nbsp;</iframe>
 			</div>
 			<div id="changeMusicForm">
-				<form onsubmit="setAltTwitchVideo(); return false;">
+				<!-- <form onsubmit="setAltTwitchVideo(); return false;"> -->
+				<form onsubmit="return false;">
 					Twitch music channel: 
 					<input type="text" id="altTwitchVideoURL" value="Monstercat" />
-					<input type="submit" value="Change" />
+					<input type="submit" id="changeButton" value="Change" />
 				</form>
 			</div>
 			<div class="video">
