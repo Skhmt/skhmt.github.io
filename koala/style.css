@@ -197,6 +197,7 @@ lowerbox {
 	background: #1e1e1e;
 	color: #d3d3d3;
 	border: #d3d3d3;
+	padding: 0;
 }
 
 .ui-dialog-titlebar {
@@ -215,5 +216,4 @@ lowerbox {
 	background: #1e1e1e;
 	color: #d3d3d3;
 	border: #000000;
-}
 }
