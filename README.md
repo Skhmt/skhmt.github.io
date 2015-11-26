@@ -18,9 +18,13 @@ Once that's done, on the connections page you should see your app at the bottom.
 
 In /koala/scripts.js remove StreamKoala's Client ID and add yours in line 2 within the quotation marks. 
 
-In /koala/scripts.js on line 18, choose a new URL to send users to, either your front page or the Twitch oauth link or just remove lines 16-19 if you don't care.
+In /koala/scripts.js on line 18, choose a new URL to send users to, either your front page or the Twitch Authorize URI or just remove lines 16-19 if you don't care.
 
-You'll also need to edit the front page index.html to link to your app's specific Twitch oauth link thing.
+You'll also need to edit the front page index.html to link to your app's specific Twitch Authorize URI thing.
+
+By the way, the Twitch Authorize URI thing will be:
+
+https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=[YOUR_CLIENT_ID]&redirect_uri=[YOUR_REDIRECT_URI]&scope=channel_editor&force_verify=true
 
 That's it.
 
