@@ -167,7 +167,7 @@ function ajaxStreamInfo() {
 	
 			output += "<b>" + response.display_name + "</b>";
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-			output += "<input type=\"submit\" id=\"infoButton\">Update info</input>";
+			output += "<input type=\"submit\" id=\"infoButton\" value=\"Update info\" />";
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			output += "<b>Game:</b> ";
 			output += currentGame;
