@@ -47,7 +47,7 @@ $(document).ready(function(){
 		autoOpen: false,
 		modal: true,
 		height: 400,
-		width: 400,
+		width: 300,
 		buttons: {
 			"Update" : updateTitlesSubmit,
 			Cancel : function() {
