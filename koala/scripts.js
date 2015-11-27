@@ -87,7 +87,7 @@ function loadScript() {
 	if(setupChatAndVideo == false && username !== "") {
 		$("#twitchChat").attr("src", "http://www.twitch.tv/" + username + "/chat");
 		
-		$("#twitchVideo").attr("src", "http://www.twitch.tv/" + username + "/embed");
+		$("#twitchVideo").attr("src", "http://player.twitch.tv/?autoplay=true&muted=true&channel=" + username);
 		setupChatAndVideo = true;
 	}
 	
@@ -235,5 +235,5 @@ function updateTitlesSubmit() {
 
 function setAltTwitchVideo() {
 	var newTwitchURL = $("#altTwitchVideoURL").val();
-	$("#altTwitchVideo").attr("src", "http://www.twitch.tv/" + newTwitchURL + "/embed");
+	$("#altTwitchVideo").attr("src", "http://player.twitch.tv/?autoplay=true&muted=false&channel=" + newTwitchURL);
 }
