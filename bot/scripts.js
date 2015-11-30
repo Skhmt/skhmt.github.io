@@ -13,6 +13,7 @@ var logFile;
 var execPath;
 var hosts = [];
 var hostFile;
+var id = "";
 
 $(document).ready(function(){
 	
@@ -51,19 +52,9 @@ $(document).ready(function(){
 	});
 	*/
 
-	// Set up host log
-	hostFile = execPath + "\\hosts.log";
-	fs.writeFile(hostFile, "", function (err) {
-		if (err) {
-			log("* Error clearing the host file");
-		}
-	});
-
 	// Running tabs
 	runChat();
-
-	var refresh = 10;
-	setInterval(getHosts(), refresh*1000);
+	getHosts();
 
 });
 
@@ -153,10 +144,16 @@ function getTimeStamp() {
 }
 
 function getHosts() {
+	hostFile = execPath + "\\hosts.log";
+	fs.writeFile(hostFile, "", function (err) {
+		if (err) {
+			log("* Error clearing the host file");
+		}
+	});
+
 	// get id
-	var id;
 	$.getJSON(
-		"https://api.twitch.tv/kraken/channels/"+username,
+		"https://api.twitch.tv/kraken/channels/" + username,
 		{
 			"client_id" : clientid,
 			"api_version" : 3
@@ -164,22 +161,27 @@ function getHosts() {
 		function(response){
 			id = response._id;
 
-			// get hosts into json
-			var newHosts = [];
-			$.getJSON(
-				"http://tmi.twitch.tv/hosts",
-				{
-					"include_logins" : "1",
-					"target" : id
-				},
-				function(response){
-					for (var i = 0; i < response.hosts.length; i++){
-						newHosts.push(response.hosts[i].host_login);
-					}
+			var refresh = 10;
+			setInterval(checkHosts(), refresh*1000);
+		}
+	);
+}
 
-					updateHosts(newHosts);
-				}
-			);
+function checkHosts() {
+	// get hosts into json
+	var newHosts = [];
+	$.getJSON(
+		"http://tmi.twitch.tv/hosts",
+		{
+			"include_logins" : "1",
+			"target" : id
+		},
+		function(response){
+			for (var i = 0; i < response.hosts.length; i++){
+				newHosts.push(response.hosts[i].host_login);
+			}
+
+			updateHosts(newHosts);
 		}
 	);
 }
