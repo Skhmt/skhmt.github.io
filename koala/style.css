@@ -223,7 +223,7 @@ lowerbox {
 	border: 0;
 	height: 20px;
 	padding: 0px 4px 0px 4px;
-	margin: 0px;
+	margin: 0px 0px 4px 0px;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: small;
 }
