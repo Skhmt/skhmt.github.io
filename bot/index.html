@@ -6,19 +6,37 @@
 	</title>
 	
 	<script src="jquery-2.1.4.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css" />
 	
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<script src="scripts.js"></script>
 </head>
 <body>
-
-	<div id="console"></div>
-	
-	<div id="chatDiv">
-		<form onsubmit="chat(); return false;" id="chatForm">
-			<input type="text" id="chatText" value="" autocomplete=off />
-		</form>
+	<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Chat</a></li>
+			<li><a href="#tabs-2">Hosts</a></li>
+			<li><a href="#tabs-3">Commands</a></li>
+			<li><a href="#tabs-4">Config</a></li>
+		</ul>
+		<div id="tabs-1">
+			<div id="console"></div>
+			<div id="chatDiv">
+				<form onsubmit="chat(); return false;" id="chatForm">
+					<input type="text" id="chatText" value="" autocomplete=off />
+				</form>
+			</div>
+		</div>
+		<div id="tabs-2">
+			<div id="hosts"></div>
+		</div>
+		<div id="tabs-3">
+			<div id="commands"></div>
+		</div>
+		<div id="tabs-4">
+			<div id="config"></div>
+		</div>
 	</div>
-
 </body>
 </html>
