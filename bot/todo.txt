@@ -1,3 +1,19 @@
+https://github.com/greenheartgames/greenworks/tree/master/samples/nw.js
+
+
+Bot features?
+
+Config Tab
+Embedded youtube via API for playlist
+Status
+Viewers list
+Raffle
+Commands
+	SFX / Graphics via command
+Loyalty points
+Uptime
+Notifications
+
 /*
 https://github.com/justintv/Twitch-API/blob/master/IRC.md#membership
 
@@ -5,34 +21,3 @@ https://node-irc.readthedocs.org/en/latest/API.html#Client.send
 
 http://www.informit.com/articles/article.aspx?p=2266929&seqNum=5
 */
-
-
-jQuery to do:
-
-
-Host list:
-
-http://tmi.twitch.tv/hosts?include_logins=1&target={id110}
-{id} is of course the _id field from /users/ or /channels/.
-
-coolidge: 70034299
-https://api.twitch.tv/kraken/channels/coolidgehd
-http://tmi.twitch.tv/hosts?include_logins=1&target=70034299
-
-example output:
-{
-	"hosts":[
-		{"host_id":73009188,
-			"target_id":70034299,
-			"host_login":"amazonwomannt",
-			"target_login":"coolidgehd"},
-		{"host_id":69088325,
-			"target_id":70034299,
-			"host_login":"exotickitten",
-			"target_login":"coolidgehd"}
-	]
-}
-
-
-My id: 71619374
-http://tmi.twitch.tv/hosts?include_logins=1&target=71619374&callback=hosts
