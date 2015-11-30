@@ -1,0 +1,12 @@
+
+#console {
+	display: block;
+	width: calc(100vw - 20px);
+	height: calc(100vh - 38px);
+	overflow: auto;
+	word-wrap: break-word;
+}
+
+#chatDiv, #chatText, #chatForm{
+	width: calc(100vw - 20px);
+}
