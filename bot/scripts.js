@@ -161,8 +161,7 @@ function getHosts() {
 		function(response){
 			id = response._id;
 
-			var refresh = 10;
-			setInterval(checkHosts(), refresh*1000);
+			checkHosts()
 		}
 	);
 }
@@ -182,6 +181,7 @@ function checkHosts() {
 			}
 
 			updateHosts(newHosts);
+			return setTimeout(checkHosts(), 10*1000);
 		}
 	);
 }
