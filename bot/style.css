@@ -1,26 +1,67 @@
+html {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #0073ea;
+	padding-top: 0;
+}
 
 #console {
-	display: block;
-	width: calc(100vw - 32px);
-	height: calc(100vh - 38px - 75px);
+	display: inline-block;
+	width: calc(100vw - 255px);
+	height: calc(100vh - 38px - 95px);
 	overflow: auto;
 	word-wrap: break-word;
+}
+
+#userlist {
+	padding: 0 0 0 10px;
+	margin: 0;
+	display: inline-block;
+	float: right;
+	width: 200px;
+	height: calc(100vh - 38px - 95px);
+	overflow: auto;
+	border-style: solid;
+	border-width: 0 0 0 1px;
+	border-color: #0073ea;
 }
 
 #chatDiv, #chatText, #chatForm {
 	width: calc(100vw - 32px);
 }
 
-#tabs-1, #tabs-2, #tabs-3, #tabs-4 {
+#tabs-1, #tabs-2, #tabs-3, #tabs-4, #tabs-5, #tabs-6, #tabs-7 {
 	padding-top: 10px;
 	padding-right: 5px;
 	padding-bottom: 5px;
 	padding-left: 5px;
-	height: calc(100vh - 82px);
+	height: calc(100vh - 105px);
 }
 
 #tabs {
 	padding: 0;
 	margin: 0;
 	border: 0;
+}
+
+#exit, #minimize, #maximize {
+	height: 20px;
+	width: 20px;
+}
+
+#top {
+	width: 100%;
+}
+
+#topTitle {
+	font-family: verdana, sans-serif;
+	color: #0073ea;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: -0.5pt;
+}
+
+#topRight {
+	-webkit-app-region: no-drag;
+	float: right;
 }
