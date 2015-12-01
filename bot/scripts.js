@@ -42,16 +42,6 @@ $(document).ready(function(){
 	var logname = "chatlog_" + d.getFullYear() + "-" + dmonth + "-" + dday + "_" + dhour + "-" + dmin + "-" + dsec + ".log";
 	logFile = execPath + "\\" + logname;
 
-	/*
-	var firstLogLine =  d.getFullYear() + "-" + dmonth + "-" + dday + " " + dhour + ":" + dmin + ":" + dsec + "\r\n";
-	firstLogLine += "-------------------\r\n";
-	fs.appendFile(logFile, firstLogLine, function (err) {
-		if (err) {
-			$("#console").append("* Error writing to log" + "<br />");
-		}
-	});
-	*/
-
 	// Running tabs
 	runChat();
 	getHosts();
