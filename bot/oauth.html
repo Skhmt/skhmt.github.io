@@ -1,0 +1,14 @@
+<html>
+<head>
+<script>
+	var access_token = document.location.hash.substring(14,44);
+	document.getElementById("oauth").innerHTML = "oauth:" + access_token;
+</script>
+</head>
+<body>
+
+<div id="oauth"></div>
+
+
+</body>
+</html>
