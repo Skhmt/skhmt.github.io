@@ -6,6 +6,7 @@
 <script>
 	var access_token = document.location.hash.substring(14,44);
 	document.getElementById("oauth").innerHTML = "oauth:" + access_token;
+	parent.getAT(access_token);
 </script>
 
 </body>
