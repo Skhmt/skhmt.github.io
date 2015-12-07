@@ -1,11 +1,4 @@
-KoalaBot 0.1:
-http://skhmt.github.io/bot/dist/KoalaBot0.1.zip
+KoalaBot 0.2c:
+https://github.com/Skhmt/skhmt.github.io/blob/master/bot/dist/bot%200.2c.7z
 
-Get your twitch oauth from here:
-https://twitchapps.com/tmi/
-
-Put it into info.ini
-
-Put your twitch name there too
-
-Run program
+Run bot.exe
