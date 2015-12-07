@@ -4,8 +4,8 @@
 	<script>
 		$(document).ready(function(){
 			var access_token = document.location.hash.substring(14,44);
-			document.getElementById("oauth").innerHTML = "oauth:" + access_token;
-			$("#getOauthField", top.document).val(access_token);
+			$("#oauth").html("oauth:" + access_token);
+			$("#getOauthField", parent.document.body).val(access_token);
 		});
 	</script>
 </head>
