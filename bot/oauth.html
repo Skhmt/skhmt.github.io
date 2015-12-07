@@ -5,7 +5,7 @@
 		$(document).ready(function(){
 			var access_token = document.location.hash.substring(14,44);
 			$("#oauth").html("oauth:" + access_token);
-			window.opener.postMessage(access_token);
+			window.postMessage(access_token);
 		});
 	</script>
 </head>
