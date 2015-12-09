@@ -4,14 +4,16 @@
 	<script>
 		$(document).ready(function(){
 			var access_token = document.location.hash.substring(14,44);
-			$("#oauth").html("oauth:" + access_token);
+			$("#oauth").val("oauth:" + access_token);
 			// window.postMessage(access_token);
 		});
 	</script>
 </head>
 <body>
 
-<div id="oauth"></div>
+<div style="text-align: center; width: 90vw;">
+	<input type="text" id="oauth">
+</div>
 
 </body>
 </html>
