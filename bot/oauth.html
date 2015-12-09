@@ -1,22 +1,29 @@
 <html>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="dist/clipboard.min.js"></script>
 	<script>
 		$(document).ready(function(){
 			var access_token = document.location.hash.substring(14,44);
 			$("#oauth").val("oauth:" + access_token);
-			// window.postMessage(access_token);
+			
+			new Clipboard('.btn');
+			
+			$("#copyButton").button();
 		});
 	</script>
 </head>
 <body style="background-color: black; color: white;">
 
 <div style="text-align: center; width: 98vw;">
-	<p>Copy all the text in the box below, including "oauth:".</p>
-	<p>Close this window.</p>
-	<p>Paste it into the Access token box.</p>
-	<p>Click the "Save token" button.</p>
-	<p><input type="text" id="oauth" size="33"></p>
+	<p>Copy all the text in the box below, including "oauth:"</p>
+	<p>Close this window</p>
+	<p>Paste it into the Access token box</p>
+	<p>Click the "Save token" button</p>
+	<p>
+		<input type="text" id="oauth" size="33">
+		<button id="copyButton" class="btn" data-clipboard-action="copy" data-clipboard-target="#oauth">Copy</button>
+	</p>
 </div>
 
 </body>
