@@ -1,65 +1,19 @@
 <html>
 <head>
-  <title>
-    Skhmt's bot
-  </title>
+  <title>Bot</title>
+  <script>
+    setTimeout(function(){
+      window.location = "https://github.com/Skhmt/twitch-bot";
+    }, 5*1000);
+  </script>
 </head>
 <body>
-
-<p>
-  This is a simple page for my bot... for now.
-</p>
-<p>
-  <b>Latest version: <a href="dist/bot0.4b.zip">0.4b (15 Dec 2015)</a></b>
-  <br>
-  <a href="https://github.com/Skhmt/twitch-bot">Git repository</a> - if you want to see or use the source code. Not required to use the bot.
-</p>
-<p>
-  This bot was made in javascript, html, css, and node-webkit (node.js). I used libraries from <a href="https://github.com/martynsmith/node-irc">node-irc</a>, <a href="https://plot.ly/javascript/">plotly.js</a>, and <a href="https://zenorocha.github.io/clipboard.js/">clipboard.js</a>.
-</p>
-<p>
-  <b>Instructions:</b> download, run the .exe, go to the "Settings" tab, click "Get token", sign in to Twitch, copy the token to include "oauth:", close the pop-up window, paste it into the field next to "Access Token: " and hit "Save token".
-</p>
-<p>
-  <b>Change log:</b><br>
-  0.4b: added generic BTTV emotes, made the font a little smaller, added !bottime, !streamtime, !laptime, and the ability to choose which time !uptime uses. Added laptime so you can save, for example, the start of a 24 hr stream that !uptime will count from even if your computer crashes. Can update game and stream status from the settings tab, not just via chat commands. Minor UI changes all around. 
-  <br>
-  0.4a: fixed a bug with !quote that could randomly play a quote even if it was deleted. Also made emoticons a tiny bit smaller to fix the problem with the auto-scroll not working.
-</p>
-<p>
-  <a href="http://imgur.com/NctDcSm"><img src="http://i.imgur.com/NctDcSm.png" title="source: imgur.com" /></a>
-  <br>
-  <a href="http://imgur.com/bSRss3J"><img src="http://i.imgur.com/bSRss3J.png" title="source: imgur.com" /></a>
-</p>
-<p>
-  If you're using your bot with a Twitch user other than your primary account, make sure the bot is both a mod and editor in your channel. Go to your Twitch Dashboard to set your bot's account as an editor.
-</p>
-<p>
-  Basic commands: <br>
-  !uptime <i>- shows the length of time that the bot has been running based on if you want bot uptime, stream uptime, or lap time</i><br>
-  !bottime <i>- shows the amount of time the bot has been open</i><br>
-  !streamtime <i>- shows the amount of time your stream has been going (if your stream disconnects, this resets)</i><br>
-  !laptime <i>- shows the amount of time since you've hit the "lap" button</i><br>  
-  !updawg <i>- replies with "What's !updawg ?"</i><br>
-  !highlight (reasons) <i>- this adds the time stamp to the log with the optional reasons for the highlight. Mods only.</i><br>
-  !ht <i>- same as above</i><br>
-  !game [game name] <i>- this changes the game. Mods only.</i><br>
-  !status [stream status] <i>- this changes the stream title. Mods only.</i><br>
-  !permit [username] <i>- allows the user to post links for 60 seconds. Mods only.</i><br>
-  !addcom (-ul=[mod/sub/streamer]) [!commandname] [text] <i>- adds a command, can optionally set a required level (mod, sub, or streamer) to use the command. %1 %2 and %3 in the command allows usage of parameters when calling the command. "!addcom !tree %1 and %2 sitting in a tree" followed by "!tree wolfish indigo" will output "wolfish and indigo sitting in a tree". Mods only.</i><br>
-  !addcmd <i>- same as above</i><br>
-  !delcom [!commandname] <i>- deletes a command. Mods only.</i><br>
-  !delcmd <i>- same as above</i><br>
-  !quote (id)<i>- plays a random quote or a quote by id.</i><br>
-  !addquote [quote author] [quote] <i>- adds a quote.</i><br>
-  !delquote [quote id] <i>- deletes a quote.</i><br>
-</p>
-<p>
-  Spam settings:<br>
-  Link protection - self explanatory<br>
-  Word protection - times out based if it finds words in the banned word list<br>
-  Capital letter protection - only checks english letters, it does count capitals as part of emoticons, so total capitals allowed per post should be relatively high<br>
-  Symbols protection - symbols are defined as anything besides english letters, numbers, commas, periods, and spaces.<br>
-</p>
+  <p>
+    This page has moved to: <a href="https://github.com/Skhmt/twitch-bot">https://github.com/Skhmt/twitch-bot</a>.
+  </p>
+  <p>
+    You should be redirected there automatically within 5 seconds.
+  </p>
+  
 </body>
 </html>
