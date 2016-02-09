@@ -18,7 +18,7 @@ function onYouTubeIframeAPIReady() {
         },
         events: {
             // 'onReady': onPlayerReady,
-            // 'onStateChange': Window.parent.onPlayerStateChange()
+            'onStateChange': Window.parent.onPlayerStateChange()
             // 'onError': onError
         }
     } );
@@ -29,7 +29,7 @@ function mute() { return ytPlayer.mute(); }
 
 function unmute() { return ytPlayer.unmute(); }
 
-function isMuted() { return ytplayer.isMuted(); }
+function isMuted() { return ytPlayer.isMuted(); }
 
 function setVolume(vol) { return ytPlayer.setVolume(vol); }
 
