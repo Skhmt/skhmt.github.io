@@ -18,7 +18,7 @@ function onYouTubeIframeAPIReady() {
         },
         events: {
             // 'onReady': onPlayerReady,
-            // 'onStateChange': Window.parent.onPlayerStateChange()
+            // 'onStateChange': onPlayerStateChange,
             // 'onError': onError
         }
     } );
@@ -27,7 +27,7 @@ function onYouTubeIframeAPIReady() {
 
 function mute() { return ytPlayer.mute(); }
 
-function unmute() { return ytPlayer.unmute(); }
+function unMute() { return ytPlayer.unmute(); }
 
 function isMuted() { return ytPlayer.isMuted(); }
 
