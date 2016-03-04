@@ -2,12 +2,16 @@
 <html lang="en">
 
 <head>
-    <title>KoalaBot Module API</title>
+    <title>KoalaBot Module API Reference</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="prism.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+	<script src="bootstrap.min.js"></script>
+	<script src="prism.js"></script>
     <style>
         body {
             position: relative;
@@ -29,7 +33,7 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 
     <div class="container-fluid" style="background-color:#000;color:#fff;height:80px;">
-        <h1>KoalaBot Module API</h1>
+        <h1>KoalaBot Module API Reference</h1>
     </div>
     <br>
 
@@ -120,6 +124,18 @@
 			<em>boolean</em> -
 			True if success, false if fail.
 		</p>
+		<p><strong>Example</strong></p>
+		<ul class="nobullet">
+			<li>
+<pre><code class="language-javascript">apiAddCmd('test', 'commandTestThing', 'all', 'This is a test command!');
+function commandTestThing(params, from, mod, sub) {
+	// do something when the command is used, like...
+	apiSay( 'from: ' + from + ', params: ' + params.join(', ') );
+}
+</code></pre>
+			</li>
+		</ul>
+
     </div>
 
 	<hr>
@@ -168,6 +184,19 @@
 			The id of the page to <code>$(id).prepend</code> /
 			<code>$(id).html</code> / <code>$(id).append</code> .
 		</p>
+		<p><strong>Example</strong></p>
+		<ul class="nobullet">
+			<li>
+<pre><code class="language-javascript">// Making the tab
+var _myTab = apiAddTab('moduleTest');
+$(_myTab).html( `&lt;div class="row-fluid"&gt;
+	&lt;div class="col-sm-12"&gt;
+		Hello World
+	&lt;/div&gt;
+&lt;/div&gt;` );
+</code></pre>
+			</li>
+		</ul>
     </div>
 
 	<hr>
@@ -296,7 +325,7 @@
 
     <div id="apiSetPoints">
         <h2>apiSetPoints(username, points)</h2>
-        <p>Sets the points a user has. This is not for adding or subtracting points.</p>
+        <p>Sets the points a user has. This is <em>not</em> for adding or subtracting points.</p>
 		<p><strong>Parameters</strong></p>
 		<ul class="nobullet">
 			<li>
@@ -342,14 +371,24 @@
 			<em>boolean</em> -
 			Null if not found, otherwise the new amount of points the user has.
 		</p>
+		<p><strong>Example</strong></p>
+		<ul class="nobullet">
+			<li>
+<pre><code class="language-javascript">// Adding 5 points to a user
+apiModPoints('skhmt', 5);
+
+// Subtracting 7 points from a user
+apiModPoints('skhmt', -7);
+</code></pre>
+			</li>
+		</ul>
     </div>
 
 	<hr>
 
     <div id="apiOpenFile">
         <h2>apiOpenFile(filename)</h2>
-        <p>Opens a file in the \mods\ directory. To load as an object, do something
-			like: <code>var foo = $.parseJSON( apiOpenFile('modExampleSettings.ini') );</code></p>
+        <p>Opens a file in the \mods\ directory.</p>
 		<p><strong>Parameters</strong></p>
 		<ul class="nobullet">
 			<li>
@@ -363,6 +402,17 @@
 			<em>string</em> -
 			The file contents, null if it doesn't exist.
 		</p>
+		<p><strong>Example</strong></p>
+		<ul class="nobullet">
+			<li>
+<pre><code class="language-javascript">// Loading a settings object
+var _mySettings = $.parseJSON( apiOpenFile( 'modExampleSettings.ini' ) );
+
+// Loading a file with just text
+var _myText = apiOpenFile( 'modExampleOutput.txt' );
+</code></pre>
+			</li>
+		</ul>
     </div>
 
 	<hr>
@@ -396,8 +446,7 @@
     <div id="apiWriteFile">
         <h2>apiWriteFile(filename, text)</h2>
         <p>Writes a file in the \mods\ directory. This will completely over-write
-			an existing file. To save an object, do something like:
-			<code>apiWriteFile( "modExampleSettings.ini", JSON.stringify( modExampleSettings ) );</code></p>
+			an existing file.</p>
 		<p><strong>Parameters</strong></p>
 		<ul class="nobullet">
 			<li>
@@ -416,14 +465,25 @@
 			<em>boolean</em> -
 			True if success, false if fail.
 		</p>
+		<p><strong>Example</strong></p>
+		<ul class="nobullet">
+			<li>
+<pre><code class="language-javascript">// Saving a settings object
+apiWriteFile( 'modExampleSettings.ini', JSON.stringify( modExampleSettings ) );
+
+// Writing a file with a line of text
+apiWriteFile( 'modExampleOutput.txt', 'Hello World!' );
+</code></pre>
+			</li>
+		</ul>
     </div>
 
 	<hr>
 
     <div id="apiGetRecentEvents">
         <h2>apiGetRecentEvents()</h2>
-        <p>Gets an array of the recent events, in format:
-			<code>{ "time": (integer milliseconds since midnight of January 1, 1970), "type": (string), "text": (string) }</code>
+        <p>Gets an array of the recent events, in format:<br>
+			<code class="language-json">[ { "time": (integer milliseconds since midnight of January 1, 1970), "type": (string), "text": (string) }, ... ]</code>
 		</p>
 		<p>Type will be <code>SUB</code>, <code>HOST</code>, <code>FOLLOW</code>,
 			or anything that a module adds</p>
@@ -461,12 +521,12 @@
 
     <div id="apiHotKey">
         <h2>apiHotKey(hotkey)</h2>
-        <p>Adds a global hotkey. Supported keys: <code>A</code>-<code>Z</code>,
-			<code>0</code>-<code>9</code>, <code>Comma</code>, <code>Period</code>, <code>Home</code>,
-			<code>End</code>, <code>PageUp</code>, <code>PageDown</code>, <code>Insert</code>,
-			<code>Delete</code>, Arrow keys (<code>Up</code>, <code>Down</code>, <code>Left</code>,
-			<code>Right</code>) and the Media Keys (<code>MediaNextTrack</code>,
-			<code>MediaPlayPause</code>, <code>MediaPrevTrack</code>, <code>MediaStop</code>)</p>
+        <p>Adds a global hotkey. Supported keys: <kbd>A</kbd>-<kbd>Z</kbd>,
+			<kbd>0</kbd>-<kbd>9</kbd>, <kbd>Comma</kbd>, <kbd>Period</kbd>, <kbd>Home</kbd>,
+			<kbd>End</kbd>, <kbd>PageUp</kbd>, <kbd>PageDown</kbd>, <kbd>Insert</kbd>,
+			<kbd>Delete</kbd>, Arrow keys ( <kbd>Up</kbd>, <kbd>Down</kbd>, <kbd>Left</kbd>,
+			<kbd>Right</kbd> ) and the Media Keys ( <kbd>MediaNextTrack</kbd>,
+			<kbd>MediaPlayPause</kbd>, <kbd>MediaPrevTrack</kbd>, <kbd>MediaStop</kbd> )</p>
 		<p>Combine them with Ctrl, Alt, or Shift. Ex: <code>Ctrl+Alt+Comma</code></p>
 
 		<p>On OSX, Ctrl is command. These global hotkeys <em>will</em> block the normal
@@ -486,9 +546,13 @@
 		</p>
 		<p><strong>Example</strong></p>
 		<ul class="nobullet">
-			<li><code>var foo = apiHotKey( 'Ctrl+Alt+Comma' );<br>
-				foo.on( "active", function(){ alert('bar'); } );
-			</code></li>
+			<li>
+<pre><code class="language-javascript">var _ctrlAltComma = apiHotKey( 'Ctrl+Alt+Comma' );
+_ctrlAltComma.on( 'active', function() {
+	alert( 'CTRL + ALT + Comma has been pressed!' );
+} );
+</code></pre>
+			</li>
 		</ul>
     </div>
 
@@ -496,8 +560,7 @@
 
     <div id="apiDB">
         <h2>apiDB(filename)</h2>
-        <p>Creates/loads a sqlite database. This is an object. Example:
-			<code>var db = apiDB( 'moduleTestDB.sqlite' );</code></p>
+        <p>Creates/loads a sqlite database. This is an object.</p>
 		<p><strong>Parameters</strong></p>
 		<ul class="nobullet">
 			<li>
@@ -515,12 +578,41 @@
 			<li>
 				<strong>sel(<em>query</em>)</strong> -
 				Runs a <code>SELECT</code> query on the database. Returns an object in the format:
-				<code>{array: (array formatted response), table: (html table formatted repsonse)}</code>
+				<code class="language-json">{ "array": [ ... ], "table": "&lt;table&gt; ... &lt;/table&gt;" }</code>
 			</li>
 			<li>
 				<strong>run(<em>query</em>)</strong> -
 				Runs a <code>CREATE TABLE</code>, <code>INSERT INTO</code>, or <code>DELETE FROM</code> query.
 				Returns true if success, false if fail.
+			</li>
+		</ul>
+		<p><strong>Example</strong></p>
+		<ul class="nobullet">
+			<li>
+<pre><code class="language-javascript">// Open or create the db moduleTestDB.sqlite
+var _db = apiDB( 'moduleTestDB.sqlite' );
+
+// Creates a table with columns: id, content
+_db.run( 'CREATE TABLE test_table (id INTEGER PRIMARY KEY, content TEXT);' );
+
+// Insert some test values...
+// Using NULL for the primary key automatically sets it as the next highest integer
+_db.run( 'INSERT INTO test_table VALUES (NULL, "hello world");' );
+_db.run( 'INSERT INTO test_table VALUES (NULL, "hello darkness my old friend");' );
+_db.run( 'INSERT INTO test_table VALUES (NULL, "hello moto");' );
+
+// Deleting 'hello moto'
+_db.run( 'DELETE FROM test_table WHERE content = "hello moto";' );
+
+// Outputting a HTML table
+$('#outputArea').html( _db.sel( 'SELECT * FROM test_table;' ).table );
+
+// Outputting the array
+$('#outputArea').append( JSON.stringify( _db.sel( 'SELECT * FROM test_table;' ).array ) );
+
+// Saving
+db.write();
+</code></pre>
 			</li>
 		</ul>
     </div>
