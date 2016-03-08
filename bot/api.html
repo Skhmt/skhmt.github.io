@@ -406,7 +406,7 @@ apiModPoints('skhmt', -7);
 		<ul class="nobullet">
 			<li>
 <pre><code class="language-javascript">// Loading a settings object
-var _mySettings = $.parseJSON( apiOpenFile( 'modExampleSettings.ini' ) );
+var _mySettings = JSON.parse( apiOpenFile( 'modExampleSettings.ini' ) );
 
 // Loading a file with just text
 var _myText = apiOpenFile( 'modExampleOutput.txt' );
