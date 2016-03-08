@@ -611,7 +611,7 @@ $('#outputArea').html( _db.sel( 'SELECT * FROM test_table;' ).table );
 $('#outputArea').append( JSON.stringify( _db.sel( 'SELECT * FROM test_table;' ).array ) );
 
 // Saving
-db.write();
+_db.write();
 </code></pre>
 			</li>
 		</ul>
