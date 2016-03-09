@@ -590,7 +590,7 @@ _ctrlAltComma.on( 'active', function() {
 		<ul class="nobullet">
 			<li>
 <pre><code class="language-javascript">// Open or create the db moduleTestDB.sqlite
-var _db = apiDB( 'moduleTestDB.sqlite' );
+var _db = apiDB( apiGetPath() + 'moduleTestDB.sqlite' );
 
 // Creates a table with columns: id, content
 _db.run( 'CREATE TABLE test_table (id INTEGER PRIMARY KEY, content TEXT);' );
