@@ -12,7 +12,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/slate/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" crossorigin="anonymous">
 	<script src="https://www.youtube.com/iframe_api"></script>
 	<script>
 ////////////////////////////////////////////////////////////////////////////////
@@ -35,7 +35,7 @@ $( function() {
 		$('#chatText').val('');
 	} );
 
-	$('#updateStatusButton').click( function() {
+	$('.updateStatusButton').click( function() {
 		changeStatusOpen();
 	} );
 
@@ -58,8 +58,11 @@ function getUsername( clientid, token ) {
 		},
 		function(response){
 			username = response.token.user_name;
-			channelname = response.token.user_name;
+			channelname = 'bobross';
+
 			$('#username').html(username);
+			$('#twitchVideo').attr('src', 'http://player.twitch.tv/?autoplay=true&muted=true&channel=' + channelname);
+
 			runChat(token, username, channelname);
 
 			getStreamInfo(clientid, true);
@@ -120,10 +123,10 @@ function parseMessage( text ) {
 	else if ( textarray[2] === 'NOTICE' ) {
 		textarray.splice( 0, 4 );
 		var output = textarray.join(' ').substring(1);
-		log( `* ${output}` );
+		log( `<b>* ${output}</b>` );
 	} else if ( textarray[1] === 'JOIN' ) {
 		var joinname = textarray[0].split('!')[0].substring(1);
-		log( `* ${joinname} has joined.` );
+		log( `<b>* ${joinname} has joined.</b>` );
 	} else {
 		console.log( text );
 	}
@@ -207,7 +210,7 @@ function msgPriv( command, args ) {
 	}
 	else { // not an action
 		text += ' ' + lessargs; // text is merged with lessargs to make up the entire text string
-		output += `<b>:</b> ${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}`;
+		output += `<b>:</b> &nbsp;&nbsp; ${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}`;
 
 		// if it's a command, send to parseCommand
 		// if ( text.substring(0,1) === cmdSettings.symbol ) {
@@ -230,7 +233,7 @@ function chat( text ) {
 		ws.send( `PRIVMSG #${channelname} :${text}` );
 	// }
 
-	log( `<strong>&gt;</strong> ${text.replace(/</g,"&lt;").replace(/>/g,"&gt;")}` );
+	log( `<strong>&gt;</strong> &nbsp;&nbsp; ${text.replace(/</g,"&lt;").replace(/>/g,"&gt;")}` );
 }
 
 function log( text ) {
@@ -238,7 +241,7 @@ function log( text ) {
 
 	// if it's scrolled to the bottom before a chat message shows up, set isScrolledToBottom to true
 	// https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight
-	var isScrolledToBottom = ( ( out.scrollHeight - out.scrollTop ) === ( out.clientHeight ) );
+	var isScrolledToBottom = ( ( out.scrollHeight - out.scrollTop - out.clientHeight) <= 20 );
 
 	// add message
 	$('#con').append( `${writeEmoticons(text)}<br>` );
@@ -318,7 +321,7 @@ function writeEmoticons( message ) {
 		}
 
 		if (!found && emoticons[word] ) {
-			output += `<abbr title="${word}"><img src="${emoticons[word]}"></abbr> `;
+			output += `<abbr title="${word}" style="border: 0;"><img src="${emoticons[word]}"></abbr> `;
 		}
 		else {
 			output += `${word} `;
@@ -409,7 +412,7 @@ function getSubBadgeUrl( clientid ) {
 }
 
 function updateUserlist(clientid) {
-	console.log('Updating user list...');
+	console.log('Updating user list on ' + channelname);
 
 	$.getJSON(
 		'https://tmi.twitch.tv/group/user/' + channelname + '/chatters?callback=?',
@@ -417,10 +420,12 @@ function updateUserlist(clientid) {
 			"client_id": clientid,
 			"api_version": 3
 		},
-		function(response) {
+		function(res) {
+			var response = res.data;
 
 			if (!response.chatters) {
-			 	return console.log('No response from user list.'); // didn't load a user yet
+			 	console.log('No response from user list.'); // didn't load a user yet
+				return console.log(JSON.stringify(response));
 			}
 
 			var output = '';
@@ -470,7 +475,6 @@ function updateUserlist(clientid) {
 				output += '</p> ';
 			}
 
-			console.log(output);
 			$('#userlist').html(output);
 
 			updateViewerCount(response.chatter_count, clientid);
@@ -501,26 +505,6 @@ function updateViewerCount( viewerCount, clientid ) {
 	);
 }
 
-var ytPlayer;
-function onYouTubeIframeAPIReady() {
-	ytPlayer = new YT.Player('ytPlayer', {
-		videoId: 'vxIOUJ7by6U',
-		playerVars: {
-			fs: 0, // does not show the fullscreen button
-			rel: 0, // does not show related videos at the end
-			modestbranding: 1,
-			iv_load_policy: 3, // annotations not shown by default
-			controls: 1 // disables controls
-		},
-		events: {
-			// 'onReady': onPlayerReady,
-			// 'onStateChange': onPlayerStateChange,
-			// 'onError': onError
-		}
-	} );  // ytPlayer = new YT.Player
-}
-
-
 ////////////////////////////////////////////////////////////////////////////////
 	</script>
 </head>
@@ -534,23 +518,24 @@ function onYouTubeIframeAPIReady() {
 				StreamKoala
 			</div>
 		</div>
-		<div class="hidden-xs">
+		<div class="hidden-xs hidden-sm">
 			<p class="navbar-text">
 				<strong id="username"></strong>
 			</p>
 
 			<p class="navbar-text">
 				<strong class="text-primary">Game: &nbsp;</strong>
-				<em id="game">(game placeholder)</em>
+				<em id="game"><!-- game dynamically generated --></em>
 			</p>
 
 			<p class="navbar-text">
 				<strong class="text-primary">Status: &nbsp;</strong>
-				<em id="status">(status placeholder)</em>
+				<em id="status"><!-- status dynamically generated --></em>
 			</p>
-
-			<form class="navbar-form navbar-right" onsubmit="return false;">
-				<button type="button" class="btn btn-default btn-md" id="updateStatusButton">
+		</div>
+		<div class="hidden-xs">
+			<form class="nav navbar-form navbar-right" onsubmit="return false;">
+				<button type="button" class="btn btn-default btn-md updateStatusButton">
 					<span class="glyphicon glyphicon-cloud-upload"></span>
 				</button>
 			</form>
@@ -566,7 +551,7 @@ function onYouTubeIframeAPIReady() {
 				<div class="panel-heading">
 			    	<h3 class="panel-title text-center">Chat</h3>
 				</div>
-				<div class="panel-body" id="con" style="overflow: auto; word-wrap: break-word; max-height: calc(100vh - 186px); min-height: calc(100vh - 186px);">
+				<div class="panel-body" id="con" style="overflow: auto; word-wrap: break-word; max-height: calc(100vh - 188px); min-height: calc(100vh - 188px);">
 				</div>
 				<div class="panel-footer">
 					<form class="form-group" id="chatForm" style="margin-top: 0; margin-bottom: 0;">
@@ -589,10 +574,10 @@ function onYouTubeIframeAPIReady() {
 			    	<h3 class="panel-title text-center">Viewers</h3>
 				</div>
 				<div class="panel-body" style="height: 60px;" id="viewercount">
-					test
+					<!-- viewercount dynamically generated -->
 				</div>
-				<div class="panel-body" style="height: calc(100vh - 185px); overflow: auto; word-wrap: break-word;" id="userlist">
-					test2
+				<div class="panel-body" style="height: calc(100vh - 196px); overflow: auto; word-wrap: break-word;" id="userlist">
+					<!-- userlist dynamically generated -->
 				</div>
 			</div>
 		</div>
@@ -607,9 +592,6 @@ function onYouTubeIframeAPIReady() {
 					<iframe src="http://www.twitchalerts.com/dashboard/recent-events"
 						style="width: 100%; height: 100%; padding: 0; margin: 0; border: 0;">&nbsp;</iframe>
 					-->
-					Message parsing<br>
-					Song Requests<br>
-					Log in<br>
 				</div>
 			</div>
 		</div>
@@ -617,11 +599,15 @@ function onYouTubeIframeAPIReady() {
 		<div class="hidden-xs hidden-sm col-md-3 col-lg-3" style="padding-left: 0; padding-right: 10;">
 			<div class="panel panel-default" style="height: calc(100vh - 95px);">
 				<div class="panel-heading">
-			    	<h3 class="panel-title text-center">Song Requests</h3>
+			    	<h3 class="panel-title text-center">Stream</h3>
 				</div>
-				<div class="panel-body" style="max-height: calc(100vh - 135px);">
-					<!-- <div id="ytPlayer" style="width: 100%; height: 50%;"></div> -->
-				</div>
+				<ul class="list-group" style="max-height: calc(100vh - 135px);">
+					<li class="list-group-item">
+						<iframe id="twitchVideo" src="" style="width: calc(100% + 30px); height: 50%; border: 0; margin: -10px -15px -10px -15px;">&nbsp;</iframe>
+					</li>
+					<li class="list-group-item">
+					</li>
+				</ul>
 			</div>
 		</div>
 
