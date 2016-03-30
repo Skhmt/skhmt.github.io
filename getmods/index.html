@@ -93,7 +93,7 @@
 			return outputMods();
 		}
 		var percent = parseInt( (index / channels.length * 100), 10 );
-		$('#output').html( percent + '% done' );
+		$('#output').html( percent + '% done<br>Getting info from: ' + channels[index].channel );
 
 		TWAPI.changeChannel( channels[index].channel );
 		setTimeout(function(){TWAPI.sendChat( '/mods' );}, 750);
