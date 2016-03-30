@@ -24,7 +24,6 @@
 		}
 		else {
 			oauth = document.location.hash.substring(14,44);
-			console.log('oauth:'+oauth);
 
 			TWAPI.setup(clientid, oauth, function(username) {
 				getFollowedChannels( username, 0 );
