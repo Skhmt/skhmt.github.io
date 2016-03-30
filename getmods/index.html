@@ -108,7 +108,7 @@
 		for (var i = 0; i < channels.length; i++) {
 			if ( channels[i].mod ) {
 				output += '<tr>' +
-					'<td>' + channels[i].channel + '</td>' +
+					'<td><a href="https://www.twitch.tv/' + channels[i].channel + '/">' + channels[i].channel + '</a></td>' +
 					'<td>' + channels[i].partner + '</td>' +
 					'<td>' + (new Date(channels[i].followTime)).toLocaleDateString() + '</td>' +
 					'<td>' + (new Date(channels[i].lastStreamTime)).toLocaleDateString() + '</td>' +
