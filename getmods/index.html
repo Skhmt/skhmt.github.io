@@ -22,13 +22,14 @@
 			window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&' +
 			'client_id=4jyaf3yr336f1deiktkvru3g7dvtzed&redirect_uri=http://skhmt.github.io/getmods&scope=chat_login&force_verify=true';
 		}
-		oauth = document.location.hash.substring(14,44);
-		console.log('oauth:'+oauth);
+		else {
+			oauth = document.location.hash.substring(14,44);
+			console.log('oauth:'+oauth);
 
-		TWAPI.setup(clientid, oauth, function(username) {
-			getFollowedChannels( username, 0 );
-		} );
-
+			TWAPI.setup(clientid, oauth, function(username) {
+				getFollowedChannels( username, 0 );
+			} );
+		}
 	});
 
 	function getFollowedChannels(username, offset) {
