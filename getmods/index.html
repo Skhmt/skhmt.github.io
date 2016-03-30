@@ -9,19 +9,19 @@
 
 
 <script>
-	var clientid = '3y2ofy4qcsvnaybw9ogdzwmwfode8y0'; // public client id
+	var clientid = '4jyaf3yr336f1deiktkvru3g7dvtzed'; // public client id
 	var oauth = ''; // oauth without "oauth:", requires chat_login
 	var channels = [];
 	var index = 0;
 
 	$(function(){
 		/* If there's no auth, send the user to the login page */
-		// if (document.location.hash.length < 50) {
-		// 	window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&' +
-		// 		'client_id=idc20bfbuv46327tp8jgc6qhznewz9&redirect_uri=http://skhmt.github.io/koala&scope=chat_login&force_verify=true';
-		// }
-		// oauth = document.location.hash.substring(14,44);
-		// console.log('oauth:'+oauth);
+		if (document.location.hash.length < 50) {
+			window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&' +
+			'client_id=4jyaf3yr336f1deiktkvru3g7dvtzed&redirect_uri=http://skhmt.github.io/getmods&scope=chat_login&force_verify=true';
+		}
+		oauth = document.location.hash.substring(14,44);
+		console.log('oauth:'+oauth);
 
 		TWAPI.setup(clientid, oauth, function(username) {
 			getFollowedChannels( username, 0 );
