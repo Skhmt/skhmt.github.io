@@ -92,6 +92,7 @@
 
 	function setMods(username) {
 		if ( index >= channels.length ) {
+			TWAPI.closeChat();
 			return outputMods();
 		}
 		var percent = parseInt( (index / channels.length * 100), 10 );
