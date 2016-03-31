@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>TWAPI.js Reference</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
+
+	<script src="https://skhmt.github.io/lib/prism.js"></script>
+	<link rel="stylesheet" href="https://skhmt.github.io/lib/prism.css">
+	<style>
+		body {
+			position: relative;
+		}
+
+		.affix {
+			top: 20px;
+		}
+
+		.nav-stacked > li > a {
+			padding-top: 3px !important;
+			padding-bottom: 3px !important;
+			margin: 0 !important;
+		}
+
+		.nobullet {
+			list-style-type: none;
+		}
+	</style>
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+
+	<div class="container-fluid" style="background-color:#000;color:#fff;height:80px;">
+		<h1>TWAPI.js Reference</h1>
+	</div>
+	<br>
+
+	<div class="container">
+		<div class="row">
+
+
+			<div class="col-sm-9">
+
+				<div id="about">
+					<h2>TWAPI.js</h2>
+					<p>
+						TWAPI.js is a purely javascript framework for accessing Twitch chat and most of the Twitch API.
+						It was created for use in KoalaBot mostly, but it has many other useful applications.
+					</p>
+					<p>
+						Why should you use TWAPI.js when <a href="https://www.tmijs.org/">TMI.js</a> exists? No idea.
+						Use either or both or neither.
+					</p>
+					<p>
+						Its intended use is for client-side web apps, CLI/BrowserSource pages for OBS, and NW.js/Electron desktop apps.
+						It will not work with vanilla node.js due to the use of <code>document.(event funtions)</code> and browser-based
+						websockets.
+					</p>
+					<p>
+						To use it, get the <a href="https://github.com/Skhmt/twapi.js/blob/master/twapi.js">latest version</a>, then create a
+						minified version with <a href="http://closure-compiler.appspot.com/">closure-compiler</a>.
+					</p>
+					<p>
+						An example <a href="https://github.com/Skhmt/twapi.js/blob/master/test.html">test.html</a> shows how to use TWAPi.js.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="listenerRaw">
+					<h2>Listener - twapiRaw</h2>
+					<p>
+						Every RAW TMI message. You most likely won't be using this unless you need to parse for something
+						that TWAPI.js doesn't already have a listener for.
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(string)</em> - The raw command..
+						</li>
+					</ul>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+							<code class="language-javascript">document.addEventListener('twapiRaw', function( e ) { console.log(e.detail); } );</code>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listener">
+					<h2>Listener - </h2>
+					<p>
+						description
+					</p>
+					<p><strong>Callback</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+				</div>
+
+				<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
+				<div id="apiAddCmd">
+					<h2>apiAddCmd(keyword, functionName, rbac, desc)</h2>
+					<p>
+						description
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>keyword</strong>
+							<em>(string)</em> - The !command a user types in.
+						</li>
+					</ul>
+					<p>
+						<strong>Returns</strong>
+						<em>boolean</em> - True if success, false if fail.
+					</p>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+							<pre><code class="language-javascript">apiAddCmd('test', 'commandTestThing', 'all', 'This is a test command!');
+function commandTestThing(params, from, mod, sub) {
+	// do something when the command is used, like...
+	apiSay( 'from: ' + from + ', params: ' + params.join(', ') );
+}
+</code></pre>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+
+				<!-- extra spaces for consistent scroll spy behavior purposes -->
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			</div> <!-- column -->
+
+
+			<nav class="col-sm-3" id="myScrollspy">
+				<ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="85">
+					<li><strong>About</strong></li>
+						<li><a href="#about">TWAPI.js</a></li>
+					<li><strong>Listeners</strong></li>
+						<li><a href="#listenerRaw">twapiRaw</a></li>
+						<li><a href="#listenerRawGroup">twapiRawGroup</a></li>
+						<li><a href="#listenerMsg">twapiMsg</a></li>
+						<li><a href="#listenerWhisper">twapiWhisper</a></li>
+						<li><a href="#listenerNotice">twapiNotice</a></li>
+						<li><a href="#listenerNoticeGroup">twapiNoticeGroup</a></li>
+						<li><a href="#listenerJoin">twapiJoin</a></li>
+						<li><a href="#listenerPart">twapiPart</a></li>
+						<li><a href="#listenerClear">twapiClear</a></li>
+						<li><a href="#listenerHost">twapiHost</a></li>
+						<li><a href="#listenerFollow">twapiFollow</a></li>
+						<li><a href="#listenerSub">twapiSub</a></li>
+						<li><a href="#listenerSubMonths">twapiSubMonths</a></li>
+						<li><a href="#listenerSubsAway">twapiSubsAway</a></li>
+						<li><a href="#listenerRoomstate">twapiRoomstate</a></li>
+					<li><strong>Functions</strong></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+						<li><a href="#util"></a></li>
+				</ul>
+			</nav>
+
+
+		</div> <!-- row -->
+	</div> <!-- container -->
+
+</body>
+
+</html>
