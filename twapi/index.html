@@ -17,19 +17,22 @@
 		body {
 			position: relative;
 		}
-
 		.affix {
 			top: 20px;
 		}
-
 		.nav-stacked > li > a {
-			padding-top: 3px !important;
-			padding-bottom: 3px !important;
+			padding-top: 0px !important;
+			padding-bottom: 0px !important;
 			margin: 0 !important;
 		}
-
 		.nobullet {
 			list-style-type: none;
+		}
+		#myScrollspy .nav ul.nav {
+		    display: none;
+		}
+		#myScrollspy .nav>.active>ul.nav {
+		    display: block;
 		}
 	</style>
 </head>
@@ -51,7 +54,8 @@
 					<h2>TWAPI.js</h2>
 					<p>
 						TWAPI.js is a purely javascript framework for accessing Twitch chat and most of the Twitch API.
-						It was created for use in KoalaBot mostly, but it has many other useful applications.
+						It was created for use in <a href="https://github.com/Skhmt/koalabot">KoalaBot</a> mostly, but
+						it has many other useful applications.
 					</p>
 					<p>
 						Why should you use TWAPI.js when <a href="https://www.tmijs.org/">TMI.js</a> exists? No idea.
@@ -63,12 +67,74 @@
 						websockets.
 					</p>
 					<p>
-						To use it, get the <a href="https://github.com/Skhmt/twapi.js/blob/master/twapi.js">latest version</a>, then create a
-						minified version with <a href="http://closure-compiler.appspot.com/">closure-compiler</a>.
+						To use it, get the <a href="https://github.com/Skhmt/twapi.js/blob/master/twapi.js">latest version</a>, then
+						optionally create a minified version with <a href="http://closure-compiler.appspot.com/">closure-compiler</a>.
 					</p>
 					<p>
-						An example <a href="https://github.com/Skhmt/twapi.js/blob/master/test.html">test.html</a> shows how to use TWAPi.js.
+						The example <a href="https://github.com/Skhmt/twapi.js/blob/master/test.html">test.html</a> shows how to use TWAPi.js
+						in a simple chatroom reading website. The example requires inputting your own clientid and oauth to work.
 					</p>
+				</div>
+
+				<hr>
+
+				<div id="setup">
+					<h2>TWAPI.setup( <em>clientid, oauth, callback</em> )</h2>
+					<p>
+						Sets up TWAPI.js. You must run this before <em>anything</em> works.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>clientid</strong>
+							<em>(string)</em> - The public client id of your app.
+						</li>
+						<li>
+							<strong>oauth</strong>
+							<em>(string)</em> - The oauth token of the user you want to be logged in. Does not include
+								<code>oauth:</code>.
+						</li>
+						<li>
+							<strong>callback</strong>
+							<em>(function)</em> - Callback function has one parameter, the username.
+						</li>
+					</ul>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+<pre><code class="language-javascript">TWAPI.setup( clientid, oauth, function( username ) {
+	console.log( 'The username is: ' + username );
+} );
+</code></pre>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="setupRunChat">
+					<h2>TWAPI.runChat( <em>channel, callback</em> )</h2>
+					<p>
+						Sets the initial channel to connect to, connects to it and the group (whisper) server, and runs
+						various other set-up things.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>channel</strong>
+							<em>(string)</em> - The channel name to connect to.
+						</li>
+						<li>
+							<strong>callback</strong>
+							<em>(function)</em> - for when the channel is running.
+						</li>
+					</ul>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+							<code class="language-javascript">TWAPI.runChat( channel, function() { } );</code>
+						</li>
+					</ul>
 				</div>
 
 				<hr>
@@ -76,14 +142,14 @@
 				<div id="listenerRaw">
 					<h2>Listener - twapiRaw</h2>
 					<p>
-						Every RAW TMI message. You most likely won't be using this unless you need to parse for something
-						that TWAPI.js doesn't already have a listener for.
+						Every RAW TMI message from the standard chat server. You most likely won't be using this unless
+						you need to parse for something that TWAPI.js doesn't already have a listener for.
 					</p>
-					<p><strong>Callback</strong></p>
+					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
 							<strong>.detail</strong>
-							<em>(string)</em> - The raw command..
+							<em>(string)</em> - The raw message.
 						</li>
 					</ul>
 					<p><strong>Example</strong></p>
@@ -96,253 +162,83 @@
 
 				<hr>
 
-				<div id="listener">
-					<h2>Listener - </h2>
+				<div id="listenerRawGroup">
+					<h2>Listener - twapiRawGroup</h2>
 					<p>
-						description
+						Every RAW TMI message from the group (whisper) chat server. You most likely won't be using this unless
+						you need to parse for something that TWAPI.js doesn't already have a listener for.
 					</p>
-					<p><strong>Callback</strong></p>
+					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail</strong>
+							<em>(string)</em> - The raw message.
 						</li>
 					</ul>
 				</div>
 
 				<hr>
 
-				<div id="listener">
-					<h2>Listener - </h2>
+				<div id="listenerMsg">
+					<h2>Listener - twapiMsg</h2>
 					<p>
-						description
+						A regular message (PRIVMSG in IRC) from the standard chat server. This includes actions (/me).
 					</p>
-					<p><strong>Callback</strong></p>
+					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail.from</strong>
+							<em>(string)</em> - The username of the person who sent the message.
 						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail.text</strong>
+							<em>(string)</em> - The text of the message.
 						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail.color</strong>
+							<em>(string)</em> - The color of the user name.
 						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail.emotes</strong>
+							<em>(string)</em> - The emote id and character locations. See: https://github.com/justintv/Twitch-API/blob/master/IRC.md#privmsg.
 						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail.action</strong>
+							<em>(boolean)</em> - True if it is an action (<code>/me</code>), false if it is a regular message.
 						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail.streamer</strong>
+							<em>(boolean)</em> - True if the streamer (channel name) sent the message, false if it is anyone else.
 						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail.mod</strong>
+							<em>(boolean)</em> - True if the user that sent the message is a moderator, false if not.
 						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail.sub</strong>
+							<em>(boolean)</em> - True if the user that sent the message is a subscriber, false if not.
 						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
 						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
+							<strong>.detail.turbo</strong>
+							<em>(boolean)</em> - True if the user that sent the message has turbo, false if not.
 						</li>
 					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
-						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
-						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
-						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
-						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
-						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
-						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listener">
-					<h2>Listener - </h2>
-					<p>
-						description
-					</p>
-					<p><strong>Callback</strong></p>
-					<ul class="nobullet">
-						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
-						</li>
-					</ul>
-				</div>
-
-				<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
-				<div id="apiAddCmd">
-					<h2>apiAddCmd(keyword, functionName, rbac, desc)</h2>
-					<p>
-						description
-					</p>
-					<p><strong>Parameters</strong></p>
-					<ul class="nobullet">
-						<li>
-							<strong>keyword</strong>
-							<em>(string)</em> - The !command a user types in.
-						</li>
-					</ul>
-					<p>
-						<strong>Returns</strong>
-						<em>boolean</em> - True if success, false if fail.
-					</p>
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-							<pre><code class="language-javascript">apiAddCmd('test', 'commandTestThing', 'all', 'This is a test command!');
-function commandTestThing(params, from, mod, sub) {
-	// do something when the command is used, like...
-	apiSay( 'from: ' + from + ', params: ' + params.join(', ') );
-}
+<pre><code class="language-javascript">document.addEventListener('twapiMsg', function( e ) {
+	var output = (e.detail.mod ? '&lt;img src="http://chat-badges.s3.amazonaws.com/mod.png">' : '') +
+		(e.detail.sub  ?'&lt;img src="' + TWAPI.getSubBadgeUrl() + '">' : '') +
+		(e.detail.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
+		(e.detail.streamer ? '&lt;img src="http://chat-badges.s3.amazonaws.com/broadcaster.png">' : '') +
+		'&lt;strong style="color: ' + e.detail.color + ';">' +
+		e.detail.from +
+		'&lt;/strong>&nbsp;' +
+		(e.detail.action ? '&lt;span style="color: ' + e.detail.color + ';">' : ':&nbsp;&nbsp;') +
+		e.detail.text +
+		(e.detail.action ? '&lt;/span>' : '' );
+	document.querySelector('#chat').innerHTML += output;
+} );
 </code></pre>
 						</li>
 					</ul>
@@ -350,8 +246,727 @@ function commandTestThing(params, from, mod, sub) {
 
 				<hr>
 
+				<div id="listenerWhisper">
+					<h2>Listener - twapiWhisper</h2>
+					<p>
+						A whisper sent via the group chat channel.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail.from</strong>
+							<em>(string)</em> - The user that sent the whisper.
+						</li>
+						<li>
+							<strong>.detail.to</strong>
+							<em>(string)</em> - The recipient of the whisper (the bot name).
+						</li>
+						<li>
+							<strong>.detail.text</strong>
+							<em>(string)</em> - The text of the whisper.
+						</li>
+						<li>
+							<strong>.detail.color</strong>
+							<em>(string)</em> - The color of the sender's name.
+						</li>
+						<li>
+							<strong>.detail.turbo</strong>
+							<em>(boolean)</em> - True if the sender is turbo, false if not.
+						</li>
+						<li>
+							<strong>.detail.message_id</strong>
+							<em>(integer)</em> - Message id.
+						</li>
+						<li>
+							<strong>.detail.thread_id</strong>
+							<em>(integer)</em> - Thread id.
+						</li>
+						<li>
+							<strong>.detail.user_id</strong>
+							<em>(integer)</em> - User id.
+						</li>
+					</ul>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+<pre><code class="language-javascript">document.addEventListener('twapiWhisper', function( e ) {
+	var output = (e.detail.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
+		'&lt;strong style="color: ' + e.detail.color + ';">' +
+		e.detail.from +
+		'&lt;/strong>' +
+		' &gt; ' +
+		'&lt;strong>' + e.detail.to + '&lt;/strong> : ' +
+		e.detail.text;
+	document.querySelector('#chat').innerHTML += output;
+} );
+</code></pre>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerNotice">
+					<h2>Listener - twapiNotice</h2>
+					<p>
+						Notices from the standard chat server. For example, the response of the <code>/mods</code> command.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(string)</em> - The notice.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerNoticeGroup">
+					<h2>Listener - twapiNoticeGroup</h2>
+					<p>
+						Notices from the group (whisper) chat server.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(string)</em> - The notice.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerJoin">
+					<h2>Listener - twapiJoin</h2>
+					<p>
+						When a user joins your channel. Fires for every user in the channel when you enter, so be careful
+						on how you use this. This doesn't seem to be real-time, unlike real IRC.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(string)</em> - The entering user's name.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerPart">
+					<h2>Listener - twapiPart</h2>
+					<p>
+						When a user leaves your channel. This doesn't seem to be real-time, unlike real IRC.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(string)</em> - The parting user's name.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerClearUser">
+					<h2>Listener - twapiClearUser</h2>
+					<p>
+						This is sent when a user is timed out or banned or "purged" by a moderator. The default action
+						should be to remove or hide all of that user's previous chat text.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(string)</em> - The cleared user's name.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerClearChat">
+					<h2>Listener - twapiClearChat</h2>
+					<p>
+						This is sent when a moderator wants to purge all of the chat. The default action should be to
+						remove or hide all of the previous chatroom text.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="listenerHost">
+					<h2>Listener - twapiHost</h2>
+					<p>
+						This is sent when the user (not the channel) is hosted. If the logged in user is not the
+						broadcaster, this will not be an accurate notification of hosts.
+					</p>
+					<p>
+						To get host notifications if you're not logged in as the broadcaster, you need to use: <br>
+						<code>http://tmi.twitch.tv/hosts?include_logins=1&target=[user id number]</code> (Won't work on a client-side browser - no CORS/JSONP support)
+						<br>or<br>
+						<code> https://decapi.me/twitch/hosts?channel=[channel name]</code> (CORS support. Thanks Decicus)
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(string)</em> - The user that hosted you.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerFollow">
+					<h2>Listener - twapiFollow</h2>
+					<p>
+						This is sent when a user follows the channel. The limitation is about 100 follows per minute. Any
+						more might get lost.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(string)</em> - The user that followed the channel.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerSub">
+					<h2>Listener - twapiSub</h2>
+					<p>
+						Subscription notification.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(string)</em> - The user that subscribed.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerSubMonths">
+					<h2>Listener - twapiSubMonths</h2>
+					<p>
+						Resubscription and months notification.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail.name</strong>
+							<em>(string)</em> - The name of the person that resubscribed.
+						</li>
+						<li>
+							<strong>.detail.months</strong>
+							<em>(integer)</em> - Number of months subscribed. Alternatively, number resubscribes + 1.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerSubsAway">
+					<h2>Listener - twapiSubsAway</h2>
+					<p>
+						Number of subscribers since you've been offline.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail</strong>
+							<em>(integer)</em> - Number of subscribers.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerRoomstate">
+					<h2>Listener - twapiRoomstate</h2>
+					<p>
+						The roomstate options set on a room.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>.detail.lang</strong>
+							<em>(string)</em> - The language of the room. Often left blank.
+						</li>
+						<li>
+							<strong>.detail.r9k</strong>
+							<em>(boolean)</em> - True if the room is in r9k mode, false if not.
+						</li>
+						<li>
+							<strong>.detail.slow</strong>
+							<em>(boolean)</em> - True if the room is in slow mode, false if not.
+						</li>
+						<li>
+							<strong>.detail.subs_only</strong>
+							<em>(boolean)</em> - True if the room is in subs (and mods) only mode, false if not.
+						</li>
+					</ul>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+<pre><code class="language-javascript">document.addEventListener('twapiRoomstate', function( e ) {
+	var output = 'Roomstate options: ';
+	if ( e.detail.lang ) output += ' lang:' + e.detail.lang;
+	if ( e.detail.r9k ) output += ' r9k';
+	if ( e.detail.slow ) output += ' slow';
+	if ( e.detail.subs_only ) output += ' subs-only';
+	if ( !e.detail.lang && !e.detail.r9k && !e.detail.slow && !e.detail.subs_only ) {
+		output += ' none.';
+	}
+	document.querySelector('#chat').innerHTML += output;
+} );
+</code></pre>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+				<div id="funcSendChat">
+					<h2>TWAPI.sendChat( <em>text</em> )</h2>
+					<p>
+						Sends a message to the channel. Actions (<code>/me</code>, <code>/host</code>, etc) work.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>text</strong>
+							<em>(string)</em> - The message to send to the channel.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="funcSendWhisper">
+					<h2>TWAPI.sendWhisper( <em>user, text</em> )</h2>
+					<p>
+						Sends a whisper to a specific user.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>user</strong>
+							<em>(string)</em> - The user to whisper a message to.
+						</li>
+						<li>
+							<strong>text</strong>
+							<em>(string)</em> - The message to whisper.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="funcChangeChannel">
+					<h2>TWAPI.changeChannel( <em>channel</em> )</h2>
+					<p>
+						Changes channel you're in. This is quicker than TWAPI.runChat(), but might not work if you change
+						from a regular channel to an event server channel.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>channel</strong>
+							<em>(string)</em> - The channel to change to.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="funcGetUsername">
+					<h2>TWAPI.getUsername()</h2>
+					<p>
+						Gets the username that's logged in to TWAPI.js. This may not be the same as the channel you're in.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The username.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetChannel">
+					<h2>TWAPI.getChannel()</h2>
+					<p>
+						Gets the channel that you're in.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The channel name.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetGame">
+					<h2>TWAPI.getGame()</h2>
+					<p>
+						Gets the game being played. For example: DayZ, Creative, etc.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The game name.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetStatus">
+					<h2>TWAPI.getStatus()</h2>
+					<p>
+						Gets the status (title) of the stream.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The stream status.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetFollowerCount">
+					<h2>TWAPI.getFollowerCount()</h2>
+					<p>
+						Gets the number of followers of the stream.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>integer</em> - The number of followers.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetTotalViewCount">
+					<h2>TWAPI.getTotalViewCount()</h2>
+					<p>
+						Gets the total (cumulative) number of viewers of the stream.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>integer</em> - The total number of viewers of the stream.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetCurrentViewCount">
+					<h2>TWAPI.getCurrentViewCount()</h2>
+					<p>
+						Gets the current number of viewers watching the stream.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The current number of viewers in the stream.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetCreatedAt">
+					<h2>TWAPI.getCreatedAt()</h2>
+					<p>
+						The time the stream started.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The time the stream was created at.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetLogo">
+					<h2>TWAPI.getLogo()</h2>
+					<p>
+						Gets the channel's 300x300px logo URL.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The logo URL.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetVideoBanner">
+					<h2>TWAPI.getVideoBanner()</h2>
+					<p>
+						Gets the channel's offline video banner/image URL.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The offline video banner URL.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetProfileBanner">
+					<h2>TWAPI.getProfileBanner()</h2>
+					<p>
+						Gets the channel's user profile banner URL.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The user profile banner URL.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcIsFollowing">
+					<h2>TWAPI.isFollowing( <em>user, target, callback</em> )</h2>
+					<p>
+						Checks if <code>user</code> is following <code>target</code>.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>user</strong>
+							<em>(string)</em> - The user.
+						</li>
+						<li>
+							<strong>target</strong>
+							<em>(string)</em> - The target streamer.
+						</li>
+						<li>
+							<strong>callback</strong>
+							<em>(function)</em> - callback.isFollowing is a boolean for if the user is following the
+							target or not. Callback.dateFollowed is a string for when the user started following the
+							target, but is null if she is not following the target.
+						</li>
+					</ul>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+<pre><code class="language-javascript">var folUser = 'skhmt';
+var folTarget = 'letsmakefriends';
+TWAPI.isFollowing( folUser, folTarget, function( res ) {
+	if ( res.isFollowing ) console.log( folUser + ' has been following ' + folTarget + ' since: ' + res.dateFollowed );
+	else console.log( folUser + ' is not following ' + folTarget + '.' );
+} );
+</code></pre>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="funcIsSubscribing">
+					<h2>TWAPI.isSubscribing( <em>user, channel, callback</em> )</h2>
+					<p>
+						Requires the <code>channel_check_subscription</code> permission. Checks if <code>user</code> is
+						subscribed to <code>channel</code>.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>user</strong>
+							<em>(string)</em> - The user to check.
+						</li>
+						<li>
+							<strong>channel</strong>
+							<em>(string)</em> - The channel to check against.
+						</li>
+						<li>
+							<strong>callback</strong>
+							<em>(function)</em> - Callback.isSubscribing is a boolean, true if subscribing, false if not.
+							Callback.dateSubscribed is the date subscribed.
+						</li>
+					</ul>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+<pre><code class="language-javascript">var subUser = 'skhmt';
+var subChannel = 'letsmakefriends';
+TWAPI.isSubscribing( subUser, subChannel, function( res ) {
+	if ( res.isSubscribing ) console.log( subUser + ' has been subbed to ' + subChannel + ' since: ' + res.dateSubscribed );
+	else console.log( subUser + ' is not subbed to ' + subChannel + '.' );
+} );
+</code></pre>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="funcIsPartner">
+					<h2>TWAPI.isPartner()</h2>
+					<p>
+						Checks if the channel is partnered with Twitch.tv.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>boolean</em> - True if a partner, false if not.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetSubBadgeUrl">
+					<h2>TWAPI.getSubBadgeUrl()</h2>
+					<p>
+						Gets the URL for the subscriber badge used in front of chat messages.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - URL for the subscriber badge. Empty if not partnered.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcRunCommercial">
+					<h2>TWAPI.runCommercial( <em>length</em> )</h2>
+					<p>
+						Requires the <code>channel_commercial</code> permission. Runs a commercial.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>length</strong>
+							<em>(integer)</em> - The seconds to run the commercial. If empty, defaults to 30 seconds.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="funcIsOnline">
+					<h2>TWAPI.isOnline()</h2>
+					<p>
+						Checks if the channel is online.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>boolean</em> - True if the channel is online, false if it's offline.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetFps">
+					<h2>TWAPI.getFps()</h2>
+					<p>
+						Gets the FPS the channel is currently running at.
+					</p>>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The frames per second of the channel.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetVideoHeight">
+					<h2>TWAPI.getVideoHeight()</h2>
+					<p>
+						Gets the video height (480, 720, 1080, etc) of the channel.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>integer</em> - The video height.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetDelay">
+					<h2>TWAPI.getDelay()</h2>
+					<p>
+						Gets the delay setting of the stream. This doesn't show actual delay from Twitch.tv to users,
+						just the intentionally added delay.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The delay.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetChatters">
+					<h2>TWAPI.getChatters()</h2>
+					<p>
+						Gets the current chatters in the chatroom.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>object</em> -
+<pre><code class="language-json">{
+	"moderators": ["user01", "user02", ...],
+	"staff": ["user11", "user12", ...],
+	"admins": ["user21", "user22", ...],
+	"global_mods": ["user31", "user32", ...],
+	"viewers": ["user41", "user42", ...]
+}
+</code></pre>
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcSetStatusGame">
+					<h2>TWAPI.setStatusGame( <em>status, game</em> )</h2>
+					<p>
+						Sets the channel's status (title) and game played.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>status</strong>
+							<em>(string)</em> - The status (title) for the stream.
+						</li>
+						<li>
+							<strong>game</strong>
+							<em>(string)</em> - The game being played in the stream.
+						</li>
+					</ul>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+<code class="language-javascript">TWAPI.setStatusGame('Making a Twitch Javascript Framework #programming', 'Creative');</code>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="funcCloseChat">
+					<h2>TWAPI.closeChat()</h2>
+					<p>
+						Closes the current chat, including the group (whisper) server connection, opened by TWAPI.runChat().
+						This is automatically invoked by TWAPI.runChat() before it opens a new chat, so it won't necessary
+						very often.
+					</p>
+				</div>
+
 
 				<!-- extra spaces for consistent scroll spy behavior purposes -->
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
 				<br>
 				<br>
 				<br>
@@ -362,50 +977,71 @@ function commandTestThing(params, from, mod, sub) {
 
 			<nav class="col-sm-3" id="myScrollspy">
 				<ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="85">
-					<li><strong>About</strong></li>
-						<li><a href="#about">TWAPI.js</a></li>
-					<li><strong>Listeners</strong></li>
-						<li><a href="#listenerRaw">twapiRaw</a></li>
-						<li><a href="#listenerRawGroup">twapiRawGroup</a></li>
-						<li><a href="#listenerMsg">twapiMsg</a></li>
-						<li><a href="#listenerWhisper">twapiWhisper</a></li>
-						<li><a href="#listenerNotice">twapiNotice</a></li>
-						<li><a href="#listenerNoticeGroup">twapiNoticeGroup</a></li>
-						<li><a href="#listenerJoin">twapiJoin</a></li>
-						<li><a href="#listenerPart">twapiPart</a></li>
-						<li><a href="#listenerClear">twapiClear</a></li>
-						<li><a href="#listenerHost">twapiHost</a></li>
-						<li><a href="#listenerFollow">twapiFollow</a></li>
-						<li><a href="#listenerSub">twapiSub</a></li>
-						<li><a href="#listenerSubMonths">twapiSubMonths</a></li>
-						<li><a href="#listenerSubsAway">twapiSubsAway</a></li>
-						<li><a href="#listenerRoomstate">twapiRoomstate</a></li>
-					<li><strong>Functions</strong></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
-						<li><a href="#util"></a></li>
+					<li>
+						<strong><a href="#about">About</a></strong>
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="#about">TWAPI.js</a></li>
+						</ul>
+					</li>
+					<li>
+						<strong><a href="#setup">Setup</a></strong>
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="#setup">setup</a></li>
+							<li><a href="#setupRunChat">runChat</a></li>
+						</ul>
+					</li>
+					<li>
+						<strong><a href="#listenerRaw">Listeners</a></strong>
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="#listenerRaw">twapiRaw</a></li>
+							<li><a href="#listenerRawGroup">twapiRawGroup</a></li>
+							<li><a href="#listenerMsg">twapiMsg</a></li>
+							<li><a href="#listenerWhisper">twapiWhisper</a></li>
+							<li><a href="#listenerNotice">twapiNotice</a></li>
+							<li><a href="#listenerNoticeGroup">twapiNoticeGroup</a></li>
+							<li><a href="#listenerJoin">twapiJoin</a></li>
+							<li><a href="#listenerPart">twapiPart</a></li>
+							<li><a href="#listenerClearUser">twapiClearUser</a></li>
+							<li><a href="#listenerClearChat">twapiClearChat</a></li>
+							<li><a href="#listenerHost">twapiHost</a></li>
+							<li><a href="#listenerFollow">twapiFollow</a></li>
+							<li><a href="#listenerSub">twapiSub</a></li>
+							<li><a href="#listenerSubMonths">twapiSubMonths</a></li>
+							<li><a href="#listenerSubsAway">twapiSubsAway</a></li>
+							<li><a href="#listenerRoomstate">twapiRoomstate</a></li>
+						</ul>
+					</li>
+					<li>
+						<strong><a href="#funcSendChat">Functions</a></strong>
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="#funcSendChat">sendChat</a></li>
+							<li><a href="#funcSendWhisper">sendWhisper</a></li>
+							<li><a href="#funcChangeChannel">changeChannel</a></li>
+							<li><a href="#funcGetUsername">getUsername</a></li>
+							<li><a href="#funcGetChannel">getChannel</a></li>
+							<li><a href="#funcGetGame">getGame</a></li>
+							<li><a href="#funcGetStatus">getStatus</a></li>
+							<li><a href="#funcGetFollowerCount">getFollowerCount</a></li>
+							<li><a href="#funcGetTotalViewCount">getTotalViewCount</a></li>
+							<li><a href="#funcGetCurrentViewCount">getCurrentViewCount</a></li>
+							<li><a href="#funcGetCreatedAt">getCreatedAt</a></li>
+							<li><a href="#funcGetLogo">getLogo</a></li>
+							<li><a href="#funcGetVideoBanner">getVideoBanner</a></li>
+							<li><a href="#funcGetProfileBanner">getProfileBanner</a></li>
+							<li><a href="#funcIsFollowing">isFollowing</a></li>
+							<li><a href="#funcIsSubscribing">isSubscribing</a></li>
+							<li><a href="#funcIsPartner">isPartner</a></li>
+							<li><a href="#funcGetSubBadgeUrl">getSubBadgeUrl</a></li>
+							<li><a href="#funcRunCommercial">runCommercial</a></li>
+							<li><a href="#funcIsOnline">isOnline</a></li>
+							<li><a href="#funcGetFps">getFps</a></li>
+							<li><a href="#funcGetVideoHeight">getVideoHeight</a></li>
+							<li><a href="#funcGetDelay">getDelay</a></li>
+							<li><a href="#funcGetChatters">getChatters</a></li>
+							<li><a href="#funcSetStatusGame">setStatusGame</a></li>
+							<li><a href="#funcCloseChat">closeChat</a></li>
+						</ul>
+					</li>
 				</ul>
 			</nav>
 
