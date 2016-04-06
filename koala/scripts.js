@@ -20,7 +20,7 @@ $(document).ready(function(){
 	access_token = document.location.hash.substring(14,44);
 
 	/* masking url, specifically the access_token */
-	history.pushState({}, "masked url", "/");
+	history.pushState({}, "masked url", "/koala/");
 
 	/* Detecting browser... if mobile, remove the videos and resize the remaining elements. */
 	if (
