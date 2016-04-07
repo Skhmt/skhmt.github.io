@@ -14,7 +14,6 @@
 	var oauth = ''; // oauth without "oauth:", requires chat_login
 	var channels = [];
 	var index = 0;
-
 	$(function(){
 		/* If there's no auth, send the user to the login page */
 		if ( document.location.hash.length < 50 ) {
@@ -23,15 +22,12 @@
 		}
 		else {
 			oauth = document.location.hash.substring(14,44);
-
 			history.pushState({}, "", "/getmods/"); // masking the url
-
 			TWAPI.setup(clientid, oauth, function(username) {
 				getFollowedChannels( username, 0 );
 			} );
 		}
 	});
-
 	function getFollowedChannels(username, offset) {
 		$.getJSON('https://api.twitch.tv/kraken/users/' + username + '/follows/channels?callback=?',
 			{ "limit":100, "offset": offset, "sortby": 'last_broadcast' },
@@ -47,7 +43,6 @@
 						mod: false
 					});
 				}
-
 				if ( folLen === 100 ) {
 					return getFollowedChannels(username, (offset+100) );
 				}
@@ -57,15 +52,12 @@
 			} // anonymous function
 		); // getJSON
 	} // getFollowedChannels
-
 	function outputChannels(username, numChannels) {
 		console.info( username + ' is following ' + numChannels + ' channels.');
 		// console.info( JSON.stringify(channels) );
-
 		document.addEventListener('twapiNotice', function(e){
 			console.log( e.detail );
 			var splitNotice = e.detail.split(' ');
-
 			// The moderators of this room are: ash_kay, ashalle,
 			if ( splitNotice[1] === 'moderators' ) {
 				var modList = e.detail.split(': ')[1].split(', ');
@@ -84,12 +76,10 @@
 				setMods(username);
 			}
 		} );
-
 		TWAPI.runChat(username, function() {
 			setMods(username);
 		} );
 	}
-
 	function setMods(username) {
 		if ( index >= channels.length ) {
 			TWAPI.closeChat();
@@ -97,11 +87,9 @@
 		}
 		var percent = parseInt( (index / channels.length * 100), 10 );
 		$('#output').html( percent + '% done<br>Getting info from: ' + channels[index].channel );
-
 		TWAPI.changeChannel( channels[index].channel );
 		setTimeout(function(){TWAPI.sendChat( '/mods' );}, 750);
 	}
-
 	function outputMods() {
 		var output = '<h3>You are a moderator for these channels:</h3><table>' +
 			'<tr><th>Channel</th><th>Partner</th><th>Followed</th><th>Last Stream</th><th>Followers</th></tr>';
@@ -117,7 +105,25 @@
 			}
 		}
 		output += '</table>';
-
+		$('#output').html( output );
+		outputNotMods();
+	}
+	
+	function outputNotMods() {
+		var output = '<h3>You are a NOT moderator for these channels:</h3><table>' +
+			'<tr><th>Channel</th><th>Partner</th><th>Followed</th><th>Last Stream</th><th>Followers</th></tr>';
+		for (var i = 0; i < channels.length; i++) {
+			if ( !(channels[i].mod) ) {
+				output += '<tr>' +
+					'<td><a href="https://www.twitch.tv/' + channels[i].channel + '/">' + channels[i].channel + '</a></td>' +
+					'<td>' + channels[i].partner + '</td>' +
+					'<td>' + (new Date(channels[i].followTime)).toLocaleDateString() + '</td>' +
+					'<td>' + (new Date(channels[i].lastStreamTime)).toLocaleDateString() + '</td>' +
+					'<td>' + channels[i].followers + '</td>' +
+					'</tr>';
+			}
+		}
+		output += '</table>';
 		$('#output').html( output );
 	}
 </script>
