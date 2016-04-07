@@ -164,23 +164,6 @@
 
 				<hr>
 
-				<div id="listenerRawGroup">
-					<h2>Listener - twapiRawGroup</h2>
-					<p>
-						Every RAW TMI message from the group (whisper) chat server. You most likely won't be using this unless
-						you need to parse for something that TWAPI.js doesn't already have a listener for.
-					</p>
-					<p><strong>Callback functions</strong></p>
-					<ul class="nobullet">
-						<li>
-							<strong>.detail</strong>
-							<em>(string)</em> - The raw message.
-						</li>
-					</ul>
-				</div>
-
-				<hr>
-
 				<div id="listenerMsg">
 					<h2>Listener - twapiMsg</h2>
 					<p>
@@ -312,22 +295,6 @@
 					<h2>Listener - twapiNotice</h2>
 					<p>
 						Notices from the standard chat server. For example, the response of the <code>/mods</code> command.
-					</p>
-					<p><strong>Callback functions</strong></p>
-					<ul class="nobullet">
-						<li>
-							<strong>.detail</strong>
-							<em>(string)</em> - The notice.
-						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="listenerNoticeGroup">
-					<h2>Listener - twapiNoticeGroup</h2>
-					<p>
-						Notices from the group (whisper) chat server.
 					</p>
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
@@ -1000,11 +967,9 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 						<strong><a href="#listenerRaw">Listeners</a></strong>
 						<ul class="nav nav-pills nav-stacked">
 							<li><a href="#listenerRaw">twapiRaw</a></li>
-							<li><a href="#listenerRawGroup">twapiRawGroup</a></li>
 							<li><a href="#listenerMsg">twapiMsg</a></li>
 							<li><a href="#listenerWhisper">twapiWhisper</a></li>
 							<li><a href="#listenerNotice">twapiNotice</a></li>
-							<li><a href="#listenerNoticeGroup">twapiNoticeGroup</a></li>
 							<li><a href="#listenerJoin">twapiJoin</a></li>
 							<li><a href="#listenerPart">twapiPart</a></li>
 							<li><a href="#listenerClearUser">twapiClearUser</a></li>
