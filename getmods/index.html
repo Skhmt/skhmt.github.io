@@ -38,7 +38,7 @@
 						channel: res.follows[i].channel.display_name,
 						partner: res.follows[i].channel.partner,
 						followTime: (new Date(res.follows[i].created_at)).getTime(),
-						lastStreamTime: (new Date(res.follows[i].channel.updated_at)).getTime(),
+						lastSeenTime: (new Date(res.follows[i].channel.updated_at)).getTime(),
 						followers: res.follows[i].channel.followers,
 						mod: false
 					});
@@ -92,14 +92,14 @@
 	}
 	function outputMods() {
 		var output = '<h3>You are a moderator for these channels:</h3><table>' +
-			'<tr><th>Channel</th><th>Partner</th><th>Followed</th><th>Last Stream</th><th>Followers</th></tr>';
+			'<tr><th>Channel</th><th>Partner</th><th>Followed</th><th>Last Seen</th><th>Followers</th></tr>';
 		for (var i = 0; i < channels.length; i++) {
 			if ( channels[i].mod ) {
 				output += '<tr>' +
 					'<td><a href="https://www.twitch.tv/' + channels[i].channel + '/">' + channels[i].channel + '</a></td>' +
 					'<td>' + channels[i].partner + '</td>' +
 					'<td>' + (new Date(channels[i].followTime)).toLocaleDateString() + '</td>' +
-					'<td>' + (new Date(channels[i].lastStreamTime)).toLocaleDateString() + '</td>' +
+					'<td>' + (new Date(channels[i].lastSeenTime)).toLocaleDateString() + '</td>' +
 					'<td>' + channels[i].followers + '</td>' +
 					'</tr>';
 			}
@@ -111,14 +111,14 @@
 	
 	function outputNotMods() {
 		var output = '<h3>You are a NOT moderator for these channels:</h3><table>' +
-			'<tr><th>Channel</th><th>Partner</th><th>Followed</th><th>Last Stream</th><th>Followers</th></tr>';
+			'<tr><th>Channel</th><th>Partner</th><th>Followed</th><th>Last Seen</th><th>Followers</th></tr>';
 		for (var i = 0; i < channels.length; i++) {
 			if ( !(channels[i].mod) ) {
 				output += '<tr>' +
 					'<td><a href="https://www.twitch.tv/' + channels[i].channel + '/">' + channels[i].channel + '</a></td>' +
 					'<td>' + channels[i].partner + '</td>' +
 					'<td>' + (new Date(channels[i].followTime)).toLocaleDateString() + '</td>' +
-					'<td>' + (new Date(channels[i].lastStreamTime)).toLocaleDateString() + '</td>' +
+					'<td>' + (new Date(channels[i].lastSeenTime)).toLocaleDateString() + '</td>' +
 					'<td>' + channels[i].followers + '</td>' +
 					'</tr>';
 			}
