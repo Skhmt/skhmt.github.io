@@ -88,7 +88,7 @@
 		var percent = parseInt( (index / channels.length * 100), 10 );
 		$('#output').html( percent + '% done<br>Getting info from: ' + channels[index].channel );
 		TWAPI.changeChannel( channels[index].channel );
-		setTimeout(function(){TWAPI.sendChat( '/mods' );}, 100);
+		setTimeout(function(){TWAPI.sendChat( '/mods' );}, 500);
 	}
 	function outputMods() {
 		var output = '<h3>You are a moderator for these channels:</h3><table>' +
