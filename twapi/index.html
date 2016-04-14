@@ -69,12 +69,15 @@
 					</p>
 					<p>
 						Its intended use is for client-side web apps, CLI/BrowserSource pages for OBS, and NW.js/Electron desktop apps.
-						It will not work with vanilla node.js due to the use of <code>document.(event functions)</code> and browser-based
-						websockets.
+						It will work with Node.js if you <code>npm install ws</code>.
 					</p>
 					<p>
 						The example <a href="https://github.com/Skhmt/twapi.js/blob/master/test.html">test.html</a> shows how to use TWAPI.js
 						in a simple chatroom reading website. The example requires inputting your own clientid and oauth to work.
+					</p>
+					<p>
+						The example <a href="https://github.com/Skhmt/twapi.js/blob/master/test.js">test.js</a> shows how to use TWAPI.js
+						in a Node.js app. This requires <code>npm install ws</code>.
 					</p>
 				</div>
 
@@ -142,7 +145,7 @@
 				<hr>
 
 				<div id="listenerRaw">
-					<h2>Listener - twapiRaw</h2>
+					<h2>Listener - raw</h2>
 					<p>
 						Every RAW TMI message from the standard chat server. You most likely won't be using this unless
 						you need to parse for something that TWAPI.js doesn't already have a listener for.
@@ -157,7 +160,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-							<code class="language-javascript">document.addEventListener('twapiRaw', function( e ) { console.log(e.detail); } );</code>
+							<code class="language-javascript">TWAPI.listen('raw', function( e ) { console.log(e.detail); } );</code>
 						</li>
 					</ul>
 				</div>
@@ -165,7 +168,7 @@
 				<hr>
 
 				<div id="listenerMsg">
-					<h2>Listener - twapiMsg</h2>
+					<h2>Listener - message</h2>
 					<p>
 						A regular message (PRIVMSG in IRC) from the standard chat server. This includes actions (/me).
 					</p>
@@ -211,7 +214,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">document.addEventListener('twapiMsg', function( e ) {
+<pre><code class="language-javascript">TWAPI.listen('message', function( e ) {
 	var output = (e.detail.mod ? '&lt;img src="http://chat-badges.s3.amazonaws.com/mod.png">' : '') +
 		(e.detail.sub  ?'&lt;img src="' + TWAPI.getSubBadgeUrl() + '">' : '') +
 		(e.detail.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
@@ -232,7 +235,7 @@
 				<hr>
 
 				<div id="listenerWhisper">
-					<h2>Listener - twapiWhisper</h2>
+					<h2>Listener - whisper</h2>
 					<p>
 						A whisper sent via the group chat channel.
 					</p>
@@ -274,7 +277,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">document.addEventListener('twapiWhisper', function( e ) {
+<pre><code class="language-javascript">TWAPI.listen('whisper', function( e ) {
 	var output = (e.detail.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
 		'&lt;strong style="color: ' + e.detail.color + ';">' +
 		e.detail.from +
@@ -292,7 +295,7 @@
 				<hr>
 
 				<div id="listenerNotice">
-					<h2>Listener - twapiNotice</h2>
+					<h2>Listener - notice</h2>
 					<p>
 						Notices from the standard chat server. For example, the response of the <code>/mods</code> command.
 					</p>
@@ -308,7 +311,7 @@
 				<hr>
 
 				<div id="listenerJoin">
-					<h2>Listener - twapiJoin</h2>
+					<h2>Listener - join</h2>
 					<p>
 						When a user joins your channel. Fires for every user in the channel when you enter, so be careful
 						on how you use this. This doesn't seem to be real-time, unlike real IRC.
@@ -325,7 +328,7 @@
 				<hr>
 
 				<div id="listenerPart">
-					<h2>Listener - twapiPart</h2>
+					<h2>Listener - part</h2>
 					<p>
 						When a user leaves your channel. This doesn't seem to be real-time, unlike real IRC.
 					</p>
@@ -341,7 +344,7 @@
 				<hr>
 
 				<div id="listenerClearUser">
-					<h2>Listener - twapiClearUser</h2>
+					<h2>Listener - clearUser</h2>
 					<p>
 						This is sent when a user is timed out or banned or "purged" by a moderator. The default action
 						should be to remove or hide all of that user's previous chat text.
@@ -358,7 +361,7 @@
 				<hr>
 
 				<div id="listenerClearChat">
-					<h2>Listener - twapiClearChat</h2>
+					<h2>Listener - clearChat</h2>
 					<p>
 						This is sent when a moderator wants to purge all of the chat. The default action should be to
 						remove or hide all of the previous chatroom text.
@@ -368,7 +371,7 @@
 				<hr>
 
 				<div id="listenerHost">
-					<h2>Listener - twapiHost</h2>
+					<h2>Listener - host</h2>
 					<p>
 						This is sent when the user (not the channel) is hosted. If the logged in user is not the
 						broadcaster, this will not be an accurate notification of hosts.
@@ -391,7 +394,7 @@
 				<hr>
 
 				<div id="listenerFollow">
-					<h2>Listener - twapiFollow</h2>
+					<h2>Listener - follow</h2>
 					<p>
 						This is sent when a user follows the channel. The limitation is about 100 follows per minute. Any
 						more might get lost.
@@ -408,7 +411,7 @@
 				<hr>
 
 				<div id="listenerSub">
-					<h2>Listener - twapiSub</h2>
+					<h2>Listener - sub</h2>
 					<p>
 						Subscription notification.
 					</p>
@@ -424,7 +427,7 @@
 				<hr>
 
 				<div id="listenerSubMonths">
-					<h2>Listener - twapiSubMonths</h2>
+					<h2>Listener - subMonths</h2>
 					<p>
 						Resubscription and months notification.
 					</p>
@@ -444,7 +447,7 @@
 				<hr>
 
 				<div id="listenerSubsAway">
-					<h2>Listener - twapiSubsAway</h2>
+					<h2>Listener - subsAway</h2>
 					<p>
 						Number of subscribers since you've been offline.
 					</p>
@@ -460,7 +463,7 @@
 				<hr>
 
 				<div id="listenerRoomstate">
-					<h2>Listener - twapiRoomstate</h2>
+					<h2>Listener - roomstate</h2>
 					<p>
 						The roomstate options set on a room.
 					</p>
@@ -486,7 +489,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">document.addEventListener('twapiRoomstate', function( e ) {
+<pre><code class="language-javascript">TWAPI.listen('roomstate', function( e ) {
 	var output = 'Roomstate options: ';
 	if ( e.detail.lang ) output += ' lang:' + e.detail.lang;
 	if ( e.detail.r9k ) output += ' r9k';
@@ -528,7 +531,7 @@
 						Sends a whisper to a specific user.
 					</p>
 					<p>
-						If you use whispers, it might be a good idea to get your app 
+						If you use whispers, it might be a good idea to get your app
 						<a href="https://discuss.dev.twitch.tv/t/are-your-whispers-not-going-through-for-your-bot/5183">whitelisted</a>.
 					</p>
 					<p><strong>Parameters</strong></p>
@@ -966,20 +969,20 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 					<li>
 						<strong><a href="#listenerRaw">Listeners</a></strong>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#listenerRaw">twapiRaw</a></li>
-							<li><a href="#listenerMsg">twapiMsg</a></li>
-							<li><a href="#listenerWhisper">twapiWhisper</a></li>
-							<li><a href="#listenerNotice">twapiNotice</a></li>
-							<li><a href="#listenerJoin">twapiJoin</a></li>
-							<li><a href="#listenerPart">twapiPart</a></li>
-							<li><a href="#listenerClearUser">twapiClearUser</a></li>
-							<li><a href="#listenerClearChat">twapiClearChat</a></li>
-							<li><a href="#listenerHost">twapiHost</a></li>
-							<li><a href="#listenerFollow">twapiFollow</a></li>
-							<li><a href="#listenerSub">twapiSub</a></li>
-							<li><a href="#listenerSubMonths">twapiSubMonths</a></li>
-							<li><a href="#listenerSubsAway">twapiSubsAway</a></li>
-							<li><a href="#listenerRoomstate">twapiRoomstate</a></li>
+							<li><a href="#listenerRaw">raw</a></li>
+							<li><a href="#listenerMsg">message</a></li>
+							<li><a href="#listenerWhisper">whisper</a></li>
+							<li><a href="#listenerNotice">notice</a></li>
+							<li><a href="#listenerJoin">join</a></li>
+							<li><a href="#listenerPart">part</a></li>
+							<li><a href="#listenerClearUser">clearUser</a></li>
+							<li><a href="#listenerClearChat">clearChat</a></li>
+							<li><a href="#listenerHost">host</a></li>
+							<li><a href="#listenerFollow">follow</a></li>
+							<li><a href="#listenerSub">sub</a></li>
+							<li><a href="#listenerSubMonths">subMonths</a></li>
+							<li><a href="#listenerSubsAway">subsAway</a></li>
+							<li><a href="#listenerRoomstate">roomstate</a></li>
 						</ul>
 					</li>
 					<li>
