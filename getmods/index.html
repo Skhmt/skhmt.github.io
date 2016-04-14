@@ -55,7 +55,7 @@
 	function outputChannels(username, numChannels) {
 		console.info( username + ' is following ' + numChannels + ' channels.');
 		// console.info( JSON.stringify(channels) );
-		document.addEventListener('twapiNotice', function(e){
+		TWAPI.listen('notice', function(e){
 			console.log( e.detail );
 			var splitNotice = e.detail.split(' ');
 			// The moderators of this room are: ash_kay, ashalle,
