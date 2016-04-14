@@ -153,14 +153,14 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail</strong>
+							<strong>res</strong>
 							<em>(string)</em> - The raw message.
 						</li>
 					</ul>
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-							<code class="language-javascript">TWAPI.listen('raw', function( e ) { console.log(e.detail); } );</code>
+							<code class="language-javascript">TWAPI.listen('raw', function( res ) { console.log( res ); } );</code>
 						</li>
 					</ul>
 				</div>
@@ -175,56 +175,56 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail.from</strong>
+							<strong>res.from</strong>
 							<em>(string)</em> - The username of the person who sent the message.
 						</li>
 						<li>
-							<strong>.detail.text</strong>
+							<strong>res.text</strong>
 							<em>(string)</em> - The text of the message.
 						</li>
 						<li>
-							<strong>.detail.color</strong>
+							<strong>res.color</strong>
 							<em>(string)</em> - The color of the user name.
 						</li>
 						<li>
-							<strong>.detail.emotes</strong>
+							<strong>res.emotes</strong>
 							<em>(string)</em> - The emote id and character locations. See: https://github.com/justintv/Twitch-API/blob/master/IRC.md#privmsg.
 						</li>
 						<li>
-							<strong>.detail.action</strong>
+							<strong>res.action</strong>
 							<em>(boolean)</em> - True if it is an action (<code>/me</code>), false if it is a regular message.
 						</li>
 						<li>
-							<strong>.detail.streamer</strong>
+							<strong>res.streamer</strong>
 							<em>(boolean)</em> - True if the streamer (channel name) sent the message, false if it is anyone else.
 						</li>
 						<li>
-							<strong>.detail.mod</strong>
+							<strong>res.mod</strong>
 							<em>(boolean)</em> - True if the user that sent the message is a moderator, false if not.
 						</li>
 						<li>
-							<strong>.detail.sub</strong>
+							<strong>res.sub</strong>
 							<em>(boolean)</em> - True if the user that sent the message is a subscriber, false if not.
 						</li>
 						<li>
-							<strong>.detail.turbo</strong>
+							<strong>res.turbo</strong>
 							<em>(boolean)</em> - True if the user that sent the message has turbo, false if not.
 						</li>
 					</ul>
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">TWAPI.listen('message', function( e ) {
-	var output = (e.detail.mod ? '&lt;img src="http://chat-badges.s3.amazonaws.com/mod.png">' : '') +
-		(e.detail.sub  ?'&lt;img src="' + TWAPI.getSubBadgeUrl() + '">' : '') +
-		(e.detail.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
-		(e.detail.streamer ? '&lt;img src="http://chat-badges.s3.amazonaws.com/broadcaster.png">' : '') +
-		'&lt;strong style="color: ' + e.detail.color + ';">' +
-		e.detail.from +
+<pre><code class="language-javascript">TWAPI.listen('message', function( res ) {
+	var output = (res.mod ? '&lt;img src="http://chat-badges.s3.amazonaws.com/mod.png">' : '') +
+		(res.sub  ?'&lt;img src="' + TWAPI.getSubBadgeUrl() + '">' : '') +
+		(res.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
+		(res.streamer ? '&lt;img src="http://chat-badges.s3.amazonaws.com/broadcaster.png">' : '') +
+		'&lt;strong style="color: ' + res.color + ';">' +
+		res.from +
 		'&lt;/strong>&nbsp;' +
-		(e.detail.action ? '&lt;span style="color: ' + e.detail.color + ';">' : ':&nbsp;&nbsp;') +
-		e.detail.text +
-		(e.detail.action ? '&lt;/span>' : '' );
+		(res.action ? '&lt;span style="color: ' + res.color + ';">' : ':&nbsp;&nbsp;') +
+		res.text +
+		(res.action ? '&lt;/span>' : '' );
 	document.querySelector('#chat').innerHTML += output;
 } );
 </code></pre>
@@ -242,49 +242,49 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail.from</strong>
+							<strong>res.from</strong>
 							<em>(string)</em> - The user that sent the whisper.
 						</li>
 						<li>
-							<strong>.detail.to</strong>
+							<strong>res.to</strong>
 							<em>(string)</em> - The recipient of the whisper (the bot name).
 						</li>
 						<li>
-							<strong>.detail.text</strong>
+							<strong>res.text</strong>
 							<em>(string)</em> - The text of the whisper.
 						</li>
 						<li>
-							<strong>.detail.color</strong>
+							<strong>res.color</strong>
 							<em>(string)</em> - The color of the sender's name.
 						</li>
 						<li>
-							<strong>.detail.turbo</strong>
+							<strong>res.turbo</strong>
 							<em>(boolean)</em> - True if the sender is turbo, false if not.
 						</li>
 						<li>
-							<strong>.detail.message_id</strong>
+							<strong>res.message_id</strong>
 							<em>(integer)</em> - Message id.
 						</li>
 						<li>
-							<strong>.detail.thread_id</strong>
+							<strong>res.thread_id</strong>
 							<em>(integer)</em> - Thread id.
 						</li>
 						<li>
-							<strong>.detail.user_id</strong>
+							<strong>res.user_id</strong>
 							<em>(integer)</em> - User id.
 						</li>
 					</ul>
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">TWAPI.listen('whisper', function( e ) {
-	var output = (e.detail.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
-		'&lt;strong style="color: ' + e.detail.color + ';">' +
-		e.detail.from +
+<pre><code class="language-javascript">TWAPI.listen('whisper', function( res ) {
+	var output = (res.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
+		'&lt;strong style="color: ' + res.color + ';">' +
+		res.from +
 		'&lt;/strong>' +
 		' &gt; ' +
-		'&lt;strong>' + e.detail.to + '&lt;/strong> : ' +
-		e.detail.text;
+		'&lt;strong>' + res.to + '&lt;/strong> : ' +
+		res.text;
 	document.querySelector('#chat').innerHTML += output;
 } );
 </code></pre>
@@ -302,7 +302,7 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail</strong>
+							<strong>res</strong>
 							<em>(string)</em> - The notice.
 						</li>
 					</ul>
@@ -319,7 +319,7 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail</strong>
+							<strong>res</strong>
 							<em>(string)</em> - The entering user's name.
 						</li>
 					</ul>
@@ -335,7 +335,7 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail</strong>
+							<strong>res</strong>
 							<em>(string)</em> - The parting user's name.
 						</li>
 					</ul>
@@ -352,7 +352,7 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail</strong>
+							<strong>res</strong>
 							<em>(string)</em> - The cleared user's name.
 						</li>
 					</ul>
@@ -385,7 +385,7 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail</strong>
+							<strong>res</strong>
 							<em>(string)</em> - The user that hosted you.
 						</li>
 					</ul>
@@ -402,7 +402,7 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail</strong>
+							<strong>res</strong>
 							<em>(string)</em> - The user that followed the channel.
 						</li>
 					</ul>
@@ -418,7 +418,7 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail</strong>
+							<strong>res</strong>
 							<em>(string)</em> - The user that subscribed.
 						</li>
 					</ul>
@@ -434,11 +434,11 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail.name</strong>
+							<strong>res.name</strong>
 							<em>(string)</em> - The name of the person that resubscribed.
 						</li>
 						<li>
-							<strong>.detail.months</strong>
+							<strong>res.months</strong>
 							<em>(integer)</em> - Number of months subscribed. Alternatively, number resubscribes + 1.
 						</li>
 					</ul>
@@ -454,7 +454,7 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail</strong>
+							<strong>res</strong>
 							<em>(integer)</em> - Number of subscribers.
 						</li>
 					</ul>
@@ -470,32 +470,32 @@
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
 						<li>
-							<strong>.detail.lang</strong>
+							<strong>res.lang</strong>
 							<em>(string)</em> - The language of the room. Often left blank.
 						</li>
 						<li>
-							<strong>.detail.r9k</strong>
+							<strong>res.r9k</strong>
 							<em>(boolean)</em> - True if the room is in r9k mode, false if not.
 						</li>
 						<li>
-							<strong>.detail.slow</strong>
+							<strong>res.slow</strong>
 							<em>(boolean)</em> - True if the room is in slow mode, false if not.
 						</li>
 						<li>
-							<strong>.detail.subs_only</strong>
+							<strong>res.subs_only</strong>
 							<em>(boolean)</em> - True if the room is in subs (and mods) only mode, false if not.
 						</li>
 					</ul>
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">TWAPI.listen('roomstate', function( e ) {
+<pre><code class="language-javascript">TWAPI.listen('roomstate', function( res ) {
 	var output = 'Roomstate options: ';
-	if ( e.detail.lang ) output += ' lang:' + e.detail.lang;
-	if ( e.detail.r9k ) output += ' r9k';
-	if ( e.detail.slow ) output += ' slow';
-	if ( e.detail.subs_only ) output += ' subs-only';
-	if ( !e.detail.lang && !e.detail.r9k && !e.detail.slow && !e.detail.subs_only ) {
+	if ( res.lang ) output += ' lang:' + res.lang;
+	if ( res.r9k ) output += ' r9k';
+	if ( res.slow ) output += ' slow';
+	if ( res.subs_only ) output += ' subs-only';
+	if ( !res.lang && !res.r9k && !res.slow && !res.subs_only ) {
 		output += ' none.';
 	}
 	document.querySelector('#chat').innerHTML += output;
