@@ -56,11 +56,11 @@
 		console.info( username + ' is following ' + numChannels + ' channels.');
 		// console.info( JSON.stringify(channels) );
 		TWAPI.listen('notice', function(e){
-			console.log( e.detail );
-			var splitNotice = e.detail.split(' ');
+			console.log( e );
+			var splitNotice = e.split(' ');
 			// The moderators of this room are: ash_kay, ashalle,
 			if ( splitNotice[1] === 'moderators' ) {
-				var modList = e.detail.split(': ')[1].split(', ');
+				var modList = e.split(': ')[1].split(', ');
 				for (var i = 0; i < modList.length; i++) {
 					if ( username == modList[i] ) {
 						channels[index].mod = true;
