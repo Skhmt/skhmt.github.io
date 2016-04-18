@@ -566,6 +566,59 @@
 
 				<hr>
 
+				<div id="funcRunCommercial">
+					<h2>TWAPI.runCommercial( <em>length</em> )</h2>
+					<p>
+						Requires the <code>channel_commercial</code> permission. Runs a commercial.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>length</strong>
+							<em>(integer)</em> - The seconds to run the commercial. If empty, defaults to 30 seconds.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="funcSetStatusGame">
+					<h2>TWAPI.setStatusGame( <em>status, game</em> )</h2>
+					<p>
+						Sets the channel's status (title) and game played.
+					</p>
+					<p><strong>Parameters</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>status</strong>
+							<em>(string)</em> - The status (title) for the stream.
+						</li>
+						<li>
+							<strong>game</strong>
+							<em>(string)</em> - The game being played in the stream.
+						</li>
+					</ul>
+					<p><strong>Example</strong></p>
+					<ul class="nobullet">
+						<li>
+<code class="language-javascript">TWAPI.setStatusGame('Making a Twitch Javascript Framework #programming', 'Creative');</code>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="funcCloseChat">
+					<h2>TWAPI.closeChat()</h2>
+					<p>
+						Closes the current chat, including the group (whisper) server connection, opened by TWAPI.runChat().
+						This is automatically invoked by TWAPI.runChat() before it opens a new chat, so it won't be necessary
+						very often.
+					</p>
+				</div>
+
+				<hr>
+
 				<div id="funcGetUsername">
 					<h2>TWAPI.getUsername()</h2>
 					<p>
@@ -709,6 +762,98 @@
 
 				<hr>
 
+				<div id="funcGetDisplayName">
+					<h2>TWAPI.getDisplayName()</h2>
+					<p>
+						Gets the user's display name, which includes capitalization, while getUsername always reutrns
+						lowercase.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The display name of the user.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetColor">
+					<h2>TWAPI.getColor()</h2>
+					<p>
+						Gets the user's preferred coloring in the '#ABC123' hex format.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The username color.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetEmoteSets">
+					<h2>TWAPI.getEmoteSets()</h2>
+					<p>
+						Gets the user's emote sets in comma-separated format.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The emote sets.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetMod">
+					<h2>TWAPI.getMod()</h2>
+					<p>
+						Returns a 1 if the user is a moderator in the channel or a 0 if not.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>integer</em> - 1 if moderator, 0 if not.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetSub">
+					<h2>TWAPI.getSub()</h2>
+					<p>
+						Returns a 1 if the user is a subscriber to the channel or a 0 if not.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>integer</em> - 1 if subscriber, 0 if not.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetTurbo">
+					<h2>TWAPI.getTurbo()</h2>
+					<p>
+						Returns a 1 if the user is paying for Turbo or a 0 if not.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>integer</em> - 1 if turbo, 0 if not.
+					</p>
+				</div>
+
+				<hr>
+
+				<div id="funcGetUserType">
+					<h2>TWAPI.getUserType()</h2>
+					<p>
+						The user's usertype. For example, 'staff'.
+					</p>
+					<p>
+						<strong>Returns</strong>
+						<em>string</em> - The user type.
+					</p>
+				</div>
+
+				<hr>
+
 				<div id="funcIsFollowing">
 					<h2>TWAPI.isFollowing( <em>user, target, callback</em> )</h2>
 					<p>
@@ -811,22 +956,6 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 
 				<hr>
 
-				<div id="funcRunCommercial">
-					<h2>TWAPI.runCommercial( <em>length</em> )</h2>
-					<p>
-						Requires the <code>channel_commercial</code> permission. Runs a commercial.
-					</p>
-					<p><strong>Parameters</strong></p>
-					<ul class="nobullet">
-						<li>
-							<strong>length</strong>
-							<em>(integer)</em> - The seconds to run the commercial. If empty, defaults to 30 seconds.
-						</li>
-					</ul>
-				</div>
-
-				<hr>
-
 				<div id="funcIsOnline">
 					<h2>TWAPI.isOnline()</h2>
 					<p>
@@ -899,43 +1028,6 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 					</p>
 				</div>
 
-				<hr>
-
-				<div id="funcSetStatusGame">
-					<h2>TWAPI.setStatusGame( <em>status, game</em> )</h2>
-					<p>
-						Sets the channel's status (title) and game played.
-					</p>
-					<p><strong>Parameters</strong></p>
-					<ul class="nobullet">
-						<li>
-							<strong>status</strong>
-							<em>(string)</em> - The status (title) for the stream.
-						</li>
-						<li>
-							<strong>game</strong>
-							<em>(string)</em> - The game being played in the stream.
-						</li>
-					</ul>
-					<p><strong>Example</strong></p>
-					<ul class="nobullet">
-						<li>
-<code class="language-javascript">TWAPI.setStatusGame('Making a Twitch Javascript Framework #programming', 'Creative');</code>
-						</li>
-					</ul>
-				</div>
-
-				<hr>
-
-				<div id="funcCloseChat">
-					<h2>TWAPI.closeChat()</h2>
-					<p>
-						Closes the current chat, including the group (whisper) server connection, opened by TWAPI.runChat().
-						This is automatically invoked by TWAPI.runChat() before it opens a new chat, so it won't be necessary
-						very often.
-					</p>
-				</div>
-
 
 				<!-- extra spaces for consistent scroll spy behavior purposes -->
 				<br>
@@ -986,11 +1078,19 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 						</ul>
 					</li>
 					<li>
-						<strong><a href="#funcSendChat">Functions</a></strong>
+						<strong><a href="#funcSendChat">Functions - actions</a></strong>
 						<ul class="nav nav-pills nav-stacked">
 							<li><a href="#funcSendChat">sendChat</a></li>
 							<li><a href="#funcSendWhisper">sendWhisper</a></li>
 							<li><a href="#funcChangeChannel">changeChannel</a></li>
+							<li><a href="#funcRunCommercial">runCommercial</a></li>
+							<li><a href="#funcSetStatusGame">setStatusGame</a></li>
+							<li><a href="#funcCloseChat">closeChat</a></li>
+						</ul>
+					</li>
+					<li>
+						<strong><a href="#funcSendChat">Functions - information</a></strong>
+						<ul class="nav nav-pills nav-stacked">
 							<li><a href="#funcGetUsername">getUsername</a></li>
 							<li><a href="#funcGetChannel">getChannel</a></li>
 							<li><a href="#funcGetGame">getGame</a></li>
@@ -1002,18 +1102,22 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 							<li><a href="#funcGetLogo">getLogo</a></li>
 							<li><a href="#funcGetVideoBanner">getVideoBanner</a></li>
 							<li><a href="#funcGetProfileBanner">getProfileBanner</a></li>
+							<li><a href="#funcGetDisplayName">getDisplayName</a></li>
+							<li><a href="#funcGetColor">getColor</a></li>
+							<li><a href="#funcGetEmoteSets">getEmoteSets</a></li>
+							<li><a href="#funcGetMod">getMod</a></li>
+							<li><a href="#funcGetSub">getSub</a></li>
+							<li><a href="#funcGetTurbo">getTurbo</a></li>
+							<li><a href="#funcGetUserType">getUserType</a></li>
 							<li><a href="#funcIsFollowing">isFollowing</a></li>
 							<li><a href="#funcIsSubscribing">isSubscribing</a></li>
 							<li><a href="#funcIsPartner">isPartner</a></li>
 							<li><a href="#funcGetSubBadgeUrl">getSubBadgeUrl</a></li>
-							<li><a href="#funcRunCommercial">runCommercial</a></li>
 							<li><a href="#funcIsOnline">isOnline</a></li>
 							<li><a href="#funcGetFps">getFps</a></li>
 							<li><a href="#funcGetVideoHeight">getVideoHeight</a></li>
 							<li><a href="#funcGetDelay">getDelay</a></li>
 							<li><a href="#funcGetChatters">getChatters</a></li>
-							<li><a href="#funcSetStatusGame">setStatusGame</a></li>
-							<li><a href="#funcCloseChat">closeChat</a></li>
 						</ul>
 					</li>
 				</ul>
