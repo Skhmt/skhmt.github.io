@@ -492,10 +492,10 @@
 <pre><code class="language-javascript">TWAPI.listen('roomstate', function( res ) {
 	var output = 'Roomstate options: ';
 	if ( res.lang ) output += ' lang:' + res.lang;
-	if ( res.r9k ) output += ' r9k';
-	if ( res.slow ) output += ' slow';
-	if ( res.subs_only ) output += ' subs-only';
-	if ( !res.lang && !res.r9k && !res.slow && !res.subs_only ) {
+	if ( res.r9k == 1 ) output += ' r9k';
+	if ( res.slow == 1 ) output += ' slow';
+	if ( res.subs_only == 1 ) output += ' subs-only';
+	if ( !res.lang && res.r9k != 1 && res.slow != 1 && res.subs_only != 1 ) {
 		output += ' none.';
 	}
 	document.querySelector('#chat').innerHTML += output;
