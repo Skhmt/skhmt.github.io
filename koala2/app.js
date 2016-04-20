@@ -27,6 +27,10 @@ $( function() {
 	$('#saveStatusButton').click( function() {
 		changeStatusSubmit();
 	} );
+	
+	$("#sortable").sortable({
+		handle: ".handle"
+	});
 } );
 
 function refresh( seconds ) {
