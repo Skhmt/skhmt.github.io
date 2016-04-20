@@ -10,6 +10,9 @@
 	<script>
 		/* If there's no auth, send the user to the login page */
 		if ( document.location.hash.length < 50 ) {
+
+			document.querySelectorAll('body')[0].innerHTML = '';
+
 			window.location = `https://api.twitch.tv/kraken/oauth2/authorize?
 			response_type=token&
 			client_id=${clientid}&
