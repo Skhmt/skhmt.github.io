@@ -1,0 +1,299 @@
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>StreamKoala 2.0</title>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/superhero/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+	<script src="https://skhmt.github.io/twapi/twapi.min.js"></script>
+
+	<script>
+////////////////////////////////////////////////////////////////////////////////
+
+var username = '';
+
+$( function() {
+	var clientid = '3s27p59atb0bwu6vkh2rnrxeqx3dn3h'; //streamkoala2 public client id
+	var oauth = '';
+
+	/* If there's no auth, send the user to the login page */
+	if ( document.location.hash.length < 50 ) {
+		window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&' +
+		'client_id=4jyaf3yr336f1deiktkvru3g7dvtzed&redirect_uri=http://skhmt.github.io/koala2/&scope=chat_login&force_verify=true';
+	}
+	else {
+		oauth = document.location.hash.substring(14,44);
+		history.pushState({}, "", "/koala2/"); // masking the url
+
+		TWAPI.setup( clientid, oauth, function(user) {
+			username = user;
+			$('#username').html( username );
+			var channel = username;
+			TWAPI.runChat( channel, function() {
+				$('#twitchVideo').attr( 'src', 'http://player.twitch.tv/?autoplay=true&muted=true&channel=' + channel );
+				$('#chatframe').attr( 'src', 'http://www.twitch.tv/' + channel + '/chat' );
+				$('#username').html( TWAPI.getDisplayName() );
+				refresh(5);
+			} );
+		} );
+	}
+
+	// UI
+
+	$('.updateStatusButton').click( function() {
+		changeStatusOpen();
+	} );
+
+	$('#saveStatusButton').click( function() {
+		changeStatusSubmit();
+	} );
+} );
+
+function refresh( seconds ) {
+	// online status
+	if ( TWAPI.isOnline() ) {
+		document.getElementById('username').className = 'text-success';
+	}
+	else {
+		document.getElementById('username').className = 'text-danger';
+	}
+
+	$('#game').html( TWAPI.getGame() );
+	$('#status').html( TWAPI.getStatus() );
+
+	updateUserlist();
+	updateViewers();
+
+	if ( seconds ) {
+		setTimeout( function() {
+			refresh(seconds);
+		}, seconds*1000 );
+	}
+}
+
+function updateViewers() {
+	$('#viewercount').html( `
+		<i class="fa fa-user fa-fw text-info"></i>
+		&nbsp;&nbsp;&nbsp;${TWAPI.getCurrentViewCount().toLocaleString()}
+		<br>
+		<i class="fa fa-heart fa-fw text-danger"></i>
+		&nbsp;&nbsp;&nbsp;${TWAPI.getFollowerCount().toLocaleString()}`
+	);
+}
+
+function updateUserlist() {
+	var output = '';
+	if ( !TWAPI.getChatters().staff ) return;
+
+	if ( TWAPI.getChatters().staff.length > 0  ) {
+		output += `<p> <b style="color: #C9F;">STAFF</b> &mdash;
+			<b>${TWAPI.getChatters().staff.length.toLocaleString()}</b> <br> `;
+
+		for (var i = 0; i < TWAPI.getChatters().staff.length; i++) {
+			var tempuser = TWAPI.getChatters().staff[i];
+			output += `${tempuser} <br> `;
+		}
+		output += '</p> ';
+	}
+
+	if ( TWAPI.getChatters().moderators.length > 0 ) {
+		output += `<p> <b style="color: #34ae0a;">MODS</b> &mdash;
+			<b>${TWAPI.getChatters().moderators.length.toLocaleString()}</b> <br> `;
+
+		for (var i = 0; i < TWAPI.getChatters().moderators.length; i++) {
+			var tempuser = TWAPI.getChatters().moderators[i];
+			output += `${tempuser} <br> `;
+		}
+		output += '</p> ';
+	}
+
+	if ( TWAPI.getChatters().admins.length > 0 ) {
+		output += `<p> <b style="color: #faaf19;">ADMINS</b> &mdash;
+			<b>${TWAPI.getChatters().admins.length.toLocaleString()}</b> <br> `;
+
+		for (var i = 0; i < TWAPI.getChatters().admins.length; i++) {
+			var tempuser = TWAPI.getChatters().admins[i];
+			output += `${tempuser} <br> `;
+		}
+		output += '</p> ';
+	}
+
+	if ( TWAPI.getChatters().global_mods.length > 0 ) {
+		output += `<p> <b style="color: #1a7026;">GLOBAL MODS</b> &mdash;
+			<b>${TWAPI.getChatters().global_mods.length.toLocaleString()}</b> <br> `;
+
+		for (var i = 0; i < TWAPI.getChatters().global_mods.length; i++) {
+			var tempuser = TWAPI.getChatters().global_mods[i];
+			output += `${tempuser} <br> `;
+		}
+		output += '</p> ';
+	}
+
+	if ( TWAPI.getChatters().viewers.length > 0 ) {
+		output += `<p> <b style="color: #3CF;">VIEWERS</b> &mdash;
+			<b>${TWAPI.getChatters().viewers.length.toLocaleString()}</b> <br> `;
+
+		for (var i = 0; i < TWAPI.getChatters().viewers.length; i++) {
+			var tempuser = TWAPI.getChatters().viewers[i];
+			output += `${tempuser} <br> `;
+		}
+		output += '</p> ';
+	}
+
+	$('#userlist').html(output);
+}
+
+function changeStatusSubmit() {
+	var newGame = $('#updateGame').val();
+	var newStatus = $('#updateStatus').val();
+	$('#changeStatusModal').modal('hide');
+
+	TWAPI.setStatusGame( newStatus, newGame );
+	refresh();
+}
+
+function changeStatusOpen() {
+	$('#changeStatusModal').modal('show');
+	$('#updateGame').val( TWAPI.getGame() );
+	$('#updateStatus').val( TWAPI.getStatus() );
+}
+
+////////////////////////////////////////////////////////////////////////////////
+	</script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<div class="navbar-brand">
+				StreamKoala
+			</div>
+		</div>
+		<div class="navbar-header hidden-xs hidden-sm">
+			<div class="navbar-brand">
+				<strong id="username"><!-- username dynamically generated --></strong>
+			</div>
+
+			<div class="navbar-brand">
+				<strong class="text-primary">Game: &nbsp;</strong>
+				<em id="game"><!-- game dynamically generated --></em>
+			</div>
+
+			<div class="navbar-brand">
+				<strong class="text-primary">Status: &nbsp;</strong>
+				<em id="status"><!-- status dynamically generated --></em>
+			</div>
+		</div>
+		<div class="hidden-xs">
+			<form class="nav navbar-form navbar-right" onsubmit="return false;">
+				<button type="button" class="btn btn-default btn-md updateStatusButton">
+					<i class="fa fa-cloud-upload fa-lg"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+</nav>
+
+<div class="container-fluid">
+	<div class="row">
+
+		<div class="col-xs-5 col-sm-5 col-md-4 col-lg-4" style="padding-left: 10; padding-right: 5;">
+			<div class="panel panel-default" style="height: calc(100vh - 85px);">
+				<div class="panel-heading">
+			    	<h3 class="panel-title text-center">Chat</h3>
+				</div>
+				<div class="panel-body" style="max-height: calc(100vh - 135px);">
+
+					<iframe src="" id="chatframe"
+						style="width: calc(100% + 30px); height: calc(100% + 41px); padding: 0; margin: -15px; border: 0;">&nbsp;</iframe>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" style="padding-left: 5; padding-right: 5;">
+			<div class="panel panel-default" style="height: calc(100vh - 85px);">
+				<div class="panel-heading">
+			    	<h3 class="panel-title text-center">Viewers</h3>
+				</div>
+				<div class="panel-body" style="height: 60px;" id="viewercount">
+					<!-- viewercount dynamically generated -->
+				</div>
+				<div class="panel-body" style="height: calc(100vh - 184px); overflow: auto; word-wrap: break-word;" id="userlist">
+					<!-- userlist dynamically generated -->
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" style="padding-left: 5; padding-right: 10;">
+			<div class="panel panel-default" style="height: calc(100vh - 85px);">
+				<div class="panel-heading">
+			    	<h3 class="panel-title text-center">TwitchAlerts</h3>
+				</div>
+				<div class="panel-body" style="max-height: calc(100vh - 135px);">
+
+					<iframe src="http://www.twitchalerts.com/dashboard/recent-events" id="twitchalerts"
+						style="width: calc(100% + 30px); height: calc(100% + 41px); padding: 0; margin: -15px; border: 0;">&nbsp;</iframe>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="hidden-xs hidden-sm col-md-3 col-lg-3" style="padding-left: 0; padding-right: 10;">
+			<div class="panel panel-default" style="height: calc(100vh - 85px);">
+				<div class="panel-heading">
+			    	<h3 class="panel-title text-center">Stream</h3>
+				</div>
+				<ul class="list-group" style="max-height: calc(100vh - 135px);">
+					<li class="list-group-item">
+						<iframe id="twitchVideo" src="" style="width: calc(100% + 30px); height: 50%; border: 0; margin: -10px -15px -10px -15px;">&nbsp;</iframe>
+					</li>
+					<li class="list-group-item">
+						<!-- Bottom half... put something here -->
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div> <!-- row -->
+</div> <!-- container -->
+
+<!-- Change Game / Status Modal -->
+<div id="changeStatusModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Update game and status</h4>
+			</div>
+			<div class="modal-body">
+				<form onsubmit="return false;">
+					<label for="updateGame">Game:</label>
+					<input type="text" id="updateGame" class="form-control input-sm" autocomplete="on">
+					<br>
+					<label for="updateStatus">Stream Status:</label>
+					<input type="text" id="updateStatus" class="form-control input-sm" autocomplete="off">
+				</form>
+			</div>
+			<div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		        <button type="button" class="btn btn-primary" id="saveStatusButton">Save</button>
+		    </div>
+		</div>  <!-- modal-content -->
+	</div>  <!-- modal-dialog -->
+</div>  <!-- modal -->
+
+
+</body>
+</html>
