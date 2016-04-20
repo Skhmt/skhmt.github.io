@@ -10,12 +10,12 @@
 	<script>
 		/* If there's no auth, send the user to the login page */
 		if ( document.location.hash.length < 50 ) {
-			window.location = `https://api.twitch.tv/kraken/oauth2/authorize?
+			window.location.assign(`https://api.twitch.tv/kraken/oauth2/authorize?
 			response_type=token&
 			client_id=${clientid}&
 			redirect_uri=http://skhmt.github.io/koala2/&
 			scope=chat_login&
-			force_verify=true`;
+			force_verify=true`);
 		}
 	</script>
 
