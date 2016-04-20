@@ -7,6 +7,18 @@
 
 	<title>StreamKoala 2.0</title>
 
+	<script>
+		/* If there's no auth, send the user to the login page */
+		if ( document.location.hash.length < 50 ) {
+			window.location = `https://api.twitch.tv/kraken/oauth2/authorize?
+			response_type=token&
+			client_id=${clientid}&
+			redirect_uri=http://skhmt.github.io/koala2/&
+			scope=chat_login&
+			force_verify=true`;
+		}
+	</script>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" async></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous" async></script>
