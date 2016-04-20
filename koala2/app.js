@@ -38,8 +38,8 @@ function refresh( seconds ) {
 		document.getElementById('username').className = 'text-danger';
 	}
 
-	$('#game').html( TWAPI.getGame() );
-	$('#status').html( TWAPI.getStatus() );
+	$('#game').html( TWAPI.getGame().replace(/</g, '&lt;').replace(/\(/g, '&#40;') );
+	$('#status').html( TWAPI.getStatus().replace(/</g, '&lt;').replace(/\(/g, '&#40;') );
 
 	updateUserlist();
 	updateViewers();
