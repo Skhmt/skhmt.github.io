@@ -27,8 +27,12 @@ $( function() {
 
 	/* If there's no auth, send the user to the login page */
 	if ( document.location.hash.length < 50 ) {
-		window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&' +
-		'client_id=3s27p59atb0bwu6vkh2rnrxeqx3dn3h&redirect_uri=http://skhmt.github.io/koala2/&scope=chat_login&force_verify=true';
+		window.location = `https://api.twitch.tv/kraken/oauth2/authorize?
+		response_type=token&
+		client_id=${clientid}&
+		redirect_uri=http://skhmt.github.io/koala2/&
+		scope=chat_login&
+		force_verify=true`;
 	}
 	else {
 		oauth = document.location.hash.substring(14,44);
