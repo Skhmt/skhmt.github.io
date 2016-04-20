@@ -2,33 +2,21 @@ var username = '';
 
 $( function() {
 	var clientid = '3s27p59atb0bwu6vkh2rnrxeqx3dn3h'; //streamkoala2 public client id
-	var oauth = '';
+	var oauth = document.location.hash.substring(14,44);
+	
+	history.pushState({}, "", "/koala2/"); // masking the url
 
-	/* If there's no auth, send the user to the login page */
-	if ( document.location.hash.length < 50 ) {
-		window.location = `https://api.twitch.tv/kraken/oauth2/authorize?
-		response_type=token&
-		client_id=${clientid}&
-		redirect_uri=http://skhmt.github.io/koala2/&
-		scope=chat_login&
-		force_verify=true`;
-	}
-	else {
-		oauth = document.location.hash.substring(14,44);
-		history.pushState({}, "", "/koala2/"); // masking the url
-
-		TWAPI.setup( clientid, oauth, function(user) {
-			username = user;
-			$('#username').html( username );
-			var channel = username;
-			TWAPI.runChat( channel, function() {
-				$('#twitchVideo').attr( 'src', 'http://player.twitch.tv/?autoplay=true&muted=true&channel=' + channel );
-				$('#chatframe').attr( 'src', 'http://www.twitch.tv/' + channel + '/chat' );
-				$('#username').html( TWAPI.getDisplayName() );
-				refresh(5);
-			} );
+	TWAPI.setup( clientid, oauth, function(user) {
+		username = user;
+		$('#username').html( username );
+		var channel = username;
+		TWAPI.runChat( channel, function() {
+			$('#twitchVideo').attr( 'src', 'http://player.twitch.tv/?autoplay=true&muted=true&channel=' + channel );
+			$('#chatframe').attr( 'src', 'http://www.twitch.tv/' + channel + '/chat' );
+			$('#username').html( TWAPI.getDisplayName() );
+			refresh(5);
 		} );
-	}
+	} );
 
 	// UI
 
