@@ -2,7 +2,7 @@
 <head>
 	<title>Get Twitch Mods</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-	<script src="http://skhmt.github.io/twapi/twapi.min.js"></script>
+	<script src="http://skhmt.github.io/tapic/tapic.min.js"></script>
 </head>
 <body>
 
@@ -23,7 +23,7 @@
 		else {
 			oauth = document.location.hash.substring(14,44);
 			history.pushState({}, "", "/getmods/"); // masking the url
-			TWAPI.setup(clientid, oauth, function(username) {
+			TAPIC.setup(clientid, oauth, function(username) {
 				getFollowedChannels( username, 0 );
 			} );
 		}
@@ -55,7 +55,7 @@
 	function outputChannels(username, numChannels) {
 		console.info( username + ' is following ' + numChannels + ' channels.');
 		// console.info( JSON.stringify(channels) );
-		TWAPI.listen('notice', function(e){
+		TAPIC.listen('notice', function(e){
 			console.log( e );
 			var splitNotice = e.split(' ');
 			// The moderators of this room are: ash_kay, ashalle,
@@ -76,19 +76,19 @@
 				setMods(username);
 			}
 		} );
-		TWAPI.runChat(username, function() {
+		TAPIC.runChat(username, function() {
 			setMods(username);
 		} );
 	}
 	function setMods(username) {
 		if ( index >= channels.length ) {
-			TWAPI.closeChat();
+			TAPIC.closeChat();
 			return outputMods();
 		}
 		var percent = parseInt( (index / channels.length * 100), 10 );
 		$('#output').html( percent + '% done<br>Getting info from: ' + channels[index].channel );
-		TWAPI.changeChannel( channels[index].channel );
-		setTimeout(function(){TWAPI.sendChat( '/mods' );}, 500);
+		TAPIC.changeChannel( channels[index].channel );
+		setTimeout(function(){TAPIC.sendChat( '/mods' );}, 500);
 	}
 	function outputMods() {
 		var output = '<h3>You are a moderator for these channels:</h3><table>' +
