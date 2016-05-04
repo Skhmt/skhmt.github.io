@@ -6,14 +6,14 @@ $( function() {
 	
 	history.pushState({}, "", "/koala2/"); // masking the url
 
-	TWAPI.setup( clientid, oauth, function(user) {
+	TAPIC.setup( clientid, oauth, function(user) {
 		username = user;
 		$('#username').html( username );
 		var channel = username;
-		TWAPI.runChat( channel, function() {
+		TAPIC.runChat( channel, function() {
 			$('#twitchVideo').attr( 'src', 'http://player.twitch.tv/?autoplay=true&muted=true&channel=' + channel );
 			$('#chatframe').attr( 'src', 'http://www.twitch.tv/' + channel + '/chat' );
-			$('#username').html( TWAPI.getDisplayName() );
+			$('#username').html( TAPIC.getDisplayName() );
 			refresh(5);
 		} );
 	} );
@@ -35,15 +35,15 @@ $( function() {
 
 function refresh( seconds ) {
 	// online status
-	if ( TWAPI.isOnline() ) {
+	if ( TAPIC.isOnline() ) {
 		document.getElementById('username').className = 'text-success';
 	}
 	else {
 		document.getElementById('username').className = 'text-danger';
 	}
 
-	$('#game').html( TWAPI.getGame().replace(/</g, '&lt;').replace(/\(/g, '&#40;') );
-	$('#status').html( TWAPI.getStatus().replace(/</g, '&lt;').replace(/\(/g, '&#40;') );
+	$('#game').html( TAPIC.getGame().replace(/</g, '&lt;').replace(/\(/g, '&#40;') );
+	$('#status').html( TAPIC.getStatus().replace(/</g, '&lt;').replace(/\(/g, '&#40;') );
 
 	updateUserlist();
 	updateViewers();
@@ -58,67 +58,67 @@ function refresh( seconds ) {
 function updateViewers() {
 	$('#viewercount').html( `
 		<i class="fa fa-user fa-fw text-info"></i>
-		&nbsp;&nbsp;&nbsp;${TWAPI.getCurrentViewCount().toLocaleString()}
+		&nbsp;&nbsp;&nbsp;${TAPIC.getCurrentViewCount().toLocaleString()}
 		<br>
 		<i class="fa fa-heart fa-fw text-danger"></i>
-		&nbsp;&nbsp;&nbsp;${TWAPI.getFollowerCount().toLocaleString()}`
+		&nbsp;&nbsp;&nbsp;${TAPIC.getFollowerCount().toLocaleString()}`
 	);
 }
 
 function updateUserlist() {
 	var output = '';
-	if ( !TWAPI.getChatters().staff ) return;
+	if ( !TAPIC.getChatters().staff ) return;
 
-	if ( TWAPI.getChatters().staff.length > 0  ) {
+	if ( TAPIC.getChatters().staff.length > 0  ) {
 		output += `<p> <b style="color: #C9F;">STAFF</b> &mdash;
-			<b>${TWAPI.getChatters().staff.length.toLocaleString()}</b> <br> `;
+			<b>${TAPIC.getChatters().staff.length.toLocaleString()}</b> <br> `;
 
-		for (var i = 0; i < TWAPI.getChatters().staff.length; i++) {
-			var tempuser = TWAPI.getChatters().staff[i];
+		for (var i = 0; i < TAPIC.getChatters().staff.length; i++) {
+			var tempuser = TAPIC.getChatters().staff[i];
 			output += `${tempuser} <br> `;
 		}
 		output += '</p> ';
 	}
 
-	if ( TWAPI.getChatters().moderators.length > 0 ) {
+	if ( TAPIC.getChatters().moderators.length > 0 ) {
 		output += `<p> <b style="color: #34ae0a;">MODS</b> &mdash;
-			<b>${TWAPI.getChatters().moderators.length.toLocaleString()}</b> <br> `;
+			<b>${TAPIC.getChatters().moderators.length.toLocaleString()}</b> <br> `;
 
-		for (var i = 0; i < TWAPI.getChatters().moderators.length; i++) {
-			var tempuser = TWAPI.getChatters().moderators[i];
+		for (var i = 0; i < TAPIC.getChatters().moderators.length; i++) {
+			var tempuser = TAPIC.getChatters().moderators[i];
 			output += `${tempuser} <br> `;
 		}
 		output += '</p> ';
 	}
 
-	if ( TWAPI.getChatters().admins.length > 0 ) {
+	if ( TAPIC.getChatters().admins.length > 0 ) {
 		output += `<p> <b style="color: #faaf19;">ADMINS</b> &mdash;
-			<b>${TWAPI.getChatters().admins.length.toLocaleString()}</b> <br> `;
+			<b>${TAPIC.getChatters().admins.length.toLocaleString()}</b> <br> `;
 
-		for (var i = 0; i < TWAPI.getChatters().admins.length; i++) {
-			var tempuser = TWAPI.getChatters().admins[i];
+		for (var i = 0; i < TAPIC.getChatters().admins.length; i++) {
+			var tempuser = TAPIC.getChatters().admins[i];
 			output += `${tempuser} <br> `;
 		}
 		output += '</p> ';
 	}
 
-	if ( TWAPI.getChatters().global_mods.length > 0 ) {
+	if ( TAPIC.getChatters().global_mods.length > 0 ) {
 		output += `<p> <b style="color: #1a7026;">GLOBAL MODS</b> &mdash;
-			<b>${TWAPI.getChatters().global_mods.length.toLocaleString()}</b> <br> `;
+			<b>${TAPIC.getChatters().global_mods.length.toLocaleString()}</b> <br> `;
 
-		for (var i = 0; i < TWAPI.getChatters().global_mods.length; i++) {
-			var tempuser = TWAPI.getChatters().global_mods[i];
+		for (var i = 0; i < TAPIC.getChatters().global_mods.length; i++) {
+			var tempuser = TAPIC.getChatters().global_mods[i];
 			output += `${tempuser} <br> `;
 		}
 		output += '</p> ';
 	}
 
-	if ( TWAPI.getChatters().viewers.length > 0 ) {
+	if ( TAPIC.getChatters().viewers.length > 0 ) {
 		output += `<p> <b style="color: #3CF;">VIEWERS</b> &mdash;
-			<b>${TWAPI.getChatters().viewers.length.toLocaleString()}</b> <br> `;
+			<b>${TAPIC.getChatters().viewers.length.toLocaleString()}</b> <br> `;
 
-		for (var i = 0; i < TWAPI.getChatters().viewers.length; i++) {
-			var tempuser = TWAPI.getChatters().viewers[i];
+		for (var i = 0; i < TAPIC.getChatters().viewers.length; i++) {
+			var tempuser = TAPIC.getChatters().viewers[i];
 			output += `${tempuser} <br> `;
 		}
 		output += '</p> ';
@@ -132,12 +132,12 @@ function changeStatusSubmit() {
 	var newStatus = $('#updateStatus').val();
 	$('#changeStatusModal').modal('hide');
 
-	TWAPI.setStatusGame( newStatus, newGame );
+	TAPIC.setStatusGame( newStatus, newGame );
 	refresh();
 }
 
 function changeStatusOpen() {
 	$('#changeStatusModal').modal('show');
-	$('#updateGame').val( TWAPI.getGame() );
-	$('#updateStatus').val( TWAPI.getStatus() );
+	$('#updateGame').val( TAPIC.getGame() );
+	$('#updateStatus').val( TAPIC.getStatus() );
 }
