@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>TWAPI.js Reference</title>
+	<title>TAPIC.js Reference</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -40,7 +40,7 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 
 	<div class="container-fluid" style="background-color:#000;color:#fff;height:80px;">
-		<h1>TWAPI.js Reference</h1>
+		<h1>TAPIC.js Reference</h1>
 	</div>
 	<br>
 
@@ -51,32 +51,32 @@
 			<div class="col-sm-9">
 
 				<div id="about">
-					<h2>TWAPI.js</h2>
+					<h2>TAPIC.js</h2>
 					<p>
-						<a href="https://raw.githubusercontent.com/Skhmt/twapi.js/master/twapi.js">Latest version</a>
+						<a href="https://raw.githubusercontent.com/Skhmt/tapic.js/master/tapic.js">Latest version</a>
 					</p>
 					<p>
-						<a href="https://github.com/Skhmt/twapi.js">Github repo</a>
+						<a href="https://github.com/Skhmt/tapic.js">Github repo</a>
 					</p>
 					<p>
-						TWAPI.js is a purely javascript framework for accessing Twitch chat and most of the Twitch API.
+						TAPIC.js is a purely javascript framework for accessing Twitch chat and most of the Twitch API.
 						It was created for use in <a href="https://github.com/Skhmt/koalabot">KoalaBot</a> mostly, but
 						it has many other useful applications.
 					</p>
 					<p>
-						Why should you use TWAPI.js when <a href="https://www.tmijs.org/">TMI.js</a> exists? No idea.
-						Use either or both or neither.
+						Why should you use TAPIC.js when <a href="https://www.tmijs.org/">TMI.js</a> exists? TAPIC.js is
+						lighter weight and provides roughly the same functionality. Use either or both or neither.
 					</p>
 					<p>
 						Its intended use is for client-side web apps, CLI/BrowserSource pages for OBS, and NW.js/Electron desktop apps.
 						It will work with Node.js if you get the ws module: <code>npm install ws</code>.
 					</p>
 					<p>
-						The example <a href="https://github.com/Skhmt/twapi.js/blob/master/test.html">test.html</a> shows how to use TWAPI.js
+						The example <a href="https://github.com/Skhmt/tapic.js/blob/master/test.html">test.html</a> shows how to use TAPIC.js
 						in a simple chatroom reading website. The example requires inputting your own clientid and oauth to work.
 					</p>
 					<p>
-						The example <a href="https://github.com/Skhmt/twapi.js/blob/master/test.js">test.js</a> shows how to use TWAPI.js
+						The example <a href="https://github.com/Skhmt/tapic.js/blob/master/test.js">test.js</a> shows how to use TAPIC.js
 						in a Node.js app. This requires the Node.js ws module: <code>npm install ws</code>.
 					</p>
 				</div>
@@ -84,9 +84,9 @@
 				<hr>
 
 				<div id="setup">
-					<h2>TWAPI.setup( <em>clientid, oauth, callback</em> )</h2>
+					<h2>TAPIC.setup( <em>clientid, oauth, callback</em> )</h2>
 					<p>
-						Sets up TWAPI.js. You must run this before <em>anything</em> works.
+						Sets up TAPIC.js. You must run this before <em>anything</em> works.
 					</p>
 					<p><strong>Parameters</strong></p>
 					<ul class="nobullet">
@@ -107,7 +107,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">TWAPI.setup( clientid, oauth, function( username ) {
+<pre><code class="language-javascript">TAPIC.setup( clientid, oauth, function( username ) {
 	console.log( 'The username is: ' + username );
 } );
 </code></pre>
@@ -118,7 +118,7 @@
 				<hr>
 
 				<div id="setupRunChat">
-					<h2>TWAPI.runChat( <em>channel, callback</em> )</h2>
+					<h2>TAPIC.runChat( <em>channel, callback</em> )</h2>
 					<p>
 						Sets the initial channel to connect to, connects to it and the group (whisper) server, and runs
 						various other set-up things.
@@ -137,7 +137,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-							<code class="language-javascript">TWAPI.runChat( channel, function() { } );</code>
+							<code class="language-javascript">TAPIC.runChat( channel, function() { } );</code>
 						</li>
 					</ul>
 				</div>
@@ -148,7 +148,7 @@
 					<h2>Listener - raw</h2>
 					<p>
 						Every RAW TMI message from the standard chat server. You most likely won't be using this unless
-						you need to parse for something that TWAPI.js doesn't already have a listener for.
+						you need to parse for something that TAPIC.js doesn't already have a listener for.
 					</p>
 					<p><strong>Callback functions</strong></p>
 					<ul class="nobullet">
@@ -160,7 +160,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-							<code class="language-javascript">TWAPI.listen('raw', function( res ) { console.log( res ); } );</code>
+							<code class="language-javascript">TAPIC.listen('raw', function( res ) { console.log( res ); } );</code>
 						</li>
 					</ul>
 				</div>
@@ -214,9 +214,9 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">TWAPI.listen('message', function( res ) {
+<pre><code class="language-javascript">TAPIC.listen('message', function( res ) {
 	var output = (res.mod ? '&lt;img src="http://chat-badges.s3.amazonaws.com/mod.png">' : '') +
-		(res.sub  ?'&lt;img src="' + TWAPI.getSubBadgeUrl() + '">' : '') +
+		(res.sub  ?'&lt;img src="' + TAPIC.getSubBadgeUrl() + '">' : '') +
 		(res.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
 		(res.streamer ? '&lt;img src="http://chat-badges.s3.amazonaws.com/broadcaster.png">' : '') +
 		'&lt;strong style="color: ' + res.color + ';">' +
@@ -277,7 +277,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">TWAPI.listen('whisper', function( res ) {
+<pre><code class="language-javascript">TAPIC.listen('whisper', function( res ) {
 	var output = (res.turbo ? '&lt;img src="http://chat-badges.s3.amazonaws.com/turbo.png">' : '') +
 		'&lt;strong style="color: ' + res.color + ';">' +
 		res.from +
@@ -288,6 +288,42 @@
 	document.querySelector('#chat').innerHTML += output;
 } );
 </code></pre>
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerEchoChat">
+					<h2>Listener - echoChat</h2>
+					<p>
+						Echos chat messages sent by the bot.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>res</strong>
+							<em>(string)</em> - The text of the chat message.
+						</li>
+					</ul>
+				</div>
+
+				<hr>
+
+				<div id="listenerEchoWhisper">
+					<h2>Listener - echoWhisper</h2>
+					<p>
+						Echos whispers sent by the bot.
+					</p>
+					<p><strong>Callback functions</strong></p>
+					<ul class="nobullet">
+						<li>
+							<strong>res.to</strong>
+							<em>(string)</em> - The target of the whisper.
+						</li>
+						<li>
+							<strong>res.text</strong>
+							<em>(string)</em> - The text of the whisper.
 						</li>
 					</ul>
 				</div>
@@ -489,7 +525,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<pre><code class="language-javascript">TWAPI.listen('roomstate', function( res ) {
+<pre><code class="language-javascript">TAPIC.listen('roomstate', function( res ) {
 	var output = 'Roomstate options: ';
 	if ( res.lang ) output += ' lang:' + res.lang;
 	if ( res.r9k == 1 ) output += ' r9k';
@@ -510,7 +546,7 @@
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 				<div id="funcSendChat">
-					<h2>TWAPI.sendChat( <em>text</em> )</h2>
+					<h2>TAPIC.sendChat( <em>text</em> )</h2>
 					<p>
 						Sends a message to the channel. Actions (<code>/me</code>, <code>/host</code>, etc) work.
 					</p>
@@ -526,7 +562,7 @@
 				<hr>
 
 				<div id="funcSendWhisper">
-					<h2>TWAPI.sendWhisper( <em>user, text</em> )</h2>
+					<h2>TAPIC.sendWhisper( <em>user, text</em> )</h2>
 					<p>
 						Sends a whisper to a specific user.
 					</p>
@@ -550,9 +586,9 @@
 				<hr>
 
 				<div id="funcChangeChannel">
-					<h2>TWAPI.changeChannel( <em>channel</em> )</h2>
+					<h2>TAPIC.changeChannel( <em>channel</em> )</h2>
 					<p>
-						Changes channel you're in. This is quicker than TWAPI.runChat(), but might not work if you change
+						Changes channel you're in. This is quicker than TAPIC.runChat(), but might not work if you change
 						from a regular channel to an event server channel.
 					</p>
 					<p><strong>Parameters</strong></p>
@@ -567,7 +603,7 @@
 				<hr>
 
 				<div id="funcRunCommercial">
-					<h2>TWAPI.runCommercial( <em>length</em> )</h2>
+					<h2>TAPIC.runCommercial( <em>length</em> )</h2>
 					<p>
 						Requires the <code>channel_commercial</code> permission. Runs a commercial.
 					</p>
@@ -583,7 +619,7 @@
 				<hr>
 
 				<div id="funcSetStatusGame">
-					<h2>TWAPI.setStatusGame( <em>status, game</em> )</h2>
+					<h2>TAPIC.setStatusGame( <em>status, game</em> )</h2>
 					<p>
 						Sets the channel's status (title) and game played.
 					</p>
@@ -601,7 +637,7 @@
 					<p><strong>Example</strong></p>
 					<ul class="nobullet">
 						<li>
-<code class="language-javascript">TWAPI.setStatusGame('Making a Twitch Javascript Framework #programming', 'Creative');</code>
+<code class="language-javascript">TAPIC.setStatusGame('Making a Twitch Javascript Framework #programming', 'Creative');</code>
 						</li>
 					</ul>
 				</div>
@@ -609,10 +645,10 @@
 				<hr>
 
 				<div id="funcCloseChat">
-					<h2>TWAPI.closeChat()</h2>
+					<h2>TAPIC.closeChat()</h2>
 					<p>
-						Closes the current chat, including the group (whisper) server connection, opened by TWAPI.runChat().
-						This is automatically invoked by TWAPI.runChat() before it opens a new chat, so it won't be necessary
+						Closes the current chat, including the group (whisper) server connection, opened by TAPIC.runChat().
+						This is automatically invoked by TAPIC.runChat() before it opens a new chat, so it won't be necessary
 						very often.
 					</p>
 				</div>
@@ -620,9 +656,9 @@
 				<hr>
 
 				<div id="funcGetUsername">
-					<h2>TWAPI.getUsername()</h2>
+					<h2>TAPIC.getUsername()</h2>
 					<p>
-						Gets the username that's logged in to TWAPI.js. This may not be the same as the channel you're in.
+						Gets the username that's logged in to TAPIC.js. This may not be the same as the channel you're in.
 					</p>
 					<p>
 						<strong>Returns</strong>
@@ -633,7 +669,7 @@
 				<hr>
 
 				<div id="funcGetChannel">
-					<h2>TWAPI.getChannel()</h2>
+					<h2>TAPIC.getChannel()</h2>
 					<p>
 						Gets the channel that you're in.
 					</p>
@@ -646,7 +682,7 @@
 				<hr>
 
 				<div id="funcGetGame">
-					<h2>TWAPI.getGame()</h2>
+					<h2>TAPIC.getGame()</h2>
 					<p>
 						Gets the game being played. For example: DayZ, Creative, etc.
 					</p>
@@ -659,7 +695,7 @@
 				<hr>
 
 				<div id="funcGetStatus">
-					<h2>TWAPI.getStatus()</h2>
+					<h2>TAPIC.getStatus()</h2>
 					<p>
 						Gets the status (title) of the stream.
 					</p>
@@ -672,7 +708,7 @@
 				<hr>
 
 				<div id="funcGetFollowerCount">
-					<h2>TWAPI.getFollowerCount()</h2>
+					<h2>TAPIC.getFollowerCount()</h2>
 					<p>
 						Gets the number of followers of the stream.
 					</p>
@@ -685,7 +721,7 @@
 				<hr>
 
 				<div id="funcGetTotalViewCount">
-					<h2>TWAPI.getTotalViewCount()</h2>
+					<h2>TAPIC.getTotalViewCount()</h2>
 					<p>
 						Gets the total (cumulative) number of viewers of the stream.
 					</p>
@@ -698,7 +734,7 @@
 				<hr>
 
 				<div id="funcGetCurrentViewCount">
-					<h2>TWAPI.getCurrentViewCount()</h2>
+					<h2>TAPIC.getCurrentViewCount()</h2>
 					<p>
 						Gets the current number of viewers watching the stream.
 					</p>
@@ -711,7 +747,7 @@
 				<hr>
 
 				<div id="funcGetCreatedAt">
-					<h2>TWAPI.getCreatedAt()</h2>
+					<h2>TAPIC.getCreatedAt()</h2>
 					<p>
 						The time the stream started.
 					</p>
@@ -724,7 +760,7 @@
 				<hr>
 
 				<div id="funcGetLogo">
-					<h2>TWAPI.getLogo()</h2>
+					<h2>TAPIC.getLogo()</h2>
 					<p>
 						Gets the channel's 300x300px logo URL.
 					</p>
@@ -737,7 +773,7 @@
 				<hr>
 
 				<div id="funcGetVideoBanner">
-					<h2>TWAPI.getVideoBanner()</h2>
+					<h2>TAPIC.getVideoBanner()</h2>
 					<p>
 						Gets the channel's offline video banner/image URL.
 					</p>
@@ -750,7 +786,7 @@
 				<hr>
 
 				<div id="funcGetProfileBanner">
-					<h2>TWAPI.getProfileBanner()</h2>
+					<h2>TAPIC.getProfileBanner()</h2>
 					<p>
 						Gets the channel's user profile banner URL.
 					</p>
@@ -763,7 +799,7 @@
 				<hr>
 
 				<div id="funcGetDisplayName">
-					<h2>TWAPI.getDisplayName()</h2>
+					<h2>TAPIC.getDisplayName()</h2>
 					<p>
 						Gets the user's display name, which includes capitalization, while getUsername always reutrns
 						lowercase.
@@ -777,7 +813,7 @@
 				<hr>
 
 				<div id="funcGetColor">
-					<h2>TWAPI.getColor()</h2>
+					<h2>TAPIC.getColor()</h2>
 					<p>
 						Gets the user's preferred coloring in the '#ABC123' hex format.
 					</p>
@@ -790,7 +826,7 @@
 				<hr>
 
 				<div id="funcGetEmoteSets">
-					<h2>TWAPI.getEmoteSets()</h2>
+					<h2>TAPIC.getEmoteSets()</h2>
 					<p>
 						Gets the user's emote sets in comma-separated format.
 					</p>
@@ -803,7 +839,7 @@
 				<hr>
 
 				<div id="funcGetMod">
-					<h2>TWAPI.getMod()</h2>
+					<h2>TAPIC.getMod()</h2>
 					<p>
 						Returns a 1 if the user is a moderator in the channel or a 0 if not.
 					</p>
@@ -816,7 +852,7 @@
 				<hr>
 
 				<div id="funcGetSub">
-					<h2>TWAPI.getSub()</h2>
+					<h2>TAPIC.getSub()</h2>
 					<p>
 						Returns a 1 if the user is a subscriber to the channel or a 0 if not.
 					</p>
@@ -829,7 +865,7 @@
 				<hr>
 
 				<div id="funcGetTurbo">
-					<h2>TWAPI.getTurbo()</h2>
+					<h2>TAPIC.getTurbo()</h2>
 					<p>
 						Returns a 1 if the user is paying for Turbo or a 0 if not.
 					</p>
@@ -842,7 +878,7 @@
 				<hr>
 
 				<div id="funcGetUserType">
-					<h2>TWAPI.getUserType()</h2>
+					<h2>TAPIC.getUserType()</h2>
 					<p>
 						The user's usertype. For example, 'staff'.
 					</p>
@@ -855,7 +891,7 @@
 				<hr>
 
 				<div id="funcIsFollowing">
-					<h2>TWAPI.isFollowing( <em>user, target, callback</em> )</h2>
+					<h2>TAPIC.isFollowing( <em>user, target, callback</em> )</h2>
 					<p>
 						Checks if <code>user</code> is following <code>target</code>.
 					</p>
@@ -881,7 +917,7 @@
 						<li>
 <pre><code class="language-javascript">var folUser = 'skhmt';
 var folTarget = 'letsmakefriends';
-TWAPI.isFollowing( folUser, folTarget, function( res ) {
+TAPIC.isFollowing( folUser, folTarget, function( res ) {
 	if ( res.isFollowing ) console.log( folUser + ' has been following ' + folTarget + ' since: ' + res.dateFollowed );
 	else console.log( folUser + ' is not following ' + folTarget + '.' );
 } );
@@ -893,7 +929,7 @@ TWAPI.isFollowing( folUser, folTarget, function( res ) {
 				<hr>
 
 				<div id="funcIsSubscribing">
-					<h2>TWAPI.isSubscribing( <em>user, channel, callback</em> )</h2>
+					<h2>TAPIC.isSubscribing( <em>user, channel, callback</em> )</h2>
 					<p>
 						Requires the <code>channel_check_subscription</code> permission. Checks if <code>user</code> is
 						subscribed to <code>channel</code>.
@@ -919,7 +955,7 @@ TWAPI.isFollowing( folUser, folTarget, function( res ) {
 						<li>
 <pre><code class="language-javascript">var subUser = 'skhmt';
 var subChannel = 'letsmakefriends';
-TWAPI.isSubscribing( subUser, subChannel, function( res ) {
+TAPIC.isSubscribing( subUser, subChannel, function( res ) {
 	if ( res.isSubscribing ) console.log( subUser + ' has been subbed to ' + subChannel + ' since: ' + res.dateSubscribed );
 	else console.log( subUser + ' is not subbed to ' + subChannel + '.' );
 } );
@@ -931,7 +967,7 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 				<hr>
 
 				<div id="funcIsPartner">
-					<h2>TWAPI.isPartner()</h2>
+					<h2>TAPIC.isPartner()</h2>
 					<p>
 						Checks if the channel is partnered with Twitch.tv.
 					</p>
@@ -944,7 +980,7 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 				<hr>
 
 				<div id="funcGetSubBadgeUrl">
-					<h2>TWAPI.getSubBadgeUrl()</h2>
+					<h2>TAPIC.getSubBadgeUrl()</h2>
 					<p>
 						Gets the URL for the subscriber badge used in front of chat messages.
 					</p>
@@ -957,7 +993,7 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 				<hr>
 
 				<div id="funcIsOnline">
-					<h2>TWAPI.isOnline()</h2>
+					<h2>TAPIC.isOnline()</h2>
 					<p>
 						Checks if the channel is online.
 					</p>
@@ -970,7 +1006,7 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 				<hr>
 
 				<div id="funcGetFps">
-					<h2>TWAPI.getFps()</h2>
+					<h2>TAPIC.getFps()</h2>
 					<p>
 						Gets the FPS the channel is currently running at.
 					</p>
@@ -983,7 +1019,7 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 				<hr>
 
 				<div id="funcGetVideoHeight">
-					<h2>TWAPI.getVideoHeight()</h2>
+					<h2>TAPIC.getVideoHeight()</h2>
 					<p>
 						Gets the video height (480, 720, 1080, etc) of the channel.
 					</p>
@@ -996,7 +1032,7 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 				<hr>
 
 				<div id="funcGetDelay">
-					<h2>TWAPI.getDelay()</h2>
+					<h2>TAPIC.getDelay()</h2>
 					<p>
 						Gets the delay setting of the stream. This doesn't show actual delay from Twitch.tv to users,
 						just the intentionally added delay.
@@ -1010,7 +1046,7 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 				<hr>
 
 				<div id="funcGetChatters">
-					<h2>TWAPI.getChatters()</h2>
+					<h2>TAPIC.getChatters()</h2>
 					<p>
 						Gets the current chatters in the chatroom.
 					</p>
@@ -1048,7 +1084,7 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 					<li>
 						<strong><a href="#about">About</a></strong>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#about">TWAPI.js</a></li>
+							<li><a href="#about">TAPIC.js</a></li>
 						</ul>
 					</li>
 					<li>
@@ -1064,6 +1100,8 @@ TWAPI.isSubscribing( subUser, subChannel, function( res ) {
 							<li><a href="#listenerRaw">raw</a></li>
 							<li><a href="#listenerMsg">message</a></li>
 							<li><a href="#listenerWhisper">whisper</a></li>
+							<li><a href="#listenerEchoChat">echoChat</a></li>
+							<li><a href="#listenerEchoWhisper">echoWhisper</a></li>
 							<li><a href="#listenerNotice">notice</a></li>
 							<li><a href="#listenerJoin">join</a></li>
 							<li><a href="#listenerPart">part</a></li>
