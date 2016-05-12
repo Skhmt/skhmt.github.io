@@ -1,55 +1,30 @@
 <html style="padding: 0; margin: 0;">
-<head>
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-
-var ytPlayer;
-
-function onYouTubeIframeAPIReady() {
-    ytPlayer = new YT.Player('ytPlayer', {
-
-        videoId: 'vxIOUJ7by6U',
-        playerVars: {
-            fs: 0, // does not show the fullscreen button
-            rel: 0, // does not show related videos at the end
+  <body style="width: 100vw; height: 100vh; padding: 0; margin: 0;">
+    <div id="ytPlayer" style="width: 100%; height: 100%"></div>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+      var ytPlayer;
+      function onYouTubeIframeAPIReady() {
+        ytPlayer = new YT.Player('ytPlayer', {
+          videoId: 'vxIOUJ7by6U',
+          playerVars: {
+            fs: 0,
+            rel: 0,
             modestbranding: 1,
-            iv_load_policy: 3, // annotations not shown by default
-            controls: 0 // disables controls
-        },
-        events: {
-            // 'onReady': onPlayerReady,
-            // 'onStateChange': onPlayerStateChange,
-            // 'onError': onError
-        }
-    } );
-
-}
-
-function mute() { return ytPlayer.mute(); }
-
-function unMute() { return ytPlayer.unMute(); }
-
-function isMuted() { return ytPlayer.isMuted(); }
-
-function setVolume(vol) { return ytPlayer.setVolume(vol); }
-
-function getVolume() { return ytPlayer.getVolume(); }
-
-function playVideo() { return ytPlayer.playVideo(); }
-
-function loadVideoById(id, startSeconds, quality) { return ytPlayer.loadVideoById(id, startSeconds, quality); }
-
-function getPlayerState() { return ytPlayer.getPlayerState(); }
-// YT.PlayerState.(unstarted?) == -1
-// YT.PlayerState.ENDED == 0
-// YT.PlayerState.PLAYING == 1
-// YT.PlayerState.PAUSED == 2
-// YT.PlayerState.BUFFERING == 3
-// YT.PlayerState.CUED == 5
-
-
-</script>
-</head>
-<body style="width: 100vw; height: 100vh; padding: 0; margin: 0;">
-	<div id="ytPlayer" style="width: 100%; height: 100%"></div>
-</body>
+            iv_load_policy: 3,
+            controls: 0
+          },
+          events: {}
+        } );
+      }
+      function mute() { return ytPlayer.mute(); }
+      function unMute() { return ytPlayer.unMute(); }
+      function isMuted() { return ytPlayer.isMuted(); }
+      function setVolume(vol) { return ytPlayer.setVolume(vol); }
+      function getVolume() { return ytPlayer.getVolume(); }
+      function playVideo() { return ytPlayer.playVideo(); }
+      function loadVideoById(id, startSeconds, quality) { return ytPlayer.loadVideoById(id, startSeconds, quality); }
+      function getPlayerState() { return ytPlayer.getPlayerState(); }
+    </script>
+  </body>
+</html>
