@@ -1,7 +1,7 @@
 <html>
 <head>
-	<title>Twitch Autohost</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <title>Twitch Autohost</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
@@ -12,18 +12,35 @@
 </head>
 <body>
 
-<div id="output"></div>
+<div class="container">
+  <div class="row">
+    <h1>Autohost</h1>
+  </div>
 
-
-<!-- Outline
-  Log in to twitch
-  Left pane: options
-    Start/stop
-    Random hosting vs Queue
-    Auto-switch (with time options)?
-    List of friends
-  Right pane: queue of host targets
- -->
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          Start / stop <br>
+          Random hosting vs Queue <br>
+          Auto-switch every X minutes <br>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          List of friends
+        </div>
+      </div>
+    </div> <!-- left col -->
+    <div class="col-sm-7">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          queue of host targets
+        </div>
+      </div>
+    </div> <!-- right col -->
+  </div> <!-- second row -->
+</div> <!-- container -->
 
 </body>
 </html>
