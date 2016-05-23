@@ -15,12 +15,12 @@ $(function(){
 function login(client) {
   // If there's no auth, send the user to the login page
   if ( document.location.hash.length < 50 ) {
-    window.location = `https://api.twitch.tv/kraken/oauth2/authorize
-    ?response_type=token
-    &client_id=${client}
-    &scope=chat_login
-    &force_verify=true
-    &redirect_uri=https://skhmt.github.io/autohost/`;
+    window.location = 'https://api.twitch.tv/kraken/oauth2/authorize' +
+    '?response_type=token' +
+    '&client_id=' + client +
+    '&scope=chat_login' +
+    '&force_verify=true' +
+    '&redirect_uri=https://skhmt.github.io/autohost/';
   }
   else {
     oauth = document.location.hash.substring(14,44);
