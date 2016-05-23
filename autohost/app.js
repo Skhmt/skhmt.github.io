@@ -1,6 +1,9 @@
 
 // https://www.reddit.com/r/Twitch/comments/4kd39i/looking_for_autohost_bot_for_linux/
 
+// https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md#get-streams
+// https://api.twitch.tv/kraken/streams/?limit=100&offset=0&channel=food,bobross,monstercat,skhmt
+//   .streams[i].game/viewers/preview.large/channel.status/channel.display_name/channel.logo/channel.video_banner/
 
 var clientid = 'mmkfyou3e4jgui4y57xxhag67apzdv9'; // public client id
 var oauth = ''; // oauth without "oauth:", requires chat_login
