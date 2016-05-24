@@ -27,6 +27,7 @@ function login(client) {
   }
   else {
     oauth = document.location.hash.substring(14,44);
+    console.log(oauth);
     history.pushState({}, '', '/autohost/'); // masking the url
     TAPIC.setup(client, oauth, function(username) {
       getFollowedChannels( username, 0 );
