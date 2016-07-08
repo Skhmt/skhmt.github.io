@@ -683,6 +683,26 @@
 
         <hr>
 
+        <div id="funcEmit">
+          <h2>TAPIC.emit( <em>event, data</em> )</h2>
+          <p>
+            Triggers listeners on <em>event</em> and gives them <em>data</em>. Custom events can also be defined and used.
+          </p>
+          <p><strong>Parameters</strong></p>
+          <ul class="nobullet">
+            <li>
+              <strong>event</strong>
+              <em>(string)</em> - The event name, such as 'message' or 'action'.
+            </li>
+            <li>
+              <strong>data</strong>
+              <em>(any)</em> - The data for the event - see the Listeners section for propper formatting. 
+            </li>
+          </ul>
+        </div>
+
+        <hr>
+
         <div id="funcGetUsername">
           <h2>TAPIC.getUsername()</h2>
           <p>
@@ -1152,6 +1172,7 @@ TAPIC.isSubscribing( subUser, subChannel, function( res ) {
               <li><a href="#funcRunCommercial">runCommercial</a></li>
               <li><a href="#funcSetStatusGame">setStatusGame</a></li>
               <li><a href="#funcCloseChat">closeChat</a></li>
+              <li><a href="#funcEmit">emit</a></li>
             </ul>
           </li>
           <li>
