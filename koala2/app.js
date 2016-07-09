@@ -25,7 +25,7 @@ $(function() {
     });
 
     $('#updateGameButton').click(function() {
-        changeStatusSubmit();
+        changeGameSubmit();
     });
 
     $("#sortable").sortable({
