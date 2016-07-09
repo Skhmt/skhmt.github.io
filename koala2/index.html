@@ -39,25 +39,33 @@
           StreamKoala
         </div>
       </div>
+
       <div class="navbar-header hidden-xs hidden-sm">
-        <div class="navbar-brand">
-          <strong id="username"><!-- username dynamically generated --></strong>
-        </div>
-
-        <div class="navbar-brand">
-          <strong class="text-primary">Game: &nbsp;</strong>
-          <em id="game"><!-- game dynamically generated --></em>
-        </div>
-
-        <div class="navbar-brand">
-          <strong class="text-primary">Status: &nbsp;</strong>
-          <em id="status"><!-- status dynamically generated --></em>
-        </div>
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <div class="navbar-brand">
+              <strong id="username"><!-- username dynamically generated --></strong>
+            </div>
+          </li>
+          <li>
+            <div class="navbar-brand">
+              <strong class="text-primary">Game: </strong>
+              <em id="game"><!-- game dynamically generated --></em>
+            </div>
+          </li>
+          <li>
+            <div class="navbar-brand">
+              <strong class="text-primary">Status: </strong>
+              <em id="status"><!-- status dynamically generated --></em>
+            </div>
+          </li>
+        </ul>
       </div>
+      
       <div class="hidden-xs">
         <form class="nav navbar-form navbar-right" onsubmit="return false;">
           <button type="button" class="btn btn-default btn-md updateStatusButton">
-            <i class="fa fa-cloud-upload fa-lg"></i>
+            <i class="fa fw fa-cloud-upload fa-lg"></i>
           </button>
         </form>
       </div>
