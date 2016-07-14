@@ -68,8 +68,13 @@
             lighter weight (~41kb for tmi.js vs ~10kb for tapic.js) and provides roughly the same functionality. Use either or both or neither.
           </p>
           <p>
-            Its intended use is for client-side web apps, CLI/BrowserSource pages for OBS, and NW.js/Electron desktop apps.
-            It will also work with Node.js: <code>npm install tapic</code>.
+            To use with client-side web apps and CLR/Browser Source pages in OBS, download TAPIC.js and include it with 
+            <code>&lt;script src="tapic.js"&gt;</code>.
+          </p>
+          <p>
+            To use with Node.js: <code>npm install tapic</code> then add this somewhere: <code>let TAPIC = require('tapic');</code>
+          </p>
+            To use with NW.js or Electron desktop apps, either of the above methods work.
           </p>
           <p>
             The example <a href="https://github.com/Skhmt/tapic.js/blob/master/test.html">test.html</a> shows how to use TAPIC.js
