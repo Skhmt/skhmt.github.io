@@ -81,7 +81,7 @@
             between the Node.js and Browser TAPIC.js.
           </p>
           <p>
-            <em>You need a client id from Twitch to use this.</em> You will also need to implement a way to obtain the user's 
+            <strong>You need a client id from Twitch to use this.</strong> You will also need to implement a way to obtain the user's 
             oauth token, or alternatively get your own if you're making a private app. TAPIC.js does not do either of these 
             steps for you. See <a href="https://github.com/justintv/Twitch-API/blob/master/authentication.md" target="_new">
             this page</a> for more details. 
@@ -93,17 +93,17 @@
         <div id="setup">
           <h2>TAPIC.setup( <em>clientid, oauth, callback</em> )</h2>
           <p>
-            Sets up TAPIC.js. You must run this before <em>anything</em> works.
+            Sets up TAPIC.js. You must run this before <em>anything</em> works. 
           </p>
           <p><strong>Parameters</strong></p>
           <ul class="nobullet">
             <li>
               <strong>clientid</strong>
-              <em>(string)</em> - The public client id of your app.
+              <em>(string)</em> - The <strong>public</strong> client id of your app.
             </li>
             <li>
               <strong>oauth</strong>
-              <em>(string)</em> - The oauth token of the user you want to be logged in. Does not include
+              <em>(string)</em> - The oauth token of the user you want to be logged in. Does not have to include
                 <code>oauth:</code>.
             </li>
             <li>
