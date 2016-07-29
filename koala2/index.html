@@ -65,7 +65,7 @@
   <div class="container-fluid">
     <div class="row" id="sortable">
 
-      <div class="col-xs-5 col-sm-5 col-md-4 col-lg-4" style="padding-left: 5; padding-right: 5;">
+      <div class="col-xs-5" style="padding-left: 5; padding-right: 5;">
         <div class="panel panel-default" style="height: calc(100vh - 95px);">
           <div class="panel-heading handle" style="cursor: move;">
             <h3 class="panel-title text-center">Chat</h3>
@@ -78,10 +78,13 @@
         </div>
       </div>
 
-      <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" style="padding-left: 5; padding-right: 5;">
+      <div class="col-xs-3" style="padding-left: 5; padding-right: 5;">
         <div class="panel panel-default" style="height: calc(100vh - 95px);">
           <div class="panel-heading handle" style="cursor: move;">
             <h3 class="panel-title text-center">Viewers</h3>
+          </div>
+          <div class="panel-body" style="height: 100px;">
+            <iframe id="twitchVideo" src="" style="width: calc(100% + 30px); border: 0; margin: -10px -15px -10px -15px;">&nbsp;</iframe>
           </div>
           <div class="panel-body" style="height: 60px;" id="viewercount">
             <!-- viewercount dynamically generated -->
@@ -92,7 +95,7 @@
         </div>
       </div>
 
-      <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" style="padding-left: 5; padding-right: 5;">
+      <div class="col-xs-4" style="padding-left: 5; padding-right: 5;">
         <div class="panel panel-default" style="height: calc(100vh - 95px);">
           <div class="panel-heading handle" style="cursor: move;">
             <h3 class="panel-title text-center">TwitchAlerts</h3>
@@ -102,22 +105,6 @@
             <iframe src="http://www.twitchalerts.com/dashboard/recent-events" id="twitchalerts" style="width: calc(100% + 30px); height: calc(100% + 30px); padding: 0; margin: -15px; border: 0;">&nbsp;</iframe>
 
           </div>
-        </div>
-      </div>
-
-      <div class="hidden-xs hidden-sm col-md-3 col-lg-3" style="padding-left: 5; padding-right: 5;">
-        <div class="panel panel-default" style="height: calc(100vh - 95px);">
-          <div class="panel-heading handle" style="cursor: move;">
-            <h3 class="panel-title text-center">Stream</h3>
-          </div>
-          <ul class="list-group" style="max-height: calc(100vh - 135px);">
-            <li class="list-group-item">
-              <iframe id="twitchVideo" src="" style="width: calc(100% + 30px); height: 50%; border: 0; margin: -10px -15px -10px -15px;">&nbsp;</iframe>
-            </li>
-            <li class="list-group-item">
-              <!-- Bottom half... put something here -->
-            </li>
-          </ul>
         </div>
       </div>
 
