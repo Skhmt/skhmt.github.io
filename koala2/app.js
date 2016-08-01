@@ -15,7 +15,7 @@ $(function() {
 	$('#chatframe').attr('src', 'http://www.twitch.tv/' + channel + '/chat');
 	setTimeout(function () {
 	  $('#username').html(TAPIC.getDisplayName())
-	}, 5*1000;
+	}, 5*1000);
 	refresh(5);
     });
 
