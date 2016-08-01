@@ -76,18 +76,15 @@
 				setMods(username);
 			}
 		} );
-		TAPIC.runChat(username, function() {
-			setMods(username);
-		} );
+		setMods(username);
 	}
 	function setMods(username) {
 		if ( index >= channels.length ) {
-			TAPIC.closeChat();
 			return outputMods();
 		}
 		var percent = parseInt( (index / channels.length * 100), 10 );
 		$('#output').html( percent + '% done<br>Getting info from: ' + channels[index].channel );
-		TAPIC.changeChannel( channels[index].channel );
+		TAPIC.joinChannel( channels[index].channel );
 		setTimeout(function(){TAPIC.sendChat( '/mods' );}, 500);
 	}
 	function outputMods() {
