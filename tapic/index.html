@@ -6,13 +6,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-OiWEn8WwtH+084y4yW2YhhH6z/qTSecHZuk/eiWtnvLtU+Z8lpDsmhOKkex6YARr" crossorigin="anonymous">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css">
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/latest/cosmo/bootstrap.min.css">
-
-  <script src="https://skhmt.github.io/lib/prism.js"></script>
-  <link rel="stylesheet" href="https://skhmt.github.io/lib/prism.css">
   <style>
     body {
       position: relative;
@@ -51,7 +51,7 @@
       <div class="col-sm-9">
 
         <div id="about">
-          <h2>TAPIC.js</h2>
+          <h2>TAPIC.js 3.x</h2>
           <p>
             <a href="https://raw.githubusercontent.com/Skhmt/tapic.js/master/tapic.js">Latest version</a>
           </p>
@@ -68,29 +68,12 @@
             lighter weight (~41kb for tmi.js vs ~10kb for tapic.js) and provides roughly the same functionality. Use either or both or neither.
           </p>
           <p>
-            To use with client-side web apps and CLR/Browser Source pages in OBS, download TAPIC.js and include it with 
-            <code>&lt;script src="tapic.js"&gt;&lt;/script&gt;</code>.
-          </p>
-          <p>
-            To use with Node.js, run <code>npm install tapic</code> then add this somewhere: <code>let TAPIC = require('tapic');</code>
-          </p>
-            To use with NW.js or Electron desktop apps, either of the above methods work.
+            Its intended use is for client-side web apps, CLI/BrowserSource pages for OBS, and NW.js/Electron desktop apps.
+            It will also work with Node.js: <code>npm install tapic</code>.
           </p>
           <p>
             The example <a href="https://github.com/Skhmt/tapic.js/blob/master/test.html">test.html</a> shows how to use TAPIC.js
             in a simple chatroom reading website. The example requires inputting your own clientid and oauth to work.
-          </p>
-          <p>
-            The example <a href="https://github.com/Skhmt/tapic.js/blob/master/test.js">test.js</a> shows how to use TAPIC.js
-            in a Node.js app. This example isn't as feature-complete as the .html version, but there is no lost functionality 
-            between the Node.js and Browser TAPIC.js.
-          </p>
-          <p>
-            <strong>You need a client id from Twitch to use this.</strong> You will also need to implement a way to obtain the user's 
-            oauth token, or alternatively get your own if you're making a private app. TAPIC.js does not do either of these 
-            steps for you. See <a href="https://github.com/justintv/Twitch-API/blob/master/authentication.md" target="_new">
-            this page</a> for more details. I'd recommend <em>Implicit</em> Grant Flow to obtain the user's oauth for almost 
-            all use cases besides a Node.js server.
           </p>
         </div>
 
@@ -99,17 +82,20 @@
         <div id="setup">
           <h2>TAPIC.setup( <em>clientid, oauth, callback</em> )</h2>
           <p>
-            Sets up TAPIC.js. You must run this before <em>anything</em> works. 
+            Sets up TAPIC.js. You must run this before <em>anything</em> works.
+          </p>
+          <p>
+            You probably want to run TAPIC.joinChannel(channel) after this.
           </p>
           <p><strong>Parameters</strong></p>
           <ul class="nobullet">
             <li>
               <strong>clientid</strong>
-              <em>(string)</em> - The <strong>public</strong> client id of your app.
+              <em>(string)</em> - The public client id of your app.
             </li>
             <li>
               <strong>oauth</strong>
-              <em>(string)</em> - The oauth token of the user you want to be logged in. Does not have to include
+              <em>(string)</em> - The oauth token of the user you want to be logged in. Does not include
                 <code>oauth:</code>.
             </li>
             <li>
@@ -130,27 +116,16 @@
 
         <hr>
 
-        <div id="setupRunChat">
-          <h2>TAPIC.runChat( <em>channel, callback</em> )</h2>
+        <div id="funcJoinChannel">
+          <h2>TAPIC.joinChannel( <em>channel</em> )</h2>
           <p>
-            Sets the initial channel to connect to, connects to it and the group (whisper) server, and runs
-            various other set-up things.
+            Joins a channel. If you were previously in a channel, it disconnects you from that channel first.
           </p>
           <p><strong>Parameters</strong></p>
           <ul class="nobullet">
             <li>
               <strong>channel</strong>
-              <em>(string)</em> - The channel name to connect to.
-            </li>
-            <li>
-              <strong>callback</strong>
-              <em>(function)</em> - for when the channel is running.
-            </li>
-          </ul>
-          <p><strong>Example</strong></p>
-          <ul class="nobullet">
-            <li>
-              <code class="language-javascript">TAPIC.runChat( channel, function() { } );</code>
+              <em>(string)</em> - The channel to change to.
             </li>
           </ul>
         </div>
@@ -626,23 +601,6 @@
 
         <hr>
 
-        <div id="funcChangeChannel">
-          <h2>TAPIC.changeChannel( <em>channel</em> )</h2>
-          <p>
-            Changes channel you're in. This is quicker than TAPIC.runChat(), but might not work if you change
-            from a regular channel to an event server channel.
-          </p>
-          <p><strong>Parameters</strong></p>
-          <ul class="nobullet">
-            <li>
-              <strong>channel</strong>
-              <em>(string)</em> - The channel to change to.
-            </li>
-          </ul>
-        </div>
-
-        <hr>
-
         <div id="funcRunCommercial">
           <h2>TAPIC.runCommercial( <em>length</em> )</h2>
           <p>
@@ -681,17 +639,6 @@
 <code class="language-javascript">TAPIC.setStatusGame('Making a Twitch Javascript Framework #programming', 'Creative');</code>
             </li>
           </ul>
-        </div>
-
-        <hr>
-
-        <div id="funcCloseChat">
-          <h2>TAPIC.closeChat()</h2>
-          <p>
-            Closes the current chat, including the group (whisper) server connection, opened by TAPIC.runChat().
-            This is automatically invoked by TAPIC.runChat() before it opens a new chat, so it won't be necessary
-            very often.
-          </p>
         </div>
 
         <hr>
@@ -990,7 +937,7 @@ TAPIC.isFollowing( folUser, folTarget, function( res ) {
         <hr>
 
         <div id="funcIsSubscribing">
-          <h2>TAPIC.isSubscribing( <em>user, channel, callback</em> )</h2>
+          <h2>TAPIC.isSubscribing( <em>user, callback</em> )</h2>
           <p>
             Requires the <code>channel_check_subscription</code> permission. Checks if <code>user</code> is
             subscribed to <code>channel</code>.
@@ -1000,10 +947,6 @@ TAPIC.isFollowing( folUser, folTarget, function( res ) {
             <li>
               <strong>user</strong>
               <em>(string)</em> - The user to check.
-            </li>
-            <li>
-              <strong>channel</strong>
-              <em>(string)</em> - The channel to check against.
             </li>
             <li>
               <strong>callback</strong>
@@ -1152,7 +1095,7 @@ TAPIC.isSubscribing( subUser, subChannel, function( res ) {
             <strong><a href="#setup">Setup</a></strong>
             <ul class="nav nav-pills nav-stacked">
               <li><a href="#setup">setup</a></li>
-              <li><a href="#setupRunChat">runChat</a></li>
+              <li><a href="#funcJoinChannel">joinChannel</a></li>
             </ul>
           </li>
           <li>
@@ -1181,10 +1124,8 @@ TAPIC.isSubscribing( subUser, subChannel, function( res ) {
             <ul class="nav nav-pills nav-stacked">
               <li><a href="#funcSendChat">sendChat</a></li>
               <li><a href="#funcSendWhisper">sendWhisper</a></li>
-              <li><a href="#funcChangeChannel">changeChannel</a></li>
               <li><a href="#funcRunCommercial">runCommercial</a></li>
               <li><a href="#funcSetStatusGame">setStatusGame</a></li>
-              <li><a href="#funcCloseChat">closeChat</a></li>
               <li><a href="#funcEmit">emit</a></li>
             </ul>
           </li>
