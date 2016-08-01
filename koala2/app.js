@@ -10,12 +10,13 @@ $(function() {
         username = user;
         $('#username').html(username);
         var channel = username;
-        TAPIC.runChat(channel, function() {
-            $('#twitchVideo').attr('src', 'http://player.twitch.tv/?autoplay=true&muted=true&channel=' + channel);
-            $('#chatframe').attr('src', 'http://www.twitch.tv/' + channel + '/chat');
-            $('#username').html(TAPIC.getDisplayName());
-            refresh(5);
-        });
+        TAPIC.joinChannel(channel);
+	$('#twitchVideo').attr('src', 'http://player.twitch.tv/?autoplay=true&muted=true&channel=' + channel);
+	$('#chatframe').attr('src', 'http://www.twitch.tv/' + channel + '/chat');
+	setTimeout(function () {
+	  $('#username').html(TAPIC.getDisplayName())
+	}, 5*1000;
+	refresh(5);
     });
 
     // UI
