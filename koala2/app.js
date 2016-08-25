@@ -11,7 +11,7 @@ $(function() {
         $('#username').html(username);
         var channel = username;
         TAPIC.joinChannel(channel);
-	$('#twitchVideo').attr('src', 'http://player.twitch.tv/?autoplay=true&muted=true&channel=' + channel);
+	$('#twitchVideo').attr('src', 'http://player.twitch.tv/?channel=' + channel + '&muted=true');
 	$('#chatframe').attr('src', 'http://www.twitch.tv/' + channel + '/chat');
 	setTimeout(function () {
 	  $('#username').html(TAPIC.getDisplayName());
