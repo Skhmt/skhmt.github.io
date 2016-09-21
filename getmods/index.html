@@ -29,7 +29,7 @@
 		}
 	});
 	function getFollowedChannels(username, offset) {
-		$.getJSON('https://api.twitch.tv/kraken/users/' + username + '/follows/channels?callback=?',
+		$.getJSON('https://api.twitch.tv/kraken/users/' + username + '/follows/channels?client_id=' + clientid + '&callback=?',
 			{ "limit":100, "offset": offset, "sortby": 'last_broadcast' },
 			function(res) {
 				var folLen = res.follows.length;
