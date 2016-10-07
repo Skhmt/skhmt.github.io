@@ -3,7 +3,6 @@ var username = '';
 $(function() {
     var clientid = '3s27p59atb0bwu6vkh2rnrxeqx3dn3h'; //streamkoala2 public client id
     var oauth = document.location.hash.substring(14, 44);
-	console.log(oauth);
 
     history.pushState({}, "", "/koala2/"); // masking the url
 
