@@ -16,7 +16,6 @@ $(function() {
 	setTimeout(function () {
 	  $('#username').html(TAPIC.getDisplayName());
 	}, 5*1000);
-	refresh(5);
     });
 
     // UI
@@ -34,26 +33,17 @@ $(function() {
     });
 });
 
-function refresh(seconds) {
-    // online status
-    if (TAPIC.isOnline()) {
-        document.getElementById('username').className = 'text-success';
-    } else {
-        document.getElementById('username').className = 'text-danger';
-    }
-
-    $('#game').html(TAPIC.getGame().replace(/</g, '&lt;').replace(/\(/g, '&#40;'));
-    $('#status').html(TAPIC.getStatus().replace(/</g, '&lt;').replace(/\(/g, '&#40;'));
+TAPIC.listen('update', function () {
+    if (TAPIC.isOnline()) document.getElementById('username').className = 'text-success';
+    else document.getElementById('username').className = 'text-danger';
+	
+    if (TAPIC.getGame()) $('#game').html(TAPIC.getGame().replace(/</g, '&lt;').replace(/\(/g, '&#40;'));  
+    if (TAPIC.getStatus()) $('#status').html(TAPIC.getStatus().replace(/</g, '&lt;').replace(/\(/g, '&#40;'));
 
     updateUserlist();
     updateViewers();
 
-    if (seconds) {
-        setTimeout(function() {
-            refresh(seconds);
-        }, seconds * 1000);
-    }
-}
+});
 
 function updateViewers() {
     $('#viewercount').html(`
