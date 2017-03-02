@@ -23,12 +23,12 @@
 			oauth = document.location.hash.substring(14,44);
 			history.pushState({}, "", "/getmods/"); // masking the url
 			TAPIC.setup(oauth, function(username) {
-				getFollowedChannels(0);
+				getFollowedChannels(TAPIC.getUserID(), 0);
 			} );
 		}
 	});
-	function getFollowedChannels(offset) {
-		TAPIC.kraken('users/' + TAPIC.getUserID() + '/follows/channels',
+	function getFollowedChannels(userid, offset) {
+		TAPIC.kraken('users/' + userid + '/follows/channels',
 			'&limit=100&offset=' + offset + '&sortby=last_broadcast',
 			function(res) {
 				var folLen = res.follows.length;
@@ -43,10 +43,10 @@
 					});
 				}
 				if ( folLen === 100 ) {
-					return getFollowedChannels(username, (offset+100) );
+					return getFollowedChannels(userid, (offset+100) );
 				}
 				else {
-					outputChannels(username, offset+folLen);
+					outputChannels(TAPIC.getDisplayName(), offset+folLen);
 				}
 			} // anonymous function
 		); // getJSON
