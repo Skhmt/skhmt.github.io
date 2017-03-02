@@ -1,12 +1,12 @@
 var username = '';
 
 $(function() {
-    var clientid = '3s27p59atb0bwu6vkh2rnrxeqx3dn3h'; //streamkoala2 public client id
+    //streamkoala2 public client id: 3s27p59atb0bwu6vkh2rnrxeqx3dn3h 
     var oauth = document.location.hash.substring(14, 44);
 
     history.pushState({}, "", "/koala2/"); // masking the url
 
-    TAPIC.setup(clientid, oauth, function(user) {
+    TAPIC.setup(oauth, function(user) {
         username = user;
         $('#username').html(username);
         var channel = username;
