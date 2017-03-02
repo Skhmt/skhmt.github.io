@@ -10,7 +10,6 @@
 
 
 <script>
-	var clientid = '4jyaf3yr336f1deiktkvru3g7dvtzed'; // public client id
 	var oauth = ''; // oauth without "oauth:", requires chat_login
 	var channels = [];
 	var index = 0;
@@ -23,7 +22,7 @@
 		else {
 			oauth = document.location.hash.substring(14,44);
 			history.pushState({}, "", "/getmods/"); // masking the url
-			TAPIC.setup(clientid, oauth, function(username) {
+			TAPIC.setup(oauth, function(username) {
 				getFollowedChannels( username, 0 );
 			} );
 		}
