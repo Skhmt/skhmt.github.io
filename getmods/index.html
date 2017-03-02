@@ -23,12 +23,12 @@
 			oauth = document.location.hash.substring(14,44);
 			history.pushState({}, "", "/getmods/"); // masking the url
 			TAPIC.setup(oauth, function(username) {
-				getFollowedChannels( username, 0 );
+				getFollowedChannels(0);
 			} );
 		}
 	});
-	function getFollowedChannels(username, offset) {
-		TAPIC.kraken('users/' + username + '/follows/channels',
+	function getFollowedChannels(offset) {
+		TAPIC.kraken('users/' + TAPIC.getUserID() + '/follows/channels',
 			'&limit=100&offset=' + offset + '&sortby=last_broadcast',
 			function(res) {
 				var folLen = res.follows.length;
