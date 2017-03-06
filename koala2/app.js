@@ -120,7 +120,6 @@ function changeStatusSubmit() {
     $('#changeStatusModal').modal('hide');
 
     TAPIC.setStatusGame(newStatus, TAPIC.getGame());
-    refresh();
 }
 
 function changeGameSubmit() {
@@ -128,7 +127,6 @@ function changeGameSubmit() {
     $('#changeGameModal').modal('hide');
 
     TAPIC.setStatusGame(TAPIC.getStatus(), newGame);
-    refresh();
 }
 
 function changeStatusOpen() {
