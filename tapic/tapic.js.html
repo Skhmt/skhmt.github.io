@@ -42,7 +42,7 @@
 * Twitch API &amp; Chat in javascript.
 * @author Skhmt
 * @license MIT
-* @version 4.0.0
+* @version 4.0.4
 *
 * @module TAPIC
 */
@@ -897,6 +897,8 @@ if (typeof module == 'object') __nodeModule__ = module;
 	module.exports = function (state, _event) {
 	  let ps;
 
+	  let pongTimeout = '';
+
 	  connect();
 	  function connect() {
 	    const url = 'wss://pubsub-edge.twitch.tv';
@@ -905,34 +907,65 @@ if (typeof module == 'object') __nodeModule__ = module;
 	      ps = new WS(url);
 	      ps.on('open', psOpen);
 	      ps.on('message', psMessage);
+	      ps.on('close', psClose);
+	      ps.on('error', psError);
 	    }
 	    else {
 	      ps = new WebSocket(url);
 	      ps.onopen = psOpen;
 	      ps.onmessage = psMessage;
+	      ps.onclose = psClose;
+	      ps.onerror = psError;
 	    }
 	  }
 
-	  // https://dev.twitch.tv/docs/PubSub/overview/
+	  // https://dev.twitch.tv/docs/v5/guides/PubSub/
 	  function psOpen() {
 	    let frame = {
 	      type: 'LISTEN',
+	      nonce: 'listenToTopics',
 	      data: {
 	        topics: [
-	          'chat_moderator_actions.' + state.id + '.' + state.channel_id,
 	          'channel-bits-events-v1.' + state.channel_id,
-	          'whispers.' + state.id
+	          'chat_moderator_actions.' + state.id + '.' + state.channel_id,
+	          'whispers.' + state.id,
 	        ],
 	        auth_token: state.oauth,
 	      },
 	    };
-	    ps.send(JSON.stringify(frame));
+	    try {
+	      ps.send(JSON.stringify(frame));
+	    } catch(e) {
+	      setTimeout(function() {
+	        ps.send(JSON.stringify(frame));
+	      }, 1000);
+	    }
 	    ping();
 	  }
 
+	  function psClose() {
+	    connect();
+	  }
+
+	  function psError(err) {
+	    console.error('pubsub error');
+	    console.log(err);
+	  }
+
 	  function ping() {
-	    ps.send("{'type':'PING'}");
-	    setTimeout(ping, 120000); // 120,000 = 2 minutes
+	    try {
+	      ps.send('{"type":"PING"}');
+	    } catch(err) {
+	      setTimeout(function() {
+	        ps.send('{"type":"PING"}');
+	      }, 2000);
+	    }
+	    
+	    setTimeout(ping, 60000); // 60,000 = 1 minute
+
+	    pongTimeout = setTimeout(function() {
+	      connect();
+	    }, 10000); // if pong isn't received within 10 seconds, reconnect
 	  }
 
 	  function psMessage(event) {
@@ -942,6 +975,8 @@ if (typeof module == 'object') __nodeModule__ = module;
 
 	    switch (message.type) {
 	      case 'PONG':
+	        clearTimeout(pongTimeout);
+	        break;
 	      case 'RESPONSE':
 	        break;
 	      case 'RECONNECT':
@@ -951,7 +986,7 @@ if (typeof module == 'object') __nodeModule__ = module;
 	        parseMessage(message.data);
 	        break;
 	      default:
-	        console.log('Unknown message type received in pubsub.');
+	        console.log('Uncaught message type received in pubsub.');
 	        console.log(message);
 	    }
 	  }
@@ -973,16 +1008,21 @@ if (typeof module == 'object') __nodeModule__ = module;
 	      default:
 	        break;
 	    }
+
 	    function bits() {
 	      let bits = JSON.parse(data.message);
 	      _event('bits', bits);
 	    }
+
 	    function moderation() {
 	      let moderation = JSON.parse(data.message).data;
 	      _event('moderation', moderation);
 	    }
+
 	    function whisper() {
-	      // TODO finish this
+	      let message = JSON.parse(data.message).data_object;
+	      // TODO: figure out why some whispers are dropped...
+	      // _event('whisper', message);
 	    }
 	  }
 	};
@@ -1011,7 +1051,7 @@ if (typeof module == 'object') __nodeModule__ = module;
 
 	    _getJSON(
 	      'https://api.twitch.tv/kraken/users',
-	      '&amp;login=' + channel,
+	      '&amp;login=' + encodeURIComponent(channel),
 	      setState
 	    );
 
@@ -1124,7 +1164,7 @@ if (typeof module == 'object') __nodeModule__ = module;
 	    if (typeof user != 'string' || typeof channel != 'string' || typeof callback != 'function') {
 	      return console.error('Invalid parameters. Usage: TAPIC.isFollowing(user_id, channel_id, callback);');
 	    }
-	    const url = 'https://api.twitch.tv/kraken/users/' + user + '/follows/channels/' + channel;
+	    const url = 'https://api.twitch.tv/kraken/users/' + encodeURIComponent(user) + '/follows/channels/' + encodeURIComponent(channel);
 	    _getJSON(
 	      url,
 	      function (res) {
@@ -1158,7 +1198,7 @@ if (typeof module == 'object') __nodeModule__ = module;
 	      return;
 	    }
 	    // https://api.twitch.tv/kraken/channels/teststate.channel/subscriptions/testuser
-	    const url = 'https://api.twitch.tv/kraken/channels/' + state.channel_id + '/subscriptions/' + user;
+	    const url = 'https://api.twitch.tv/kraken/channels/' + state.channel_id + '/subscriptions/' + encodeURIComponent(user);
 	    _getJSON(
 	      url,
 	      function (res) {
@@ -1600,7 +1640,7 @@ if (typeof module == 'object') __nodeModule__ = module;
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = function (TAPIC, state) {
+	module.exports = function (TAPIC, state, _getJSON) {
 	  /**
 	  * Sets the status and game of the channel. Requires channel_editor permission.
 	  * @param  {string} status The status/title of the channel.
@@ -1620,60 +1660,6 @@ if (typeof module == 'object') __nodeModule__ = module;
 	        state.status = res.status;
 	      }
 	    );
-
-	    // const host = 'https://api.twitch.tv';
-	    // let path = '/kraken/channels/' + state.channel_id;
-	    //     path += '?channel[status]=' + encodeURIComponent(status);
-	    //     path += '&amp;channel[game]=' + encodeURIComponent(game);
-	    //     path += '&amp;_method=put&amp;oauth_token=' + state.oauth;
-
-	    // if (require('./isNode')) {
-	    //   let options = {
-	    //     host: host,
-	    //     path: path,
-	    //     headers: {
-	    //       'Client-ID': state.clientid
-	    //     }
-	    //   };
-	    //   let http = require('https');
-	    //   http.get(options, function (res) {
-	    //     let output = '';
-	    //     res.setEncoding('utf8');
-	    //     res.on('data', function (chunk) {
-	    //       output += chunk;
-	    //     });
-	    //     res.on('end', function () {
-	    //       if (res.statusCode >= 200 &amp;&amp; res.statusCode &lt; 400) {
-	    //         const resp = JSON.parse(output);
-	    //         state.game = resp.game;
-	    //         state.status = resp.status;
-	    //       } else { // error
-	    //         console.error(output);
-	    //       }
-	    //     });
-	    //   }).on('error', function (e) {
-	    //     console.error(e.message);
-	    //   });
-	    // } else { // vanilla JS
-	    //   let xhr = new XMLHttpRequest();
-	    //   xhr.open('GET', host + path, true);
-	    //   xhr.setRequestHeader('Client-ID', state.clientid);
-	    //   xhr.onload = function () {
-	    //     if (xhr.status >= 200 &amp;&amp; xhr.status &lt; 400) {
-	    //       const resp = JSON.parse(xhr.responseText);
-	    //       state.game = resp.game;
-	    //       state.status = resp.status;
-	    //     } else {
-	    //       // We reached our target server, but it returned an error
-	    //       console.error(xhr.responseText);
-	    //     }
-	    //   };
-	    //   xhr.onerror = function () {
-	    //     // There was a connection error of some sort
-	    //     console.error(xhr.responseText);
-	    //   };
-	    //   xhr.send();
-	    // }
 	  };
 	};
 
@@ -1695,7 +1681,7 @@ if (typeof module == 'object') __nodeModule__ = module;
 
 	    // Getting the id of the community by its name, then joining it
 	    _getJSON('https://api.twitch.tv/kraken/communities/',
-	      '&amp;name=' + community,
+	      '&amp;name=' + encodeURIComponent(community),
 	      function (res) {
 	        joinCommunity(res._id);
 	      }
@@ -1751,7 +1737,7 @@ if (typeof module == 'object') __nodeModule__ = module;
 	    }
 	    _getJSON(
 	      'https://api.twitch.tv/kraken/users',
-	      '&amp;login=' + username,
+	      '&amp;login=' + encodeURIComponent(username),
 	      function (res) {
 	        callback(res.users[0]._id);
 	      }
@@ -1950,19 +1936,19 @@ if (typeof module == 'object') __nodeModule__ = module;
 	/**
 	* Bit tip notification. Via PubSub.
 	* @event bits
-	* @property {object} badge_entitlement - Information about the user’s new badge level, if the user reached a new badge level with this cheer; otherwise. null.
-	* @property {number} bits_used - Number of bits used.
-	* @property {string} channel_id - 	User ID of the channel on which bits were used.
-	* @property {string} channel_name - Name of the channel on which bits were used.
-	* @property {string} chat_message - Chat message sent with the cheer.
-	* @property {string} context - Event type associated with this use of bits (for example, cheer).
 	* @property {string} message_id - Message ID
 	* @property {string} message_type - Message type (that is, the type of object contained in the data field)
-	* @property {string} time - Time when the bits were used. RFC 3339 format.
-	* @property {number} total_bits_used - All-time total number of bits used on this channel by the specified user.
-	* @property {string} user_id - User ID of the person who used the bits.
-	* @property {string} user_name - Login name of the person who used the bits.
 	* @property {string} version - Message version
+	* @property {object} data.badge_entitlement - Information about the user’s new badge level (.new_version and .previous_version), if the user reached a new badge level with this cheer; otherwise. null.
+	* @property {number} data.bits_used - Number of bits used.
+	* @property {string} data.channel_id - 	User ID of the channel on which bits were used.
+	* @property {string} data.channel_name - Name of the channel on which bits were used.
+	* @property {string} data.chat_message - Chat message sent with the cheer.
+	* @property {string} data.context - Event type associated with this use of bits (for example, cheer).
+	* @property {string} data.time - Time when the bits were used. RFC 3339 format.
+	* @property {number} data.total_bits_used - All-time total number of bits used on this channel by the specified user.
+	* @property {string} data.user_id - User ID of the person who used the bits.
+	* @property {string} data.user_name - Login name of the person who used the bits.
 	*/
 
 	/**
@@ -1988,7 +1974,7 @@ if (typeof module == 'object') __nodeModule__ = module;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Mar 05 2017 16:17:24 GMT-0800 (Pacific Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Mar 05 2017 20:16:19 GMT-0800 (Pacific Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
