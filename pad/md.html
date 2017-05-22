@@ -38,7 +38,7 @@
             });
 
 
-            let simplemde = new SimpleMDE({
+            let smde = new SimpleMDE({
                 element: document.getElementById('editor-container'),
                 toolbar: ['heading-1', 'heading-2', 'heading-3', '|',
                     'bold', 'italic', 'strikethrough', '|',
@@ -48,34 +48,21 @@
                     'preview', 'guide'],
                 // status: false,
                 placeholder: 'Write stuff!',
+                lineWrapping: true,
                 renderingConfig: {
                     codeSyntaxHighlighting: true,
-                }
+                },
+                autosave: {
+                    enabled: true,
+                    delay: 10000,
+                    uniqueId: 'mdPad'
+                },
             });
-
-            // Initial setup
-            const loadedContent = localStorage.getItem('mdePad');
-            if (loadedContent) simplemde.value(loadedContent);
-
-            // Unsaved data check
-            let changesSinceLastSave = false;
-            simplemde.codemirror.on('change', function() {
-                changesSinceLastSave = true;
-            });
-
-            function save() {
-                if (changesSinceLastSave) {
-                    const contents = simplemde.value();
-                    localStorage.setItem('mdePad', contents);
-                    changesSinceLastSave = false;
-                }
-            }
-
-            // Save periodically
-            setInterval(save, 10*1000);
 
             // Save on window close
-            window.onbeforeunload = save;
+            window.onbeforeunload = () => {
+                localStorage.setItem( 'smde_mdPad', smde.value() )
+            };
         </script>
     </body>
 </html>
