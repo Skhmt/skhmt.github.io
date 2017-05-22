@@ -1,6 +1,14 @@
 <html>
     <head>
         <title>LocalStoragePad</title>
+        <!--
+            <link href="atom-one-dark.css" rel="stylesheet">
+            <script src="highlight.min.js"></script>
+            <link href="quill.snow.css" rel="stylesheet">
+            <script src="quill.min.js"></script>
+        -->
+        <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/atom-one-dark.css">
+        <script src="https:///cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
         <link href="https://cdn.quilljs.com/1.2.4/quill.snow.css" rel="stylesheet">
         <script src="https://cdn.quilljs.com/1.2.4/quill.min.js" type="text/javascript"></script>
         <style>
@@ -19,31 +27,23 @@
     <body>
         <div id="editor-container"></div>
         <script>
+            hljs.configure({
+                languages: ['javascript', 'html', 'css', 'json', 'markdown']
+            });
             const toolbarOptions = [
                 [{ 'header': [1, 2, 3, false] }],
-                
                 [{ 'font': [] }],
-
-                ['bold', 'italic', 'underline', 'strike', { 'color': [] }, { 'background': [] }],        // toggled buttons
+                ['bold', 'italic', 'underline', 'strike', { 'color': [] }, { 'background': [] }],
                 ['blockquote', 'code-block'],
-
                 [{ 'align': [] }],
-                
                 [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                
-                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-                
-                // [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-                // [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-                // [{ 'direction': 'rtl' }],                         // text direction
-                // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-                // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-                ['clean']                                         // remove formatting button
+                [{ 'indent': '-1'}, { 'indent': '+1' }],
+                ['clean']
             ];
 
             const quill = new Quill('#editor-container', {
                 modules: {
+                    syntax: true,
                     toolbar: toolbarOptions
                 },
                 placeholder: 'Write some notes!',
