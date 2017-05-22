@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>LocalStoragePad</title>
+    </head>
+    <body style="height: 100vh; width: 100vw; margin: 0; padding: 0;">
+        <textarea id="userTextArea" style="height: 100vh; width: 100vw; resize: none;"></textarea>
+        <script>
+            let uta = document.getElementById('userTextArea');
+            let userTextHandler = () => localStorage.setItem('LocalStoragePad', uta.value);
+
+            uta.value = localStorage.getItem('LocalStoragePad');
+            uta.onkeyup = userTextHandler;
+            uta.onchange = userTextHandler;
+        </script>
+    </body>
+</html>
