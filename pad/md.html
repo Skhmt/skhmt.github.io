@@ -33,11 +33,6 @@
     <body>
         <textarea id="editor-container"></textarea>
         <script>
-            hljs.configure({
-                languages: ['javascript', 'html', 'css', 'json', 'markdown', 'xml']
-            });
-
-
             let smde = new SimpleMDE({
                 element: document.getElementById('editor-container'),
                 toolbar: ['heading-1', 'heading-2', 'heading-3', '|',
