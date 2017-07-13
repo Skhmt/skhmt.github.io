@@ -11,8 +11,8 @@ $(function() {
         $('#username').html(username);
         var channel = username;
         TAPIC.joinChannel(channel, function() {
-		$('#twitchVideo').attr('src', 'http://player.twitch.tv/?channel=' + channel + '&muted=true');
-		$('#chatframe').attr('src', 'http://www.twitch.tv/' + channel + '/chat');
+		$('#twitchVideo').attr('src', 'https://player.twitch.tv/?channel=' + channel + '&muted=true');
+		$('#chatframe').attr('src', 'https://www.twitch.tv/' + channel + '/chat');
 		$('#username').html(TAPIC.getDisplayName());
 	});
     });
