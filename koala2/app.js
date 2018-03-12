@@ -12,7 +12,7 @@ $(function() {
         var channel = username;
         TAPIC.joinChannel(channel, function() {
 		$('#twitchVideo').attr('src', 'https://player.twitch.tv/?channel=' + channel + '&muted=true');
-		$('#chatframe').attr('src', 'https://www.twitch.tv/' + channel + '/chat');
+		$('#chatframe').attr('src', 'https://www.twitch.tv/embed/' + channel + '/chat');
 		$('#username').html(TAPIC.getDisplayName());
 	});
     });
