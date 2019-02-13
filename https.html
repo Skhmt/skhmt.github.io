@@ -22,7 +22,7 @@
 			});
 
 			document.getElementById('submit').onclick = () => {
-				$in = document.getElementById('textInput');
+				const $in = document.getElementById('textInput');
 				socket.send($in.value);
 				$in.value = '';
 			};
