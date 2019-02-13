@@ -1,0 +1,23 @@
+<html>
+	<body>
+		<script>
+			function term(str) {
+				document.getElementById('terminal').innerHTML += str + '<br>';
+			}
+
+			const socket = new WebSocket('ws://localhost:8080');
+			
+			// connection opened
+			socket.addEventListener('open', event => {
+				socket.send('Hello Server!');
+			});
+
+			// listen for messages
+			socket.addEventListener('message', event => {
+				console.log(`Message from server: ${event.data}`);
+			});
+		</script>
+		<h1>HTTPS and WS (not secure) test</h1>
+		<div id='terminal'></div>
+	</body>
+</html>
