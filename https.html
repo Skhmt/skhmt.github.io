@@ -1,6 +1,6 @@
 <html>
 	<body>
-		<h1>Mixed Content tests v8</h1>
+		<h1>Mixed Content tests v9</h1>
 		<input type="text" id="textInput"><button id="submit">Send</button>
 		<br>
 		<button id="giftest">Test gif</button>
@@ -26,6 +26,7 @@
 				img.src = 'http://10.10.10.104:3000/data.gif?name=littlecat'
 				$hidden.appendChild(img)
 			}
+
 			$svgBtn.onclick = () => {
 				const img = document.createElement('img')
 				img.onload = ev => {
@@ -41,6 +42,7 @@
 					// Get raw image data
 					console.log(canvas.toDataURL('image/png').split(',')[1])
 				}
+				img.setAttribute('crossOrigin', 'anonymous')
 				img.src = 'http://10.10.10.104:3000/data.svg?name=littlecat'
 				$hidden.appendChild(img)
 			}
