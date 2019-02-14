@@ -2,30 +2,50 @@
 	<body>
 		<h1>HTTPS and WS (not secure) test</h1>
 		<input type="text" id="textInput"><button id="submit">Send</button>
+		<br>
+		<button id="pngtest">Send test png</button>
 		<div id="terminal"></div>
+		<div id="hidden" style="display:none;"></div>
 
 		<script>
 			function term(str) {
-				document.getElementById('terminal').innerHTML += str + '<br>';
+				document.getElementById('terminal').innerHTML += str + '<br>'
+			}
+			
+			const $pngBtn = document.getElementById('pngtest')
+			const $hidden = document.getElementById('hidden')
+
+			$pngBtn.onclick = () => {
+				const img = document.createElement('img')
+				img.src = 'http://10.10.10.104:3000/0.png?name=littlecat'
+				img.onload = ev => {
+					console.log(ev)
+					
+				}
+				$hidden.appendChild(img)
 			}
 
-			const socket = new WebSocket('ws://10.10.10.104:8080');
+
+
+/* Websockets test
+			const socket = new WebSocket('ws://localhost:8080')
 			
 			// connection opened
 			socket.addEventListener('open', event => {
-				socket.send('Hello Server!');
-			});
+				socket.send('Hello Server!')
+			})
 
 			// listen for messages
 			socket.addEventListener('message', event => {
-				term(`Message from server: ${event.data}`);
-			});
+				term(`Message from server: ${event.data}`)
+			})
 
 			document.getElementById('submit').onclick = () => {
-				const $in = document.getElementById('textInput');
-				socket.send($in.value);
-				$in.value = '';
-			};
+				const $in = document.getElementById('textInput')
+				socket.send($in.value)
+				$in.value = ''
+			}
+*/
 		</script>
 	</body>
 </html>
