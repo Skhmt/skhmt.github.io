@@ -1,12 +1,12 @@
 <html>
 	<body>
-		<h1>Mixed Content tests v6</h1>
+		<h1>Mixed Content tests v7</h1>
 		<input type="text" id="textInput"><button id="submit">Send</button>
 		<br>
 		<button id="giftest">Test gif</button>
 		<button id="svgtest">Test svg</button>
 		<div id="terminal"></div>
-		<div id="hidden" style="visibility: hidden;"></div>
+		<div id="hidden" style="display: none;"></div>
 
 		<script>
 			function term(str) {
@@ -31,6 +31,15 @@
 				img.onload = ev => {
 					console.log(ev)
 					console.log('loaded')
+
+					const canvas = document.createElement('canvas');
+					canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+					canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+					canvas.getContext('2d').drawImage(this, 0, 0);
+
+					// Get raw image data
+					console.log(canvas.toDataURL('image/png').split(',')[1])
 				}
 				img.src = 'http://10.10.10.104:3000/data.svg?name=littlecat'
 				$hidden.appendChild(img)
