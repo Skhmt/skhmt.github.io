@@ -1,6 +1,6 @@
 <html>
 	<body>
-		<h1>Mixed Content tests v7</h1>
+		<h1>Mixed Content tests v8</h1>
 		<input type="text" id="textInput"><button id="submit">Send</button>
 		<br>
 		<button id="giftest">Test gif</button>
@@ -33,10 +33,10 @@
 					console.log('loaded')
 
 					const canvas = document.createElement('canvas');
-					canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
-					canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+					canvas.width = img.naturalWidth; // or 'width' if you want a special/scaled size
+					canvas.height = img.naturalHeight; // or 'height' if you want a special/scaled size
 
-					canvas.getContext('2d').drawImage(this, 0, 0);
+					canvas.getContext('2d').drawImage(img, 0, 0);
 
 					// Get raw image data
 					console.log(canvas.toDataURL('image/png').split(',')[1])
