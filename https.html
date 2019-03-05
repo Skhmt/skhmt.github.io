@@ -1,7 +1,7 @@
 <html>
     <body>
         
-        8 (open console)
+        (open console)
         
         <script>
             // encoding the png with the message sent to the server and returing that message
@@ -11,15 +11,14 @@
 
             // control test, getting an existing png and doing no processing
             pngGet2('http://localhost/test.png', res => {
-                console.log('control test done')
             })
 
             function pngGet2(url, fn) {
-                console.time('pngGet2')
+                console.time('control - getting a .png without processing')
                 const img = new Image()
                 img.crossOrigin = 'anonymous'
                 img.onload = function() {
-                    console.timeEnd('pngGet2')
+                    console.timeEnd('control - getting a .png without processing')
                     fn()
                 }
                 img.src = url
@@ -28,7 +27,7 @@
 
 
             function pngGet(url, fn) {
-                console.time('pngGet')
+                console.time('sending a string to a server, getting a response and decoding it from the .png')
                 const canvas = document.createElement('canvas')
                 const ctx = canvas.getContext('2d')
                 const img = new Image()
@@ -44,7 +43,7 @@
                         utf8.push(byte)
                     }
 
-                    console.timeEnd('pngGet')
+                    console.timeEnd('sending a string to a server, getting a response and decoding it from the .png')
                     fn(stringFromUTF8Array(utf8))
                 }
                 img.src = url
