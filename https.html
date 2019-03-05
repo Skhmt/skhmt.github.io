@@ -1,4 +1,9 @@
 <html>
+    <head>
+        <title>
+            v2
+        </title>
+    </head>
     <body>
         
         <input type="text" id="ip" placeholder="local ip">
@@ -18,8 +23,9 @@
                 // encoding the png with the message sent to the server and returing that message
                 pngGet(`http://${$ip.value}/get.png?msg=${$msg.value}`, (txt, img) => {
                     const stop = Date.now()
-                    const time = '(' + (stop - start) + ' ms) '
-                    $term.innerHTML = time + img + txt + '<br>' + $term.innerHTML
+                    const time = `(${stop-start} ms)`
+                    $term.innerHTML = `<div>${time} <span id="${stop}"></span> ${txt}</div>` + $term.innerHTML
+                    document.getElementById(stop).appendChild(img)
                 })
             }
 
