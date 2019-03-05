@@ -1,29 +1,79 @@
 <html>
     <body>
         
-        5
+        7 (open console)
         
         <script>
-            let ip = 'http://192.168.1.113'
+            // encoding the png with the message sent to the server and returing that message
+            pngGet('http://192.168.1.113/dynamic.png?msg=hello darkness my old friend', res => {
+                console.log(res)
+            })
 
-            const canvas = document.createElement('canvas')
-            const ctx = canvas.getContext('2d')
-            const img = new Image()
-            img.crossOrigin = 'anonymous'
-            img.onload = function() {
-                canvas.width = img.width
-                canvas.height = img.height
-                ctx.drawImage(img, 0, 0)
-                
-                console.log(img.width)
-                for (let x = 0; x < img.width; x++) {
-                    console.log(ctx.getImageData(x, 0, 1, 1).data[0])
+            // control test, getting an existing png and doing no processing
+            pngGet2('http://192.168.1.113/test.png', res => {
+                console.log('control test done')
+            })
+
+            function pngGet2(url, fn) {
+                console.time('pngGet2')
+                const img = new Image()
+                img.crossOrigin = 'anonymous'
+                img.onload = function() {
+                    console.timeEnd('pngGet2')
+                    fn()
                 }
-                
-                document.getElementsByTagName('body')[0].appendChild(img)
+                img.src = url
             }
-            img.src = ip + '/test.png'
-        
+
+
+
+            function pngGet(url, fn) {
+                console.time('pngGet')
+                const canvas = document.createElement('canvas')
+                const ctx = canvas.getContext('2d')
+                const img = new Image()
+                img.crossOrigin = 'anonymous'
+                img.onload = function() {
+                    canvas.width = img.width
+                    canvas.height = img.height
+                    ctx.drawImage(img, 0, 0)
+                    
+                    const utf8 = []
+                    for (let x = 0; x < img.width; x++) {
+                        const byte = ctx.getImageData(x, 0, 1, 1).data[0]
+                        utf8.push(byte)
+                    }
+
+                    console.timeEnd('pngGet')
+                    fn(stringFromUTF8Array(utf8))
+                }
+                img.src = url
+            }
+
+            // https://weblog.rogueamoeba.com/2017/02/27/javascript-correctly-converting-a-byte-array-to-a-utf-8-string/
+            function stringFromUTF8Array(data) {
+                const extraByteMap = [ 1, 1, 1, 1, 2, 2, 3, 0 ]
+                const count = data.length
+                let str = ""
+                
+                for (var index = 0;index < count;) {
+                    let ch = data[index++]
+                    if (ch & 0x80) {
+                        let extra = extraByteMap[(ch >> 3) & 0x07]
+                        if (!(ch & 0x40) || !extra || ((index + extra) > count)) return null
+                        
+                        ch = ch & (0x3F >> extra)
+                        for (;extra > 0;extra -= 1) {
+                            const chx = data[index++]
+                            if ((chx & 0xC0) != 0x80) return null
+                            
+                            ch = (ch << 6) | (chx & 0x3F)
+                        }
+                    }
+                    str += String.fromCharCode(ch);
+                }
+                return str
+            }
         </script>
     </body>
 </html>
