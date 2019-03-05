@@ -1,7 +1,7 @@
 <html>
     <body>
         
-        3
+        4
         
         <script>
             let ip = 'http://192.168.1.113'
@@ -19,6 +19,8 @@
                 for (let x = 0; x < img.width; x++) {
                     console.log(ctx.getImageData(x, 0, 1, 1).data)
                 }
+                
+                document.getElementsByTagName('body').appendChild(img)
             }
             img.src = ip + '/test.png'
         
