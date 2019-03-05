@@ -1,73 +1,26 @@
 <html>
-	<body>
-		<h1>Mixed Content tests v9</h1>
-		<input type="text" id="textInput"><button id="submit">Send</button>
-		<br>
-		<button id="giftest">Test gif</button>
-		<button id="svgtest">Test svg</button>
-		<div id="terminal"></div>
-		<div id="hidden" style="display: none;"></div>
+    <body>
 
-		<script>
-			function term(str) {
-				document.getElementById('terminal').innerHTML += str + '<br>'
-			}
-			
-			const $gifBtn = document.getElementById('giftest')
-			const $svgBtn = document.getElementById('svgtest')
-			const $hidden = document.getElementById('hidden')
+        <script>
+            let ip = '192.168.1.113'
 
-			$gifBtn.onclick = () => {
-				const img = document.createElement('img')
-				img.onload = ev => {
-					console.log(ev)
-					console.log('loaded')
-				}
-				img.src = 'http://10.10.10.104:3000/data.gif?name=littlecat'
-				$hidden.appendChild(img)
-			}
+            const canvas = document.createElement('canvas')
+            const ctx = canvas.getContext('2d')
+            const img = new Image()
+            img.crossOrigin = 'anonymous'
+            img.onload = function() {
+                canvas.width = img.width
+                canvas.height = img.height
+                ctx.drawImage(img, 0, 0)
+                originalImageData = ctx.canvas.toDataURL()
+                conmsole.log(originalImageData)
 
-			$svgBtn.onclick = () => {
-				const img = document.createElement('img')
-				img.onload = ev => {
-					console.log(ev)
-					console.log('loaded')
-
-					const canvas = document.createElement('canvas');
-					canvas.width = img.naturalWidth; // or 'width' if you want a special/scaled size
-					canvas.height = img.naturalHeight; // or 'height' if you want a special/scaled size
-
-					canvas.getContext('2d').drawImage(img, 0, 0);
-
-					// Get raw image data
-					console.log(canvas.toDataURL('image/png').split(',')[1])
-				}
-				img.setAttribute('crossOrigin', 'anonymous')
-				img.src = 'http://10.10.10.104:3000/data.svg?name=littlecat'
-				$hidden.appendChild(img)
-			}
-
-
-
-/* Websockets test
-			const socket = new WebSocket('ws://localhost:8080')
-			
-			// connection opened
-			socket.addEventListener('open', event => {
-				socket.send('Hello Server!')
-			})
-
-			// listen for messages
-			socket.addEventListener('message', event => {
-				term(`Message from server: ${event.data}`)
-			})
-
-			document.getElementById('submit').onclick = () => {
-				const $in = document.getElementById('textInput')
-				socket.send($in.value)
-				$in.value = ''
-			}
-*/
-		</script>
-	</body>
+                for (let x = 0; x < img.width; x++) {
+                    console.log(ctx.getImageData(x, 0, 1, 1))
+                }
+            }
+            img.src = ip + '/test.png'
+        
+        </script>
+    </body>
 </html>
