@@ -18,7 +18,7 @@
                 console.log(originalImageData)
 
                 for (let x = 0; x < img.width; x++) {
-                    console.log(ctx.getImageData(x, 0, 1, 1))
+                    console.log(ctx.getImageData(x, 0, 1, 1).data)
                 }
             }
             img.src = ip + '/test.png'
