@@ -1,35 +1,32 @@
 <html>
     <body>
         
-        (open console)
+        <input type="text" id="ip" placeholder="local ip"><input type="text" id="msg" placeholder="the message to send"><button id="submit">submit</button>
+
+        <div id="term"></div>
         
         <script>
-            // you CANNOT use `localhost` as the ip address for this test
-            
-            // encoding the png with the message sent to the server and returing that message
-            pngGet('http://192.168.1.113/dynamic.png?msg=hello darkness my old friend', res => {
-                console.log(`Text response: ${res}`)
-            })
+            const $ip = document.getElementById('ip')
+            const $msg = document.getElementById('msg')
+            const $submit = document.getElementById('submit')
+            const $term = document.getElementById('term')
 
-            // control test, getting an existing png and doing no processing
-            pngGet2('http://192.168.1.113/test.png', res => {
-            })
-
-            function pngGet2(url, fn) {
-                console.time('control - getting a .png without processing')
-                const img = new Image()
-                img.crossOrigin = 'anonymous'
-                img.onload = function() {
-                    console.timeEnd('control - getting a .png without processing')
-                    fn()
-                }
-                img.src = url
+            $submit.onclick = ev => {
+                const start = Date.now()
+                // encoding the png with the message sent to the server and returing that message
+                pngGet(`http://${$ip.value}/dynamic.png?msg=${$msg.value}`, res => {
+                    const stop = Date.now()
+                    const time = '(' + (stop - start) + ' ms) '
+                    $term.innerHTML = time + res + '<br>' + $term.innerHTML
+                })
             }
 
 
 
+
+
+
             function pngGet(url, fn) {
-                console.time('sending a string to a server, getting a response and decoding it from the .png')
                 const canvas = document.createElement('canvas')
                 const ctx = canvas.getContext('2d')
                 const img = new Image()
@@ -45,7 +42,6 @@
                         utf8.push(byte)
                     }
 
-                    console.timeEnd('sending a string to a server, getting a response and decoding it from the .png')
                     fn(stringFromUTF8Array(utf8))
                 }
                 img.src = url
