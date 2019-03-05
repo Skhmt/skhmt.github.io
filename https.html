@@ -6,7 +6,7 @@
         <script>
             // encoding the png with the message sent to the server and returing that message
             pngGet('http://localhost/dynamic.png?msg=hello darkness my old friend', res => {
-                console.log(res)
+                console.log(`Text response: ${res}`)
             })
 
             // control test, getting an existing png and doing no processing
