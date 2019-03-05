@@ -14,7 +14,7 @@
             $submit.onclick = ev => {
                 const start = Date.now()
                 // encoding the png with the message sent to the server and returing that message
-                pngGet(`http://${$ip.value}/dynamic.png?msg=${$msg.value}`, res => {
+                pngGet(`http://${$ip.value}/get.png?msg=${$msg.value}`, res => {
                     const stop = Date.now()
                     const time = '(' + (stop - start) + ' ms) '
                     $term.innerHTML = time + res + '<br>' + $term.innerHTML
