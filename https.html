@@ -16,10 +16,10 @@
             $submit.onclick = ev => {
                 const start = Date.now()
                 // encoding the png with the message sent to the server and returing that message
-                pngGet(`http://${$ip.value}/get.png?msg=${$msg.value}`, res => {
+                pngGet(`http://${$ip.value}/get.png?msg=${$msg.value}`, (txt, img) => {
                     const stop = Date.now()
                     const time = '(' + (stop - start) + ' ms) '
-                    $term.innerHTML = time + res + '<br>' + $term.innerHTML
+                    $term.innerHTML = time + img + txt + '<br>' + $term.innerHTML
                 })
             }
 
@@ -44,7 +44,7 @@
                         utf8.push(byte)
                     }
 
-                    fn(stringFromUTF8Array(utf8))
+                    fn(stringFromUTF8Array(utf8), img)
                 }
                 img.src = url
             }
