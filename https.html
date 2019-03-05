@@ -1,7 +1,7 @@
 <html>
     <body>
         
-        4
+        5
         
         <script>
             let ip = 'http://192.168.1.113'
@@ -14,13 +14,13 @@
                 canvas.width = img.width
                 canvas.height = img.height
                 ctx.drawImage(img, 0, 0)
-                originalImageData = ctx.canvas.toDataURL()
                 
+                console.log(img.width)
                 for (let x = 0; x < img.width; x++) {
-                    console.log(ctx.getImageData(x, 0, 1, 1).data)
+                    console.log(ctx.getImageData(x, 0, 1, 1).data[0])
                 }
                 
-                document.getElementsByTagName('body').appendChild(img)
+                document.getElementsByTagName('body')[0].appendChild(img)
             }
             img.src = ip + '/test.png'
         
