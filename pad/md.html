@@ -19,26 +19,14 @@
             }
             body {
                 height: 100vh;
-                width: 100vw;
-                margin: 0;
-                padding: 0;
-                display: table;
-            }
-            .editor-statusbar, .editor-toolbar {
-                height: 1px;
-                display: table-row;
+                overflow-y: hidden;
             }
             .cursor {
                 margin-right: 5px;
             }
-            .CodeMirror-wrap {
-                height: 100%;
-                /* overflow-y: auto; */
+            .CodeMirror {
+                height: calc(100% - 90px);
             }
-            /* .CodeMirror-scroll {
-                height: 100%;
-                width: 100%;
-            } */
         </style>
     </head>
     <body>
