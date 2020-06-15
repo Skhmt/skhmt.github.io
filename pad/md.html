@@ -1,17 +1,25 @@
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>MarkDownPad</title>
-        <!--
-            <link href="atom-one-dark.css" rel="stylesheet">
-            <script src="highlight.min.js"></script>
-            <link href="simplemde.min.css" rel="stylesheet">
-            <script src="simplemde.min.js" type="text/javascript"></script> 
-            <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        -->
-        <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/atom-one-dark.css">
-        <script src="https:///cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+            <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.css" integrity="sha384-vkxpPwxwAfshAXLThtiwLXxyqE2yBZZwMRkAMrG79f96ukqppq7Tx8wWg5K29flM" crossorigin="anonymous"> -->
+            <!-- <link rel="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-light.css" integrity="sha384-0aiASjhj77b5St45szzu0sXr0UP7bgrzRzbOCHNPa3p2GOqcS/4juAoCejY0j1nk" crossorigin="anonymous"> -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/default.css">
+            <script src="https:///cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js" 
+                integrity="sha384-OQ6b/AGTBeHvjxbz2xlUvvYRnEKmF25haSHn82TsZzO23sqZtqXYu2QSOxd+chK1" 
+                crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.css"
+                integrity="sha384-rQdIropf4eQBEB9SkNB4xxukYHlkyXJfKYkpVNUQOLizz+d2q0wo7zjVA2XcYSij" 
+                crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.js"
+                integrity="sha384-83rBTICYr+FwAC+A5t0ZYsWjTcPXibCe/NBSFLAgMPkwHBvIi02EcE9OShMsGCi3" 
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11" 
+                integrity="sha384-OZmxTjkv7EQo5XDMPAmIkkvywVeXw59YyYh6zq8UKfkbor13jS+5p8qMTBSA1q+F" 
+                crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+                crossorigin="anonymous">
         <meta charset="UTF-8">
         <style>
             * {
@@ -19,6 +27,41 @@
             }
             body {
                 height: 100vh;
+                overflow-y: hidden;
+            }
+            #controls {
+                position: absolute;
+                left: 8;
+                bottom: 6;
+                z-index: 9001;
+            }
+            .control {
+                height: 20px;
+                margin: 0px 10px 0px 0px;
+                border-radius: 3px;
+                background: white;
+            }
+            select.control {
+                border: 1px solid #bbb;
+                color: #2c3e50;
+            }
+            button.control {
+                border: 0;
+                color: #bbb;
+            }
+            button.control:hover {
+                border: 1px solid #bbb;
+                color: #2c3e50;
+            }
+            select {
+                width: 110px;
+                color: #bbb;
+            }
+            #app {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
                 overflow-y: hidden;
             }
             .cursor {
@@ -30,33 +73,110 @@
         </style>
     </head>
     <body>
-        <textarea id="editor-container"></textarea>
+        <div id="app">
+            <textarea id="smde-placeholder"></textarea>
+            <div id="controls">
+                <select class="control" v-model="selected">
+                    <option v-for="pad in pads" :value="pad">{{pad}}</option>
+                </select>
+                <button class="control" @click="addPad"><i class="fa fa-plus"></i></button>
+                <button class="control" @click="removePad" v-if="selected!='home'"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
         <script>
-            let smde = new SimpleMDE({
-                element: document.getElementById('editor-container'),
-                toolbar: ['heading-1', 'heading-2', 'heading-3', '|',
-                    'bold', 'italic', 'strikethrough', '|',
-                    'quote', 'code', '|',
-                    'ordered-list', 'unordered-list', '|',
-                    'link', 'image', 'table', '|',
-                    'preview', 'guide'],
-                // status: false,
-                placeholder: 'Write stuff!',
-                lineWrapping: true,
-                renderingConfig: {
-                    codeSyntaxHighlighting: true,
+            /**
+             * Todo: add, delete, and rename tabs
+             * Load list of pads 
+             */
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    pads: [],
+                    selected: 'home',
+                    mde: {},
+                    smdeElement: 'smde-placeholder',
                 },
-                autosave: {
-                    enabled: true,
-                    delay: 10000,
-                    uniqueId: 'mdPad'
-                },
-            });
+                watch: {
+                    selected: function (newVal, oldVal) {
+                        // reset to a text area - this wipes out the save for some reason
+                        this.mde.toTextArea()
 
-            // Save on window close
-            window.onbeforeunload = () => {
-                localStorage.setItem( 'smde_mdPad', smde.value() )
-            };
+                        // manually save or remove it if it's no longer valid
+                        if (this.pads.includes(oldVal)) {
+                            localStorage.setItem('smde_'+oldVal, document.getElementById(this.smdeElement).value)
+                        }   
+                        else {
+                            localStorage.removeItem('smde_'+oldVal)
+                        }
+
+                        // clear the text area
+                        document.getElementById(this.smdeElement).value = ''
+
+                        // make new MDE
+                        this.mde = this.newMDE(newVal)
+                    },
+                },
+                methods: {
+                    newMDE(val) {
+                        return new SimpleMDE({
+                            element: document.getElementById(this.smdeElement),
+                            toolbar: ['heading-1', 'heading-2', 'heading-3', '|',
+                                'bold', 'italic', 'strikethrough', '|',
+                                'quote', 'code', '|',
+                                'ordered-list', 'unordered-list', '|',
+                                'link', 'image', 'table', '|',
+                                'preview', 'guide'],
+                            // status: false,
+                            placeholder: 'Write stuff!',
+                            lineWrapping: true,
+                            renderingConfig: {
+                                codeSyntaxHighlighting: true,
+                            },
+                            autosave: {
+                                enabled: true,
+                                delay: 10000,
+                                uniqueId: val
+                            },
+                        })
+                    },
+                    addPad() {
+                        const newPad = prompt('Enter the name of a new pad')
+                        this.pads.push(newPad)
+                        this.selected = newPad
+                        this.savePadList()
+                    },
+                    removePad() {
+                        const old = this.selected
+                        if (confirm(`Are you sure you want to PERMANENTLY remove "${old}"?`)) {
+                            this.pads = this.pads.filter(el => el != old)
+                            this.savePadList()
+                            this.selected = 'home'
+                        }
+                    },
+                    savePadList() {
+                        localStorage.setItem('mdp-list', JSON.stringify(this.pads))
+                    },
+                    loadPadList() {
+                        let storedPads = localStorage.getItem('mdp-list')
+                        if (storedPads) this.pads = JSON.parse(storedPads)
+                        else this.pads = ['home']
+                    },
+                },
+                mounted() {
+                    // set up initial mde
+                    this.loadPadList()
+                    this.mde = this.newMDE(this.selected)
+
+                    // save on unload
+                    window.onbeforeunload = () => {
+                        localStorage.setItem('smde_'+this.selected, this.mde.value())
+                        this.savePadList()
+                    }
+
+                    // load list of pads from localStorage
+                },
+            })
+
         </script>
     </body>
 </html>
