@@ -1,26 +1,39 @@
+<!--
+    MarkDownPad
+
+    @verson 2.0.0
+-->
 <html>
     <head>
-        <meta charset="UTF-8">
         <title>MarkDownPad</title>
-            <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.css" integrity="sha384-vkxpPwxwAfshAXLThtiwLXxyqE2yBZZwMRkAMrG79f96ukqppq7Tx8wWg5K29flM" crossorigin="anonymous"> -->
-            <!-- <link rel="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-light.css" integrity="sha384-0aiASjhj77b5St45szzu0sXr0UP7bgrzRzbOCHNPa3p2GOqcS/4juAoCejY0j1nk" crossorigin="anonymous"> -->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/default.css">
-            <script src="https:///cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js" 
-                integrity="sha384-OQ6b/AGTBeHvjxbz2xlUvvYRnEKmF25haSHn82TsZzO23sqZtqXYu2QSOxd+chK1" 
-                crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.css"
-                integrity="sha384-rQdIropf4eQBEB9SkNB4xxukYHlkyXJfKYkpVNUQOLizz+d2q0wo7zjVA2XcYSij" 
-                crossorigin="anonymous">
-            <script src="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.js"
-                integrity="sha384-83rBTICYr+FwAC+A5t0ZYsWjTcPXibCe/NBSFLAgMPkwHBvIi02EcE9OShMsGCi3" 
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11" 
-                integrity="sha384-OZmxTjkv7EQo5XDMPAmIkkvywVeXw59YyYh6zq8UKfkbor13jS+5p8qMTBSA1q+F" 
-                crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-                integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-                crossorigin="anonymous">
         <meta charset="UTF-8">
+
+        <!-- highlight.js -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"
+            integrity="sha384-0aiASjhj77b5St45szzu0sXr0UP7bgrzRzbOCHNPa3p2GOqcS/4juAoCejY0j1nk"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"
+            integrity="sha384-ZeLYJ2PNSQjvogWP559CDAf02Qb8FE5OyQicqtz/+UhZutbrwyr87Be7NPH/RgyC"
+            crossorigin="anonymous"></script>
+
+        <!-- SimpleMDE -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.css"
+            integrity="sha384-rQdIropf4eQBEB9SkNB4xxukYHlkyXJfKYkpVNUQOLizz+d2q0wo7zjVA2XcYSij" 
+            crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.js"
+            integrity="sha384-83rBTICYr+FwAC+A5t0ZYsWjTcPXibCe/NBSFLAgMPkwHBvIi02EcE9OShMsGCi3" 
+            crossorigin="anonymous"></script>
+
+        <!-- Vue -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11" 
+            integrity="sha384-OZmxTjkv7EQo5XDMPAmIkkvywVeXw59YyYh6zq8UKfkbor13jS+5p8qMTBSA1q+F" 
+            crossorigin="anonymous"></script>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+            crossorigin="anonymous">
+        
         <style>
             * {
                 box-sizing: border-box;
@@ -84,10 +97,6 @@
             </div>
         </div>
         <script>
-            /**
-             * Todo: add, delete, and rename tabs
-             * Load list of pads 
-             */
             const app = new Vue({
                 el: '#app',
                 data: {
@@ -103,10 +112,10 @@
 
                         // manually save or remove it if it's no longer valid
                         if (this.pads.includes(oldVal)) {
-                            localStorage.setItem('smde_'+oldVal, document.getElementById(this.smdeElement).value)
+                            localStorage.setItem(`smde_${oldVal}`, document.getElementById(this.smdeElement).value)
                         }   
                         else {
-                            localStorage.removeItem('smde_'+oldVal)
+                            localStorage.removeItem(`smde_${oldVal}`)
                         }
 
                         // clear the text area
@@ -137,7 +146,7 @@
                                 delay: 10000,
                                 uniqueId: val
                             },
-                            status: ["lines",] // autosave, lines, words, cursor
+                            status: ['lines'] // autosave, lines, words, cursor
                         })
                     },
                     addPad() {
@@ -164,17 +173,18 @@
                     },
                 },
                 mounted() {
+                    // set up highlight.js
+                    hljs.initHighlightingOnLoad()
+
                     // set up initial mde
                     this.loadPadList()
                     this.mde = this.newMDE(this.selected)
 
                     // save on unload
                     window.onbeforeunload = () => {
-                        localStorage.setItem('smde_'+this.selected, this.mde.value())
+                        localStorage.setItem(`smde_${this.selected}`, this.mde.value())
                         this.savePadList()
                     }
-
-                    // load list of pads from localStorage
                 },
             })
 
